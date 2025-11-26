@@ -1,0 +1,32 @@
+<header>
+
+    <div class="titre-logo">
+        <div class="logo"><img src="" alt="logo du site"></div>
+        <div class="titres">
+            <h1 class="lavish">Paralipomènes</h1>
+            <h2 class="handlee">Chroniques des travailleurs anonymes</h2>
+        </div>
+    </div>
+
+    <nav>
+        <ul>
+            <a href="">
+                <li>Accueil</li>
+            </a>
+            <a href="">
+                <li>Bibliothèque</li>
+            </a>
+            {% if app.user %}
+            <a href="">
+                <li>Mon compte</li>
+            </a>
+            {% else %}
+            <a href="">
+                <li>S'inscrire</li>
+            </a>
+            <a href="">
+                <li>Se connecter</li>
+            </a>
+            {% endif %}
+        </ul>
+    </nav>
