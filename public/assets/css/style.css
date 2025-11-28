@@ -20,3 +20,43 @@
 .eagle {
   font-family: "Eagle Lake", serif;
 }
+
+.texte-rouge {
+  color: #9A202C ;
+}
+
+.fond-beige {
+  background-color: #F3D7B3 ;
+}
+
+.texte-beige {
+  color: #F3D7B3;
+}
+
+.fond-rouge {
+  background-color: #9A202C;
+}
+
+
+.titres {
+  text-align: center;
+  width: 80%;
+  margin: auto;
+}
+
+.titres>h1 {
+  font-size: 6em;
+}
+
+.titres>h2 {
+  font-size: 2em;
+}
+
+.text-presentation{
+  width: 80%;
+  margin: auto;
+  border-radius: 15px;
+  text-align: justify;
+  padding: 25px 45px;
+  box-shadow: 1px 1px 25px #9A202C;
+}

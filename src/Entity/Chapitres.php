@@ -17,6 +17,13 @@ class Chapitres
     #[ORM\Column(type: Types::TEXT)]
     private ?string $contenu = null;
 
+    #[ORM\ManyToOne(inversedBy: 'chapitres')]
+    #[ORM\JoinColumn(nullable: false)]
+    private ?Histoires $histoires = null;
+
+    #[ORM\OneToOne(mappedBy: 'Chapitres', cascade: ['persist', 'remove'])]
+    private ?Corrections $corrections = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -30,6 +37,35 @@ class Chapitres
     public function setContenu(string $contenu): static
     {
         $this->contenu = $contenu;
+
+        return $this;
+    }
+
+    public function getHistoires(): ?Histoires
+    {
+        return $this->histoires;
+    }
+
+    public function setHistoires(?Histoires $histoires): static
+    {
+        $this->histoires = $histoires;
+
+        return $this;
+    }
+
+    public function getCorrections(): ?Corrections
+    {
+        return $this->corrections;
+    }
+
+    public function setCorrections(Corrections $corrections): static
+    {
+        // set the owning side of the relation if necessary
+        if ($corrections->getChapitres() !== $this) {
+            $corrections->setChapitres($this);
+        }
+
+        $this->corrections = $corrections;
 
         return $this;
     }

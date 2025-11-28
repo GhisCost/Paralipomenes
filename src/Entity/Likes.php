@@ -17,6 +17,14 @@ class Likes
     #[ORM\Column(type: Types::DATE_MUTABLE)]
     private ?\DateTime $timestamp = null;
 
+    #[ORM\ManyToOne(inversedBy: 'likes')]
+    #[ORM\JoinColumn(nullable: false)]
+    private ?User $User = null;
+
+    #[ORM\ManyToOne(inversedBy: 'likes')]
+    #[ORM\JoinColumn(nullable: false)]
+    private ?Histoires $Histoires = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -30,6 +38,30 @@ class Likes
     public function setTimestamp(\DateTime $timestamp): static
     {
         $this->timestamp = $timestamp;
+
+        return $this;
+    }
+
+    public function getUser(): ?User
+    {
+        return $this->User;
+    }
+
+    public function setUser(?User $User): static
+    {
+        $this->User = $User;
+
+        return $this;
+    }
+
+    public function getHistoires(): ?Histoires
+    {
+        return $this->Histoires;
+    }
+
+    public function setHistoires(?Histoires $Histoires): static
+    {
+        $this->Histoires = $Histoires;
 
         return $this;
     }

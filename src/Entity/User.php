@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\UserRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
@@ -38,6 +40,27 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
     #[ORM\Column]
     private bool $isVerified = false;
+
+    #[ORM\OneToOne(mappedBy: 'User', cascade: ['persist', 'remove'])]
+    private ?Histoires $histoires = null;
+
+    /**
+     * @var Collection<int, Corrections>
+     */
+    #[ORM\OneToMany(targetEntity: Corrections::class, mappedBy: 'User')]
+    private Collection $corrections;
+
+    /**
+     * @var Collection<int, Likes>
+     */
+    #[ORM\OneToMany(targetEntity: Likes::class, mappedBy: 'User')]
+    private Collection $likes;
+
+    public function __construct()
+    {
+        $this->corrections = new ArrayCollection();
+        $this->likes = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -140,6 +163,83 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function setIsVerified(bool $isVerified): static
     {
         $this->isVerified = $isVerified;
+
+        return $this;
+    }
+
+    public function getHistoires(): ?Histoires
+    {
+        return $this->histoires;
+    }
+
+    public function setHistoires(Histoires $histoires): static
+    {
+        // set the owning side of the relation if necessary
+        if ($histoires->getUser() !== $this) {
+            $histoires->setUser($this);
+        }
+
+        $this->histoires = $histoires;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Corrections>
+     */
+    public function getCorrections(): Collection
+    {
+        return $this->corrections;
+    }
+
+    public function addCorrection(Corrections $correction): static
+    {
+        if (!$this->corrections->contains($correction)) {
+            $this->corrections->add($correction);
+            $correction->setUser($this);
+        }
+
+        return $this;
+    }
+
+    public function removeCorrection(Corrections $correction): static
+    {
+        if ($this->corrections->removeElement($correction)) {
+            // set the owning side to null (unless already changed)
+            if ($correction->getUser() === $this) {
+                $correction->setUser(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Likes>
+     */
+    public function getLikes(): Collection
+    {
+        return $this->likes;
+    }
+
+    public function addLike(Likes $like): static
+    {
+        if (!$this->likes->contains($like)) {
+            $this->likes->add($like);
+            $like->setUser($this);
+        }
+
+        return $this;
+    }
+
+    public function removeLike(Likes $like): static
+    {
+        if ($this->likes->removeElement($like)) {
+            // set the owning side to null (unless already changed)
+            if ($like->getUser() === $this) {
+                $like->setUser(null);
+            }
+        }
 
         return $this;
     }
