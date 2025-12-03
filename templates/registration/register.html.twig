@@ -12,7 +12,6 @@
 	<div class = "form-reg eagle">
     <h2 class="texte-rouge">Inscription</h2>
 		{{ form_errors(registrationForm) }}
-
 		{{ form_start(registrationForm) }}
 		{{ form_row(registrationForm.email, 
             {label: "Email (requis)"}) }}
@@ -20,10 +19,8 @@
             {label: "Nom d'utilisateur (optionel) " })}}
 		{{ form_row(registrationForm.plainPassword, 
             {label: 'Mot de passe (requis)'}) }}
-		
 		{{ form_row(registrationForm.agreeTerms)}}
-
 		<button type="submit" class="fond-rouge texte-beige eagle">S'inscrire</button>
-	</div>
 	{{ form_end(registrationForm) }}
+	</div>
 {% endblock %}
