@@ -1,7 +1,30 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Paralipomènes{% endblock %}
+{% block title %}Paralipomènes
+{% endblock %}
 
 {% block body %}
+	<div class="form-compte eagle texte-rouge">
+	{{ form_start(form) }}
+		<div>
+			
+			{{form_row(form.email, {label: "Email"}) }}
+			<button type="submit" class="fond-rouge texte-beige eagle" name='modif_email'>Modifier</button>
+		</div>
+		<div>
+			{{ form_row(form.Username, 
+            {label: "Pseudonyme"}) }}
+			<button type="submit" class="fond-rouge texte-beige eagle" name='modif_username'>Modifier</button>
+		</div>
+		<div>
+			{{ form_row(form.password, 
+            {label: "Mot de passe"}) }}
+			<button type="submit" class="fond-rouge texte-beige eagle" name='modif_password'>Modifier</button>
+		</div>
+		{{ form_end(form) }}
+	</div>
 
+
+	<div>
+	</div>
 {% endblock %}

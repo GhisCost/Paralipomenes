@@ -7,6 +7,11 @@
    box-sizing: border-box; 
 }
 
+body{
+  cursor: url(../img/plume-rouge-24.png) 0 24,auto;
+}
+
+/* Font */
 
 .handlee {
   font-family: "Handlee", cursive;
@@ -21,6 +26,7 @@
   font-family: "Eagle Lake", serif;
 }
 
+/* Couleurs générales */
 .texte-rouge {
   color: #9A202C ;
 }
@@ -37,6 +43,7 @@
   background-color: #9A202C;
 }
 
+/* Header */
 
 .titres {
   text-align: center;
@@ -46,11 +53,64 @@
 
 .titres>h1 {
   font-size: 6em;
+  font-weight: 500;
 }
 
 .titres>h2 {
   font-size: 2em;
+  font-weight: 500;
 }
+
+a {
+  text-decoration: none;
+}
+
+.nav-header ul {
+display: flex;
+justify-content: space-evenly;
+list-style: none;
+margin: 35px;
+flex-wrap: wrap;
+}
+
+.nav-header ul a {
+  padding: 15px 25px;
+  border-radius: 15px;
+  background-color: #9A202C;
+  color: #F3D7B3;
+  width: 190px;
+  text-align: center;
+ cursor: url(../img/plume-beige-24.png) 0 24, pointer;
+}
+
+.nav-header ul a:hover {
+text-decoration: underline #F3D7B3;
+}
+
+/* Footer */
+
+.nav-footer ul {
+  background-color: #9A202C;
+  border-radius: 15px;
+  display: flex;
+  list-style: none;
+  justify-content: space-evenly;
+  width: 70%;
+  margin: 35px auto;
+  cursor:url(../img/plume-beige-24.png) 0 24,pointer;
+}
+
+.nav-footer ul a {
+  color: #F3D7B3;
+  padding: 15px;
+ cursor:url(../img/plume-beige-24.png) 0 24,pointer;
+}
+
+.nav-footer ul a:hover {
+text-decoration: underline #F3D7B3;
+}
+
+/* Main */
 
 .text-presentation{
   width: 80%;
@@ -59,4 +119,112 @@
   text-align: justify;
   padding: 25px 45px;
   box-shadow: 1px 1px 25px #9A202C;
+}
+
+
+/* Form connexion */
+
+.form-co {
+  width: 80%;
+  margin: auto;
+  text-align: center;
+}
+
+.form-co h2 {
+margin:25px;
+}
+
+.form-co>div {
+
+  display: flex;
+  flex-direction: column;
+  width: 15%;
+  margin: 15px auto;
+  gap:15px;
+  color: #9A202C;
+}
+
+.form-co label {
+
+  font-size: 1.3em;
+
+}
+
+.form-co input, .form-reg input {
+
+  border-radius: 10px;
+  padding: 5px;
+  border: #9A202C 2px solid;
+  background-color: #ffffff;
+}
+
+.form-co input:focus, .form-reg input:focus{
+  outline: #9A202C 1px solid;
+}
+
+.form-co button, .form-reg button {
+  background-color: #9A202C;
+  padding: 15px 25px;
+  border:none;
+  border-radius: 15px;
+  color: #F3D7B3;
+  margin-top: 25px;
+  cursor:url(../img/plume-beige-24.png) 0 24,pointer;
+}
+
+.form-co label:hover {
+  cursor: url(../img/plume-rouge-24.png) 0 24,auto;
+}
+
+/* Form inscription */
+
+.form-reg {
+  width: 80%;
+  margin: auto;
+  text-align: center;
+}
+
+.form-reg h2 {
+  margin: 25px;
+  font-weight: 500;
+}
+
+.form-reg div {
+  display: flex;
+  flex-direction: column;
+  width: 15%;
+  margin: 15px auto;
+  gap:15px;
+  color: #9A202C;
+}
+
+/* page compte */
+
+.form-compte div {
+  display: flex;
+ justify-content: space-evenly;
+  width: 50%;
+  margin: 10px auto;
+}
+
+.form-compte button {
+  padding: 15px 25px;
+  border: none;
+  border-radius: 15px;
+  cursor: url(../img/plume-beige-24.png) 0 24,pointer;
+}
+
+.form-compte input {
+   border-radius: 10px;
+  padding: 5px;
+  border: #9A202C 2px solid;
+  background-color: #ffffff;
+}
+
+.form-compte input:focus {
+outline: #9A202C 2px solid;
+}
+
+.form-compte label:hover {
+  cursor: url(../img/plume-rouge-24.png) 0 24,auto;
 }
