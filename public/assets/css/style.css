@@ -228,3 +228,15 @@ outline: #9A202C 2px solid;
 .form-compte label:hover {
   cursor: url(../img/plume-rouge-24.png) 0 24,auto;
 }
+
+/* Form-redac */
+
+.form-redac{
+  width: 80%;
+  margin: auto;
+  background-color: #ffffff;
+}
+
+.cacher{
+  display: none;
+}
