@@ -90,7 +90,6 @@ text-decoration: underline #F3D7B3;
 /* Footer */
 
 .nav-footer ul {
-  background-color: #9A202C;
   border-radius: 15px;
   display: flex;
   list-style: none;
@@ -110,7 +109,7 @@ text-decoration: underline #F3D7B3;
 text-decoration: underline #F3D7B3;
 }
 
-/* Main */
+/* Acceuil */
 
 .text-presentation{
   width: 80%;
@@ -120,6 +119,32 @@ text-decoration: underline #F3D7B3;
   padding: 25px 45px;
   box-shadow: 1px 1px 25px #9A202C;
 }
+
+.div-histoires-accueil{
+  width: 80%;
+  margin: 70px auto;
+  display: flex;
+  justify-content: space-between;
+}
+
+.carte-accueil {
+  width: 25%;
+  border-radius: 15px;
+  box-shadow: 1px 1px 25px #9A202C;
+  padding: 20px;
+  text-align: center;
+  margin: auto;
+}
+
+.carte-accueil h3 {
+  font-size: 2.5em;
+  margin-bottom: 10px;
+}
+
+.carte-accueil p {
+  font-size: 0.9em;
+}
+
 
 
 /* Form connexion */
@@ -141,7 +166,6 @@ margin:25px;
   width: 15%;
   margin: 15px auto;
   gap:15px;
-  color: #9A202C;
 }
 
 .form-co label {
@@ -229,14 +253,86 @@ outline: #9A202C 2px solid;
   cursor: url(../img/plume-rouge-24.png) 0 24,auto;
 }
 
+
+.lancementHistoire{
+  width: 80%;
+  margin: 25px auto;
+  text-align: center;
+}
+
+.lancementHistoire p {
+font-size: 1.5em;
+}
+
+.lancementHistoire button {
+  border-radius: 15px;
+  border: #9A202C 2px solid;
+  padding: 15px 0px;
+  margin: 15px;
+  cursor: url(../img/plume-beige-24.png) 0 24,pointer;
+}
+
+.lancementHistoire a {
+  padding: 15px 25px;
+  cursor: url(../img/plume-beige-24.png) 0 24,pointer;
+}
+
+
 /* Form-redac */
 
 .form-redac{
   width: 80%;
   margin: auto;
-  background-color: #ffffff;
+  background-color: #F3D7B3;
+  color: #9A202C;
+  border: #9A202C 1px solid;
+  border-radius: 15px;
 }
+
+.form-redac>form>div {
+  border: #9A202C 1px solid;
+
+}
+
+.ql-snow.ql-toolbar{
+  border: #9A202C 1px solid;
+  border-radius: 15px;
+}
+
 
 .cacher{
   display: none;
 }
+
+.form-redac button {
+  border-radius: 15px;
+  border: #9A202C 2px solid;
+  padding: 15px 25px;
+  margin: 15px;
+  cursor: url(../img/plume-beige-24.png) 0 24,pointer;
+}
+
+
+/* Bibliothèque */
+
+.carte-biblio {
+
+  width: 70%;
+  margin: 35px auto;
+  text-align: center;
+  border-radius: 15px;
+  box-shadow: 1px 1px 25px #9A202C ;
+  padding: 25px;
+}
+
+.carte-biblio h3 {
+  font-size: 2.5em;
+  margin-bottom: 10px;
+}
+
+.date-biblio{
+  text-align: end;
+  margin-top: 25px;
+  font-size: 0.9em;
+}
+

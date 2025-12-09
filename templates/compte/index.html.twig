@@ -24,8 +24,22 @@
 		</div>
 		{{ form_end(form) }}
 	</div>
-	<div class="lancementHistoire">
+	<div class="lancementHistoire eagle texte-rouge">
+
+	{% if user.histoires is null  %}
+	
 	<p>Commencer à raconter votre histoire:</p>
-		<a href="{{path('app_redaction_chapitre',{id: app.user.id})}}"><button name="creation">Se lancer</button></a>
+		
+		<button class="eagle texte-beige fond-rouge" name="creation">
+		<a href="{{path('app_debut_histoire',{id: app.user.id})}}" class="texte-beige">Se lancer</a>
+		</button>
+	{% else %}
+		<p>Continuer à raconter mon histoire:</p>
+
+		<button class="eagle texte-beige fond-rouge" >
+		<a href="{{path('app_redaction_chapitre',{id: app.user.id})}}" class="texte-beige" >Recommencer</a>
+		</button>
+
 	</div>
+	{% endif %}
 {% endblock %}

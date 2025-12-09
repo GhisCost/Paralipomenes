@@ -26,7 +26,7 @@ class Histoires
     /**
      * @var Collection<int, Chapitres>
      */
-    #[ORM\OneToMany(targetEntity: Chapitres::class, mappedBy: 'Histoires')]
+    #[ORM\OneToMany(targetEntity: Chapitres::class, mappedBy: 'histoires')]
     private Collection $chapitres;
 
     #[ORM\OneToOne(inversedBy: 'histoires', cascade: ['persist', 'remove'])]
@@ -39,10 +39,14 @@ class Histoires
     #[ORM\OneToMany(targetEntity: Likes::class, mappedBy: 'Histoires')]
     private Collection $likes;
 
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $titre = null;
+
     public function __construct()
     {
         $this->chapitres = new ArrayCollection();
         $this->likes = new ArrayCollection();
+        $this->datePublication =new \DateTime('now', new \DateTimeZone('Europe/Paris'));
     }
 
     public function getId(): ?int
@@ -67,11 +71,11 @@ class Histoires
         return $this->datePublication;
     }
 
-    public function setDatePublication(?\DateTime $datePublication): static
+    public function setDatePublication(?\DateTime $datePublication): void
     {
-        $this->datePublication = $datePublication;
+        $this->datePublication = new \DateTime();
 
-        return $this;
+        
     }
 
     /**
@@ -142,6 +146,18 @@ class Histoires
                 $like->setHistoires(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getTitre(): ?string
+    {
+        return $this->titre;
+    }
+
+    public function setTitre(?string $titre): static
+    {
+        $this->titre = $titre;
 
         return $this;
     }

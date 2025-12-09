@@ -30,6 +30,18 @@ class ChapitresRepository extends ServiceEntityRepository
            ->getOneOrNullResult()
        ;
    }
+
+   public function creerChapitre(Histoires $histoire)
+   {
+    $chapitre= new Chapitres();
+    $chapitre->setContenu(' ');
+    $chapitre->setHistoires($histoire);
+    $em=$this->getEntityManager();
+    $em->persist($chapitre);
+    $em->flush();
+
+    return $chapitre;
+   }
    //    /**
 //     * @return Chapitres[] Returns an array of Chapitres objects
 //     */

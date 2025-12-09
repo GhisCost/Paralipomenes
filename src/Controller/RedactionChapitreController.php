@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\Histoires;
+use App\Repository\HistoiresRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -20,30 +21,59 @@ final class RedactionChapitreController extends AbstractController
 
         $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
 
-          /**
+        /**
          * @var Chapitres $chapitre
          */
         /**
          * @var Histoires $histoire
          */
-
         /**
          * @var User $user
          */
-        
-        $user= $this->getUser();
+        $user = $this->getUser();
 
-        $histoire= $user->getHistoires();
+        $histoire = $user->getHistoires();
 
-        $chapitre=  $chapitresRepository->findLastChapitreByHistoire($histoire);
-        
-        $form=$this->createForm(RedactionChapitreType::class,$chapitre);
+        $chapitre = $chapitresRepository->findLastChapitreByHistoire($histoire);
+
+        $form = $this->createForm(RedactionChapitreType::class, $chapitre);
 
         $form->handleRequest($request);
 
         return $this->render('redaction_chapitre/index.html.twig', [
             'controller_name' => 'RedactionChapitreController',
-            'form' =>$form->createView()
+            'form' => $form->createView()
         ]);
+    }
+
+    #[Route('/premiere/redaction/chapitre/{id}', 'app_debut_histoire')]
+    public function debutHistoire(Request $request, HistoiresRepository $histoiresRepository, ChapitresRepository $chapitresRepository)
+    {
+
+        // $this->denyAccessUnlessGranted('IS_ANTHENTICATED_FULLY');
+
+        /**
+         * @var User $user
+         */
+        $user = $this->getUser();
+
+        $histoire = $histoiresRepository->creerHistoire('Mon histoire (titre à modifier)', $user);
+
+        $chapitre = $chapitresRepository->creerChapitre($histoire);
+
+        $form = $this->createForm(RedactionChapitreType::class, $chapitre);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()){
+
+            dd($form);
+
+        }
+
+        return $this->render('redaction_chapitre/index.html.twig', [
+            'controller_name' => 'RedactionChapitreController',
+            'form' => $form->createView()
+        ]);
+
     }
 }
