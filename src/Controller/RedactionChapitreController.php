@@ -40,6 +40,13 @@ final class RedactionChapitreController extends AbstractController
 
         $form->handleRequest($request);
 
+        if ($form->isSubmitted() && $form->isValid()){
+
+            dd(getContents());
+
+        }
+
+
         return $this->render('redaction_chapitre/index.html.twig', [
             'controller_name' => 'RedactionChapitreController',
             'form' => $form->createView()
@@ -63,12 +70,6 @@ final class RedactionChapitreController extends AbstractController
 
         $form = $this->createForm(RedactionChapitreType::class, $chapitre);
         $form->handleRequest($request);
-
-        if ($form->isSubmitted() && $form->isValid()){
-
-            dd($form);
-
-        }
 
         return $this->render('redaction_chapitre/index.html.twig', [
             'controller_name' => 'RedactionChapitreController',
