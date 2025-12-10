@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Entity\Histoires;
 use App\Repository\HistoiresRepository;
+use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -16,7 +17,7 @@ use App\Repository\ChapitresRepository;
 final class RedactionChapitreController extends AbstractController
 {
     #[Route('/redaction/chapitre/{id}', name: 'app_redaction_chapitre')]
-    public function index(Request $request, ChapitresRepository $chapitresRepository): Response
+    public function index(Request $request, ChapitresRepository $chapitresRepository, EntityManagerInterface $entityManager): Response
     {
 
         $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
@@ -30,6 +31,7 @@ final class RedactionChapitreController extends AbstractController
         /**
          * @var User $user
          */
+
         $user = $this->getUser();
 
         $histoire = $user->getHistoires();
@@ -40,12 +42,20 @@ final class RedactionChapitreController extends AbstractController
 
         $form->handleRequest($request);
 
-        if ($form->isSubmitted() && $form->isValid()){
+        if ($form->isSubmitted() && $form->isValid()) {
+        
+    //    dd($form->getData());
+        
+        $chapitre->setContenu($form->get('contenu')->getData());
 
-            dd(getContents());
-
+        $entityManager->persist($chapitre);
+        $entityManager->flush();
+        
+        return $this->render('redaction_chapitre/index.html.twig', [
+            'controller_name' => 'RedactionChapitreController',
+            'form' => $form->createView()
+            ]);
         }
-
 
         return $this->render('redaction_chapitre/index.html.twig', [
             'controller_name' => 'RedactionChapitreController',

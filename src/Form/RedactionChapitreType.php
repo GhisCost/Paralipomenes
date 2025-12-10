@@ -19,8 +19,7 @@ class RedactionChapitreType extends AbstractType
             ->add('contenu', TextareaType::class, [
            'attr' => [
                'class' => 'cacher', // on cache le textarea, Quill va prendre le relais
-           ],
-           'mapped' => true
+           ]
        ]);
     }
 

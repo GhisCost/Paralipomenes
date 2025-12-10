@@ -2,16 +2,22 @@
 
 {% block title %}Paralipomènes - redaction{% endblock %}
 
+{% set hasQuill = true %}
+
 {% block body %}
-<div class="form-redac" >
-{{ form_start(form) }}
+ <div class="form-redac">
+  {{ form_start(form) }}
 
- {{ form_widget(form.contenu) }}
-    <div id="editor">
-        {{ form.contenu.vars.value|raw }}
-    </div>
-    <button type="submit" class="btn btn-primary eagle fond-rouge texte-beige">Enregistrer</button>
+  {{ form_widget(form.contenu, {
+        attr: { class: 'cacher' }
+    }) }}
 
-{{ form_end(form) }}
-</div>
+  <div id="editor"></div>
+
+  <button type="submit" class="btn btn-primary eagle fond-rouge texte-beige">Enregistrer</button>
+
+  {{ form_end(form) }}
+ </div>
+
 {% endblock %}
+
