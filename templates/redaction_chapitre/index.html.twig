@@ -1,23 +1,34 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Paralipomènes - redaction{% endblock %}
+{% block title %}Paralipomènes - redaction
+{% endblock %}
 
 {% set hasQuill = true %}
 
 {% block body %}
- <div class="form-redac">
-  {{ form_start(form) }}
+	<div class="form-redac">
+		{{ form_start(form) }}
 
-  {{ form_widget(form.contenu, {
+		{{ form_widget(form.contenu, {
         attr: { class: 'cacher' }
     }) }}
 
-  <div id="editor"></div>
+		<div id="editor"></div>
 
-  <button type="submit" class="btn btn-primary eagle fond-rouge texte-beige">Enregistrer</button>
+		<button type="submit" class="btn btn-primary eagle fond-rouge texte-beige">Enregistrer</button>
 
-  {{ form_end(form) }}
- </div>
 
-{% endblock %}
+		{{ form_end(form) }}
+		<div class="div-suivant">
+			<a href="{{path('app_chapitre_suivant',{id: app.user.id})}}">
+				<button class="eagle fond-rouge texte-beige btn-suivant">Chapitre Suivant</button>
+			</a>
+		</div>
 
+		<div class="div-precedent">
+			<a href="{{path('app_chapitre_precedent',{id: app.user.id})}}">
+				<button class="eagle fond-rouge texte-beige btn-precedent">Chapitre Précédent</button>
+			</a>
+		</div>
+
+	{% endblock %}

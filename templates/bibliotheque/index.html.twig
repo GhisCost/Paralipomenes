@@ -7,12 +7,12 @@
 	{% for hist in histoires %}
 
 			<div class="carte-biblio texte-rouge fond-beige">
-				<h3 class="lavish">{{hist.titre}}</h3>
+				<h4 class="lavish">{{hist.titre}}</h4>
+				<div class="eagle">
 				{% for ch in hist.chapitres %}
-					<p class="eagle">
-						{{ch.contenu}}
-					</p>
+						{{ch.contenu|raw}}
 				{% endfor %}
+				</div>
                 <p class="eagle date-biblio">Publié le : {{hist.datePublication|date('d-m-Y')}}</p>
 			</div>
 

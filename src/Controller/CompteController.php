@@ -23,7 +23,7 @@ final class CompteController extends AbstractController
 
         
         $user= $this->getUser();
-//  dd($user);
+
         $form=$this->createForm(CompteType::class, $user,['email'=>$user->getEmail(), 'username'=>$user->getUsername()]);
 
         $form->handleRequest($request);

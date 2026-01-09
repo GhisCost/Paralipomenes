@@ -27,12 +27,12 @@
 		{% for hist in derniereHistoire %}
 
 			<div class="carte-accueil texte-rouge fond-beige">
-				<h3 class="lavish">{{hist.titre}}</h3>
+				<h4 class="lavish">{{hist.titre}}</h4>
+				<div class="eagle" >
 				{% for ch in hist.chapitres %}
-					<p class="eagle">
-						{{ch.contenu}}
-					</p>
+						{{ch.contenu|raw}}
 				{% endfor %}
+				</div>
 			</div>
 
 		{% endfor %}

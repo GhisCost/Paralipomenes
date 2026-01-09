@@ -13,6 +13,7 @@ use App\Form\RedactionChapitreType;
 use App\Entity\User;
 use App\Entity\Chapitres;
 use App\Repository\ChapitresRepository;
+use Symfony\Component\HtmlSanitizer\HtmlSanitizerInterface;
 
 final class RedactionChapitreController extends AbstractController
 {
@@ -44,11 +45,10 @@ final class RedactionChapitreController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
         
-    //    dd($form->getData());
-        
         $chapitre->setContenu($form->get('contenu')->getData());
-
+        
         $entityManager->persist($chapitre);
+
         $entityManager->flush();
         
         return $this->render('redaction_chapitre/index.html.twig', [
@@ -67,7 +67,7 @@ final class RedactionChapitreController extends AbstractController
     public function debutHistoire(Request $request, HistoiresRepository $histoiresRepository, ChapitresRepository $chapitresRepository)
     {
 
-        // $this->denyAccessUnlessGranted('IS_ANTHENTICATED_FULLY');
+       $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
 
         /**
          * @var User $user
@@ -87,4 +87,61 @@ final class RedactionChapitreController extends AbstractController
         ]);
 
     }
+
+    #[Route('/chapitre/suivant/{id}', 'app_chapitre_suivant')]
+    public function chapitreSuivant(Request $request, HistoiresRepository $histoiresRepository, ChapitresRepository $chapitresRepository)
+    {
+        $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
+
+       
+
+        /**
+        * @var Histoires $histoire
+        */
+        /**
+         * @var Chapitres $chapitre
+         */
+        /**
+         * @var User $user 
+         */
+        
+       $user = $this->getUser();
+       
+       $histoire = $user->getHistoires();
+
+       $chapitre = $chapitresRepository->creerChapitre($histoire);
+
+        $form = $this->createForm(RedactionChapitreType::class, $chapitre);
+        $form->handleRequest($request);
+
+        return $this->render('redaction_chapitre/index.html.twig', [
+            'controller_name' => 'RedactionChapitreController',
+            'form' => $form->createView()
+        ]);
+        
+    }
+
+    #[Route('/chapitre/precedent/{id}','app_chapitre_precedent')]
+    public function chapitrePrecedent(){
+
+        $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
+
+         /**
+        * @var Histoires $histoire
+        */
+        /**
+         * @var Chapitres $chapitre
+         */
+        /**
+         * @var User $user 
+         */
+        
+       $user = $this->getUser();
+       
+       $histoire = $user->getHistoires();
+
+       
+
+    }
+
 }
