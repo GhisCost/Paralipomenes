@@ -42,6 +42,34 @@ class ChapitresRepository extends ServiceEntityRepository
 
     return $chapitre;
    }
+
+   public function findChapitrePrecedent(Chapitres $chapitre): ?Chapitres
+{
+    return $this->createQueryBuilder('c')
+        ->andWhere('c.histoires = :histoire')
+        ->andWhere('c.id < :id')
+        ->setParameter('histoire', $chapitre->getHistoires())
+        ->setParameter('id', $chapitre->getId())
+        ->orderBy('c.id', 'DESC')
+        ->setMaxResults(1)
+        ->getQuery()
+        ->getOneOrNullResult();
+}
+
+
+public function findChapitreSuivant(Chapitres $chapitre): ?Chapitres
+{
+    return $this->createQueryBuilder('c')
+        ->andWhere('c.histoires = :histoire')
+        ->andWhere('c.id > :id')
+        ->setParameter('histoire', $chapitre->getHistoires())
+        ->setParameter('id', $chapitre->getId())
+        ->orderBy('c.id', 'ASC')
+        ->setMaxResults(1)
+        ->getQuery()
+        ->getOneOrNullResult();
+}
+
    //    /**
 //     * @return Chapitres[] Returns an array of Chapitres objects
 //     */

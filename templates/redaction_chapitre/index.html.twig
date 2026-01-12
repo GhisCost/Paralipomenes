@@ -20,14 +20,18 @@
 
 		{{ form_end(form) }}
 		<div class="div-suivant">
-			<a href="{{path('app_chapitre_suivant',{id: app.user.id})}}">
-				<button class="eagle fond-rouge texte-beige btn-suivant">Chapitre Suivant</button>
+			<a href="{{ path('app_chapitre_suivant', { id: chapitre.id }) }}">
+				<button class="eagle fond-rouge texte-beige btn-suivant">
+					Chapitre Suivant
+				</button>
 			</a>
 		</div>
 
 		<div class="div-precedent">
-			<a href="{{path('app_chapitre_precedent',{id: app.user.id})}}">
-				<button class="eagle fond-rouge texte-beige btn-precedent">Chapitre Précédent</button>
+			<a href="{{ path('app_chapitre_precedent', { id: chapitre.id }) }}">
+				<button class="eagle fond-rouge texte-beige btn-precedent">
+					Chapitre Précédent
+				</button>
 			</a>
 		</div>
 

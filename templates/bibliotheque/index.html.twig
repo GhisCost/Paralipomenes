@@ -10,6 +10,7 @@
 				<h4 class="lavish">{{hist.titre}}</h4>
 				<div class="eagle">
 				{% for ch in hist.chapitres|reverse %}
+						<br>
 						{{ch.contenu|raw}}
 				{% endfor %}
 				</div>

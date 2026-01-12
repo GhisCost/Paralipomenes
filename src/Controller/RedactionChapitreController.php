@@ -44,22 +44,24 @@ final class RedactionChapitreController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-        
-        $chapitre->setContenu($form->get('contenu')->getData());
-        
-        $entityManager->persist($chapitre);
 
-        $entityManager->flush();
-        
-        return $this->render('redaction_chapitre/index.html.twig', [
-            'controller_name' => 'RedactionChapitreController',
-            'form' => $form->createView()
+            $chapitre->setContenu($form->get('contenu')->getData());
+
+            $entityManager->persist($chapitre);
+
+            $entityManager->flush();
+
+            return $this->render('redaction_chapitre/index.html.twig', [
+                'controller_name' => 'RedactionChapitreController',
+                'form' => $form->createView(),
+                'chapitre' => $chapitre
             ]);
         }
 
         return $this->render('redaction_chapitre/index.html.twig', [
             'controller_name' => 'RedactionChapitreController',
-            'form' => $form->createView()
+            'form' => $form->createView(),
+            'chapitre' => $chapitre
         ]);
     }
 
@@ -67,7 +69,7 @@ final class RedactionChapitreController extends AbstractController
     public function debutHistoire(Request $request, HistoiresRepository $histoiresRepository, ChapitresRepository $chapitresRepository)
     {
 
-       $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
+        $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
 
         /**
          * @var User $user
@@ -83,65 +85,88 @@ final class RedactionChapitreController extends AbstractController
 
         return $this->render('redaction_chapitre/index.html.twig', [
             'controller_name' => 'RedactionChapitreController',
-            'form' => $form->createView()
+            'form' => $form->createView(),
+            'chapitre' => $chapitre
         ]);
 
     }
 
-    #[Route('/chapitre/suivant/{id}', 'app_chapitre_suivant')]
-    public function chapitreSuivant(Request $request, HistoiresRepository $histoiresRepository, ChapitresRepository $chapitresRepository)
-    {
+    #[Route('/chapitre/suivant/{id}', name: 'app_chapitre_suivant')]
+    public function chapitreSuivant(
+        Chapitres $chapitre,
+        Request $request,
+        ChapitresRepository $chapitresRepository
+    ) {
         $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
 
-       
 
-        /**
-        * @var Histoires $histoire
-        */
-        /**
-         * @var Chapitres $chapitre
-         */
-        /**
-         * @var User $user 
-         */
-        
-       $user = $this->getUser();
-       
-       $histoire = $user->getHistoires();
+        if ($chapitre->getHistoires()->getUser() !== $this->getUser()) {
+            throw $this->createAccessDeniedException();
+        }
 
-       $chapitre = $chapitresRepository->creerChapitre($histoire);
 
-        $form = $this->createForm(RedactionChapitreType::class, $chapitre);
+        $chapitreSuivant = $chapitresRepository->findChapitreSuivant($chapitre);
+
+
+        if ($chapitreSuivant === null) {
+            $chapitreSuivant = $chapitresRepository->creerChapitre(
+                $chapitre->getHistoires()
+            );
+        }
+
+        $form = $this->createForm(RedactionChapitreType::class, $chapitreSuivant);
         $form->handleRequest($request);
 
         return $this->render('redaction_chapitre/index.html.twig', [
-            'controller_name' => 'RedactionChapitreController',
-            'form' => $form->createView()
+            'form' => $form->createView(),
+            'chapitre' => $chapitreSuivant
         ]);
-        
     }
 
-    #[Route('/chapitre/precedent/{id}','app_chapitre_precedent')]
-    public function chapitrePrecedent(){
 
+    #[Route('/chapitre/precedent/{id}', name: 'app_chapitre_precedent')]
+    public function chapitrePrecedent(
+        Chapitres $chapitre,
+        Request $request,
+        ChapitresRepository $chapitresRepository,
+        EntityManagerInterface $entityManager
+    ) {
         $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
 
-         /**
-        * @var Histoires $histoire
-        */
-        /**
-         * @var Chapitres $chapitre
-         */
-        /**
-         * @var User $user 
-         */
+
+        if ($chapitre->getHistoires()->getUser() !== $this->getUser()) {
+            throw $this->createAccessDeniedException();
+        }
+
+        $chapitrePrecedent = $chapitresRepository->findChapitrePrecedent($chapitre);
+
+        if ($chapitrePrecedent === null) {
+            $chapitrePrecedent = $chapitre;
+        }
+
+        $form = $this->createForm(RedactionChapitreType::class, $chapitrePrecedent);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()){
+            
+
+            $chapitre->setContenu($form->get('contenu')->getData());
+
+            $entityManager->persist($chapitre);
+
+            $entityManager->flush();
+
+            return $this->render('redaction_chapitre/index.html.twig', [
+                'controller_name' => 'RedactionChapitreController',
+                'form' => $form->createView(),
+                'chapitre' => $chapitre
+            ]);
+        }
         
-       $user = $this->getUser();
-       
-       $histoire = $user->getHistoires();
 
-       
-
+        return $this->render('redaction_chapitre/index.html.twig', [
+            'form' => $form->createView(),
+            'chapitre' => $chapitrePrecedent
+        ]);
     }
-
 }
