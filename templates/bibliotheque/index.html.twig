@@ -9,7 +9,7 @@
 			<div class="carte-biblio texte-rouge fond-beige">
 				<h4 class="lavish">{{hist.titre}}</h4>
 				<div class="eagle">
-				{% for ch in hist.chapitres %}
+				{% for ch in hist.chapitres|reverse %}
 						{{ch.contenu|raw}}
 				{% endfor %}
 				</div>
