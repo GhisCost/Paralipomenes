@@ -60,6 +60,18 @@ class HistoiresRepository extends ServiceEntityRepository
 
     return $histoire;
     }
+
+    public function findHistoireById($id)
+    {
+
+        return $this->createQueryBuilder('h')
+            ->andWhere('h.id = :id')
+            ->setParameter('id',$id)
+            ->getQuery()
+            ->getResult()
+            ;
+    }
+
     
 //    /**
 //     * @return Histoires[] Returns an array of Histoires objects

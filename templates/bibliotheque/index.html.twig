@@ -5,8 +5,8 @@
 {% block body %}
 
 	{% for hist in histoires %}
-
-			<div class="carte-biblio texte-rouge fond-beige">
+			
+			<a class="carte-biblio texte-rouge fond-beige" href= "{{path('app_page_histoire',{id: hist.id})}}">	
 				<h4 class="lavish">{{hist.titre}}</h4>
 				<div class="eagle">
 				{% for ch in hist.chapitres|reverse %}
@@ -15,8 +15,8 @@
 				{% endfor %}
 				</div>
                 <p class="eagle date-biblio">Publié le : {{hist.datePublication|date('d-m-Y')}}</p>
-			</div>
-
+			</a>	
+			
 		{% endfor %}
 
 {% endblock %}

@@ -330,7 +330,7 @@ font-size: 1.5em;
 /* Bibliothèque */
 
 .carte-biblio {
-
+  display: block;
   width: 70%;
   margin: 35px auto;
   text-align: center;
