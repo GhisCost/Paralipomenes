@@ -34,7 +34,7 @@ class ChapitresRepository extends ServiceEntityRepository
    public function creerChapitre(Histoires $histoire)
    {
     $chapitre= new Chapitres();
-    $chapitre->setContenu(' ');
+    $chapitre->setContenu('');
     $chapitre->setHistoires($histoire);
     $em=$this->getEntityManager();
     $em->persist($chapitre);
