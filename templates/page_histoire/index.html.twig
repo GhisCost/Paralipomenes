@@ -1,12 +1,23 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}{% endblock %}
+{% block title %}
+	Paralipomènes -
+	{{histoire.titre}}
+{% endblock %}
 
 {% block body %}
-<style>
-   
-</style>
 
+	<div class="div-histoire texte-rouge fond-beige">
 
-</div>
+		<h4 class="titre-histoire lavish">{{histoire.titre}}</h4>
+
+		<div class="eagle ">
+			{% for ch in chapitres %}
+				<br>
+				{{ch.contenu|raw}}
+			{% endfor %}
+		</div>
+
+	</div>
+
 {% endblock %}
