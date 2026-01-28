@@ -6,6 +6,9 @@
 
 {% block body %}
 	<div class="form-compte eagle texte-rouge">
+
+		<h4 class ="titreCompte">Informations de compte</h4>
+
 		{{ form_start(form) }}
 		<div>
 
@@ -24,6 +27,28 @@
 		</div>
 		{{ form_end(form) }}
 	</div>
+
+	<div class="accesAdmin">
+	
+	{% if user.roles[0] == "ROLE_ADMIN" %}
+	
+	<button class="eagle texte-beige fond-rouge" name="admin" > 
+	<a class="texte-beige" href="{{path('admin')}}">Page d'administration</a>
+	</button>
+
+	{% endif %}
+
+	{% if user.roles[0] == "ROLE_CORRECTEUR" %}
+	
+	<button class="eagle texte-beige fond-rouge" name="correcteur" > 
+	<a class="texte-beige" href="{{path('app_choix_correction')}}">Page de corrections</a>
+	</button>
+
+	{% endif %}
+	
+	</div>
+
+
 	<div class="lancementHistoire eagle texte-rouge">
 
 	{% if user.histoires is null  %}

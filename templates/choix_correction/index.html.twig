@@ -1,0 +1,22 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Paralipomènes - Tableau de bord de correcteur{% endblock %}
+
+{% block body %}
+
+{% for hist in histoires %}
+			
+			<a class="carte-correction texte-rouge fond-beige" >	
+				<h4 class="lavish">{{hist.titre}}</h4>
+				<div class="eagle">
+				{% for ch in hist.chapitres|reverse %}
+						<br>
+						{{ch.contenu|raw}}
+				{% endfor %}
+				</div>
+                <p class="eagle date-biblio">Publié le : {{hist.datePublication|date('d-m-Y')}}</p>
+			</a>	
+			
+		{% endfor %}
+
+{% endblock %}

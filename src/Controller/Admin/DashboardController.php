@@ -11,6 +11,7 @@ use EasyCorp\Bundle\EasyAdminBundle\Config\MenuItem;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractDashboardController;
 use Symfony\Component\HttpFoundation\Response;
 
+
 #[AdminDashboard(routePath: '/admin', routeName: 'admin')]
 class DashboardController extends AbstractDashboardController
 {
@@ -45,5 +46,7 @@ class DashboardController extends AbstractDashboardController
         yield MenuItem::linkToCrud('Chapitres', 'fas fa-list', Chapitres::class);
         yield MenuItem::linkToCrud('Histoires', 'fas fa-list', Histoires::class);
         yield MenuItem::linkToCrud('User', 'fas fa-list', User::class);
+        yield MenuItem::section('Site');
+        yield MenuItem::linkToUrl('Retour au site', 'fa fa-globe', '/');
     }
 }

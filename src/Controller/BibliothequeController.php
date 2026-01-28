@@ -25,7 +25,6 @@ final class BibliothequeController extends AbstractController
         }
 
         return $this->render('bibliotheque/index.html.twig', [
-            'controller_name' => 'BibliothequeController',
             'histoires'=> $histoires
         ]);
     }

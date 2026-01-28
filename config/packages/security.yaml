@@ -38,8 +38,8 @@ security:
         - { path: ^/profile, roles: ROLE_USER }
     
     role_hierarchy:
-        ROLE_EDITOR: ROLE_USER
-        ROLE_ADMIN: ROLE_EDITOR
+        ROLE_CORRECTEUR: ROLE_USER
+        ROLE_ADMIN: ROLE_CORRECTEUR
 
 when@test:
     security:
