@@ -11,7 +11,7 @@ use Symfony\Component\Routing\Attribute\Route;
 
 final class ChoixCorrectionController extends AbstractController
 {
-    #[Route('/corrections', name: 'app_choix_correction')]
+    #[Route('/choix', name: 'app_choix_correction')]
     public function index(HistoiresRepository $histoiresRepository, HtmlSanitizerInterface $htmlSanitizer): Response
     {
         $this->denyAccessUnlessGranted('ROLE_CORRECTEUR');

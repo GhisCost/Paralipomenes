@@ -1,0 +1,25 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Paralipomènes - Décision correction{% endblock %}
+
+{% block body %}
+
+<div class="div-decision texte-rouge fond-beige">
+
+
+    <button id="btn-correction" class="fond-rouge">
+    <a class="texte-beige lavish eagle" href= "{{path('app_page_correction', {id:histoire.id})}}">Commencer à corriger</a>
+    </button>
+
+		<h4 class="titre-histoire lavish">{{histoire.titre}}</h4>
+
+		<div class="eagle">
+			{% for ch in chapitres %}
+				<br>
+				{{ch.contenu|raw}}
+			{% endfor %}
+		</div>
+
+	</div>
+
+{% endblock %}

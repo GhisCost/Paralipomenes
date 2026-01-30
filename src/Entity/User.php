@@ -36,7 +36,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     private ?string $password = null;
 
     #[ORM\Column(length: 40)]
-    private ?string $Username = null;
+    private ?string $username = null;
 
     #[ORM\Column]
     private bool $isVerified = false;
@@ -95,7 +95,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function getRoles(): array
     {
         $roles = $this->roles;
-        // guarantee every user at least has ROLE_USER
+
         $roles[] = 'ROLE_USER';
 
         return array_unique($roles);
@@ -145,12 +145,12 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
     public function getUsername(): ?string
     {
-        return $this->Username;
+        return $this->username;
     }
 
-    public function setUsername(string $Username): static
+    public function setUsername(string $username): static
     {
-        $this->Username = $Username;
+        $this->username = $username;
 
         return $this;
     }
@@ -174,7 +174,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
     public function setHistoires(Histoires $histoires): static
     {
-        // set the owning side of the relation if necessary
+     
         if ($histoires->getUser() !== $this) {
             $histoires->setUser($this);
         }
@@ -205,7 +205,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function removeCorrection(Corrections $correction): static
     {
         if ($this->corrections->removeElement($correction)) {
-            // set the owning side to null (unless already changed)
+           
             if ($correction->getUser() === $this) {
                 $correction->setUser(null);
             }

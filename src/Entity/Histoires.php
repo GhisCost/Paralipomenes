@@ -99,7 +99,6 @@ class Histoires
     public function removeChapitre(Chapitres $chapitre): static
     {
         if ($this->chapitres->removeElement($chapitre)) {
-            // set the owning side to null (unless already changed)
             if ($chapitre->getHistoires() === $this) {
                 $chapitre->setHistoires(null);
             }
@@ -141,7 +140,6 @@ class Histoires
     public function removeLike(Likes $like): static
     {
         if ($this->likes->removeElement($like)) {
-            // set the owning side to null (unless already changed)
             if ($like->getHistoires() === $this) {
                 $like->setHistoires(null);
             }

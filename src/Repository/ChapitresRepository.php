@@ -31,9 +31,6 @@ class ChapitresRepository extends ServiceEntityRepository
        ;
    }
 
-   
-
-
    public function creerChapitre(Histoires $histoire)
    {
     $chapitre= new Chapitres();

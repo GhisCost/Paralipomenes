@@ -2,8 +2,9 @@
 
 namespace App\Entity;
 
-use App\Enum\StatutHistoire;
+use App\Enum\StatutCorrection;
 use App\Repository\CorrectionsRepository;
+use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: CorrectionsRepository::class)]
@@ -14,8 +15,8 @@ class Corrections
     #[ORM\Column]
     private ?int $id = null;
 
-    #[ORM\Column(enumType: StatutHistoire::class)]
-    private ?StatutHistoire $statut = null;
+    #[ORM\Column(enumType: StatutCorrection::class)]
+    private ?StatutCorrection $statut = null;
 
     #[ORM\ManyToOne(inversedBy: 'corrections')]
     #[ORM\JoinColumn(nullable: false)]
@@ -25,17 +26,26 @@ class Corrections
     #[ORM\JoinColumn(nullable: false)]
     private ?Chapitres $Chapitres = null;
 
+    #[ORM\Column(type: Types::TEXT, nullable: true)]
+    private ?string $Contenu = null;
+
+    #[ORM\ManyToOne]
+    #[ORM\JoinColumn(nullable: false)]
+    private ?Histoires $Histoire = null;
+
+
+
     public function getId(): ?int
     {
         return $this->id;
     }
 
-    public function getStatut(): ?StatutHistoire
+    public function getStatut(): ?StatutCorrection
     {
         return $this->statut;
     }
 
-    public function setStatut(StatutHistoire $statut): static
+    public function setStatut(StatutCorrection $statut): static
     {
         $this->statut = $statut;
 
@@ -65,4 +75,30 @@ class Corrections
 
         return $this;
     }
+
+    public function getContenu(): ?string
+    {
+        return $this->Contenu;
+    }
+
+    public function setContenu(?string $Contenu): static
+    {
+        $this->Contenu = $Contenu;
+
+        return $this;
+    }
+
+    public function getHistoire(): ?Histoires
+    {
+        return $this->Histoire;
+    }
+
+    public function setHistoire(?Histoires $Histoire): static
+    {
+        $this->Histoire = $Histoire;
+
+        return $this;
+    }
+
+
 }

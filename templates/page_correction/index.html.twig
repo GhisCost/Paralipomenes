@@ -1,0 +1,38 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Paralipomènes - Correction
+{% endblock %}
+
+
+{% block body %}
+
+	{{ form_start(form) }}
+	{{ form_widget(form.contenu) }}
+
+	<div id="editor"></div>
+
+	<button type="submit">Enregistrer</button>
+
+	{{ form_end(form) }}
+
+	<script>
+    
+	document.addEventListener('DOMContentLoaded', function () {
+    const quill = new Quill('#editor', {theme: 'snow'});
+    let contenu = `{% for correction in corrections %}
+    {{ correction.contenu|raw }}
+    <!-- CORRECTION -->
+    {% endfor %}`;
+
+    quill.root.innerHTML = contenu;
+
+    const textarea = document.querySelector('#page_correction_contenu');
+
+    document.querySelector('form').addEventListener('submit', function () {
+    textarea.value = quill.root.innerHTML;
+    });
+    });
+
+	</script>
+
+{% endblock %}

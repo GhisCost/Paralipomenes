@@ -21,13 +21,10 @@
 
 document.addEventListener('DOMContentLoaded', function () { 
 	
-// 1) Initialiser Quill
 const quill = new Quill('#editor', {theme: 'snow'});
 
-// 2) Récupérer le textarea généré par Symfony
 const textarea = document.querySelector('#{{form.contenu.vars.id}}');
 
-// 3) (optionnel) S'assurer que Quill contient le texte initial du textarea
 quill.root.innerHTML = textarea.value;
 
 const form = document.querySelector('form[name="{{form.vars.name}}"]');
@@ -36,6 +33,23 @@ form.addEventListener('submit', function () {
 textarea.value = quill.root.innerHTML;
 });
 });
+
+{# // Pour la page correction
+let contenu = `
+{% for correction in corrections %}
+<h3>Chapitre {{ correction.chapitres.id }}</h3>
+{{ correction.contenu|raw }}
+<!-- CORRECTION -->
+{% endfor %}
+`;
+
+quill.root.innerHTML = contenu;
+
+const textarea = document.querySelector('#page_correction_contenu');
+
+document.querySelector('form').addEventListener('submit', () => {
+    textarea.value = quill.root.innerHTML;
+}); #}
 
 {% endif %}
 
