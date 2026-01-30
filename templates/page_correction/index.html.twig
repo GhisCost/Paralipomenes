@@ -5,34 +5,35 @@
 
 
 {% block body %}
+	<div class="div-correct">
+		{{ form_start(form) }}
+		{{ form_widget(form.contenu) }}
 
-	{{ form_start(form) }}
-	{{ form_widget(form.contenu) }}
+		<div id="editor"></div>
 
-	<div id="editor"></div>
+		<button type="submit">Enregistrer</button>
 
-	<button type="submit">Enregistrer</button>
+		{{ form_end(form) }}
 
-	{{ form_end(form) }}
+	</div>
 
 	<script>
-    
-	document.addEventListener('DOMContentLoaded', function () {
-    const quill = new Quill('#editor', {theme: 'snow'});
-    let contenu = `{% for correction in corrections %}
+
+		document.addEventListener('DOMContentLoaded', function () {
+const quill = new Quill('#editor', {theme: 'snow'});
+let contenu = `{% for correction in corrections %}
     {{ correction.contenu|raw }}
     <!-- CORRECTION -->
     {% endfor %}`;
 
-    quill.root.innerHTML = contenu;
+quill.root.innerHTML = contenu;
 
-    const textarea = document.querySelector('#page_correction_contenu');
+const textarea = document.querySelector('#page_correction_contenu');
 
-    document.querySelector('form').addEventListener('submit', function () {
-    textarea.value = quill.root.innerHTML;
-    });
-    });
-
+document.querySelector('form').addEventListener('submit', function () {
+textarea.value = quill.root.innerHTML;
+});
+});
 	</script>
 
 {% endblock %}
