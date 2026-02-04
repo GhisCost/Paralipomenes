@@ -9,7 +9,7 @@
 			<a class="carte-correction texte-rouge fond-beige" href= "{{path('app_decision_correction',{id: hist.id})}}" >	
 				<h4 class="lavish">{{hist.titre}}</h4>
 				<div class="eagle">
-				{% for ch in hist.chapitres|reverse %}
+				{% for ch in hist.chapitres %}
 						<br>
 						{{ch.contenu|raw}}
 				{% endfor %}

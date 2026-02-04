@@ -32,7 +32,7 @@
 			<div class="carte-accueil texte-rouge fond-beige">
 				<h4 class="lavish">{{hist.titre}}</h4>
 				<div class="eagle" >
-				{% for ch in hist.chapitres|reverse %}
+				{% for ch in hist.chapitres %}
 						<br>
 						{{ch.contenu|raw}}
 				{% endfor %}

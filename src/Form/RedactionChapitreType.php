@@ -17,10 +17,11 @@ class RedactionChapitreType extends AbstractType
     {
         $builder
             ->add('contenu', TextareaType::class, [
-           'attr' => [
-               'class' => 'cacher', // on cache le textarea "normal", Quill va faire le boulot à la place
-           ]
-       ]);
+                'required' => false,
+                'attr' => [
+                    'class' => 'cacher', // on cache le textarea "normal", Quill va faire le boulot à la place
+                ]
+            ]);
     }
 
     public function configureOptions(OptionsResolver $resolver): void

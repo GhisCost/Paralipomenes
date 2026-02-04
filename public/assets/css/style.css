@@ -1,449 +1,506 @@
-@import url('https://fonts.googleapis.com/css2?family=Handlee&family=Lavishly+Yours&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Eagle+Lake&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Handlee&family=Lavishly+Yours&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Eagle+Lake&display=swap");
 
-body{
-  cursor: url(../img/plume-rouge-24.png) 0 24,auto;
+body {
+    cursor:
+        url(../img/plume-rouge-24.png) 0 24,
+        auto;
 }
 
-*{
-  margin:0;
-  padding:0;
-  box-sizing: border-box;
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
 
 /* Font */
 
 .handlee {
-  font-family: "Handlee", cursive;
+    font-family: "Handlee", cursive;
 }
 
-
 .lavish {
-  font-family: "Lavishly Yours", cursive;
+    font-family: "Lavishly Yours", cursive;
 }
 
 .eagle {
-  font-family: "Eagle Lake", serif;
+    font-family: "Eagle Lake", serif;
 }
 
 /* Couleurs générales */
 .texte-rouge {
-  color: #9A202C ;
+    color: #9a202c;
 }
 
 .fond-beige {
-  background-color: #F3D7B3 ;
+    background-color: #f3d7b3;
 }
 
 .texte-beige {
-  color: #F3D7B3;
+    color: #f3d7b3;
 }
 
 .fond-rouge {
-  background-color: #9A202C;
+    background-color: #9a202c;
 }
 
 /* Header */
 
 .titres {
-  text-align: center;
-  width: 80%;
-  margin: auto;
+    text-align: center;
+    width: 80%;
+    margin: auto;
 }
 
-.titres>h1 {
-  font-size: 6em;
-  font-weight: 500;
+.titres > h1 {
+    font-size: 6em;
+    font-weight: 500;
 }
 
-.titres>h2 {
-  font-size: 2em;
-  font-weight: 500;
+.titres > h2 {
+    font-size: 2em;
+    font-weight: 500;
 }
 
 a {
-  text-decoration: none;
+    text-decoration: none;
 }
 
 .nav-header ul {
-display: flex;
-justify-content: space-evenly;
-list-style: none;
-margin: 35px;
-flex-wrap: wrap;
+    display: flex;
+    justify-content: space-evenly;
+    list-style: none;
+    margin: 35px;
+    flex-wrap: wrap;
 }
 
 .nav-header ul a {
-  padding: 15px 25px;
-  border-radius: 15px;
-  background-color: #9A202C;
-  color: #F3D7B3;
-  width: 190px;
-  text-align: center;
- cursor: url(../img/plume-beige-24.png) 0 24, pointer;
+    padding: 15px 25px;
+    border-radius: 15px;
+    background-color: #9a202c;
+    color: #f3d7b3;
+    width: 190px;
+    text-align: center;
+    cursor:
+        url(../img/plume-beige-24.png) 0 24,
+        pointer;
 }
 
 .nav-header ul a:hover {
-text-decoration: underline #F3D7B3;
+    text-decoration: underline #f3d7b3;
 }
 
 /* Footer */
 
 .nav-footer ul {
-  border-radius: 15px;
-  display: flex;
-  list-style: none;
-  justify-content: space-evenly;
-  width: 70%;
-  margin: 35px auto;
-  cursor:url(../img/plume-beige-24.png) 0 24,pointer;
+    border-radius: 15px;
+    display: flex;
+    list-style: none;
+    justify-content: space-evenly;
+    width: 70%;
+    margin: 35px auto;
+    cursor:
+        url(../img/plume-beige-24.png) 0 24,
+        pointer;
 }
 
 .nav-footer ul a {
-  color: #F3D7B3;
-  padding: 15px;
- cursor:url(../img/plume-beige-24.png) 0 24,pointer;
+    color: #f3d7b3;
+    padding: 15px;
+    cursor:
+        url(../img/plume-beige-24.png) 0 24,
+        pointer;
 }
 
 .nav-footer ul a:hover {
-text-decoration: underline #F3D7B3;
+    text-decoration: underline #f3d7b3;
 }
 
 /* Acceuil */
 
-.text-presentation{
-  width: 80%;
-  margin: auto;
-  border-radius: 15px;
-  text-align: center;
-  padding: 25px 45px;
-  box-shadow: 1px 1px 25px #9A202C;
+.text-presentation {
+    width: 80%;
+    margin: auto;
+    border-radius: 15px;
+    text-align: center;
+    padding: 25px 45px;
+    box-shadow: 1px 1px 25px #9a202c;
 }
 
-.div-histoires-accueil{
-  width: 80%;
-  margin: 70px auto;
-  display: flex;
-  justify-content: space-between;
+.div-histoires-accueil {
+    width: 80%;
+    margin: 70px auto;
+    display: flex;
+    justify-content: space-between;
 }
 
 .carte-accueil {
-  width: 25%;
-  border-radius: 15px;
-  box-shadow: 1px 1px 25px #9A202C;
-  padding: 20px;
-  text-align: center;
-  margin: auto;
+    width: 25%;
+    border-radius: 15px;
+    box-shadow: 1px 1px 25px #9a202c;
+    padding: 20px;
+    text-align: center;
+    margin: auto;
 }
 
 .carte-accueil h4 {
-  font-size: 2.7em;
-  margin-bottom: 10px;
+    font-size: 2.7em;
+    margin-bottom: 10px;
 }
 
 .carte-accueil p {
-  font-size: 0.9em;
+    font-size: 0.9em;
 }
-
-
 
 /* Form connexion */
 
 .form-co {
-  width: 80%;
-  margin: auto;
-  text-align: center;
+    width: 80%;
+    margin: auto;
+    text-align: center;
 }
 
 .form-co h2 {
-margin:25px;
+    margin: 25px;
 }
 
-.form-co>div {
-  display: flex;
-  flex-direction: column;
-  width: 15%;
-  margin: 15px auto;
-  gap:15px;
+.form-co > div {
+    display: flex;
+    flex-direction: column;
+    width: 15%;
+    margin: 15px auto;
+    gap: 15px;
 }
 
 .form-co label {
-  font-size: 1.3em;
+    font-size: 1.3em;
 }
 
-.form-co input, .form-reg input {
-
-  border-radius: 10px;
-  padding: 5px;
-  border: #9A202C 2px solid;
-  background-color: #ffffff;
+.form-co input,
+.form-reg input {
+    border-radius: 10px;
+    padding: 5px;
+    border: #9a202c 2px solid;
+    background-color: #ffffff;
 }
 
-.form-co input:focus, .form-reg input:focus{
-  outline: #9A202C 1px solid;
+.form-co input:focus,
+.form-reg input:focus {
+    outline: #9a202c 1px solid;
 }
 
-.form-co button, .form-reg button {
-  background-color: #9A202C;
-  padding: 15px 25px;
-  border:none;
-  border-radius: 15px;
-  color: #F3D7B3;
-  margin-top: 25px;
-  cursor:url(../img/plume-beige-24.png) 0 24,pointer;
+.form-co button,
+.form-reg button {
+    background-color: #9a202c;
+    padding: 15px 25px;
+    border: none;
+    border-radius: 15px;
+    color: #f3d7b3;
+    margin-top: 25px;
+    cursor:
+        url(../img/plume-beige-24.png) 0 24,
+        pointer;
 }
 
 .form-co label:hover {
-  cursor: url(../img/plume-rouge-24.png) 0 24,auto;
+    cursor:
+        url(../img/plume-rouge-24.png) 0 24,
+        auto;
 }
 
 /* Form inscription */
 
 .form-reg {
-  width: 80%;
-  margin: auto;
-  text-align: center;
+    width: 80%;
+    margin: auto;
+    text-align: center;
 }
 
 .form-reg h2 {
-  margin: 25px;
-  font-weight: 500;
+    margin: 25px;
+    font-weight: 500;
 }
 
 .form-reg div {
-  display: flex;
-  flex-direction: column;
-  width: 15%;
-  margin: 15px auto;
-  gap:15px;
-  color: #9A202C;
+    display: flex;
+    flex-direction: column;
+    width: 15%;
+    margin: 15px auto;
+    gap: 15px;
+    color: #9a202c;
 }
 
 /* page compte */
 
 .form-compte div {
-  display: flex;
- justify-content: space-evenly;
-  width: 50%;
-  margin: 10px auto;
+    display: flex;
+    justify-content: space-evenly;
+    width: 50%;
+    margin: 10px auto;
 }
 
 .form-compte button {
-  padding: 15px 25px;
-  border: none;
-  border-radius: 15px;
-  cursor: url(../img/plume-beige-24.png) 0 24,pointer;
+    padding: 15px 25px;
+    border: none;
+    border-radius: 15px;
+    cursor:
+        url(../img/plume-beige-24.png) 0 24,
+        pointer;
 }
 
 .form-compte input {
-   border-radius: 10px;
-  padding: 5px;
-  border: #9A202C 2px solid;
-  background-color: #ffffff;
+    border-radius: 10px;
+    padding: 5px;
+    border: #9a202c 2px solid;
+    background-color: #ffffff;
 }
 
 .form-compte input:focus {
-outline: #9A202C 2px solid;
+    outline: #9a202c 2px solid;
 }
 
 .form-compte label:hover {
-  cursor: url(../img/plume-rouge-24.png) 0 24,auto;
+    cursor:
+        url(../img/plume-rouge-24.png) 0 24,
+        auto;
 }
 
-.lancementHistoire{
-  width: 80%;
-  margin: 25px auto;
-  text-align: center;
+.lancementHistoire {
+    width: 80%;
+    margin: 25px auto;
+    text-align: center;
 }
 
 .lancementHistoire p {
-font-size: 1.5em;
+    font-size: 1.5em;
 }
 
 .lancementHistoire button {
-  border-radius: 15px;
-  border: #9A202C 2px solid;
-  padding: 15px 0px;
-  margin: 15px;
-  cursor: url(../img/plume-beige-24.png) 0 24,pointer;
+    border-radius: 15px;
+    border: #9a202c 2px solid;
+    padding: 15px 0px;
+    margin: 15px;
+    cursor:
+        url(../img/plume-beige-24.png) 0 24,
+        pointer;
 }
 
 .lancementHistoire a {
-  padding: 15px 25px;
-  cursor: url(../img/plume-beige-24.png) 0 24,pointer;
+    padding: 15px 25px;
+    cursor:
+        url(../img/plume-beige-24.png) 0 24,
+        pointer;
 }
 
-.titreCompte{
-  margin-top: 50px;
-  margin-bottom: 20px ;
-  font-size: 2em;
-  text-align: center;
+.titreCompte {
+    margin-top: 50px;
+    margin-bottom: 20px;
+    font-size: 2em;
+    text-align: center;
 }
 
 .accesAdmin {
-  width: 80%;
-  margin: 15px auto;
-  text-align: center;
+    width: 80%;
+    margin: 15px auto;
+    text-align: center;
 }
 
-.accesAdmin button{
-  border-radius: 15px;
-  border: #9A202C 2px solid;
-  padding: 15px;
-  margin: 15px;
-  cursor: url(../img/plume-beige-24.png) 0 24,pointer;
-
+.accesAdmin button {
+    border-radius: 15px;
+    border: #9a202c 2px solid;
+    padding: 15px;
+    margin: 15px;
+    cursor:
+        url(../img/plume-beige-24.png) 0 24,
+        pointer;
 }
 
 .accesAdmin a {
-  cursor: url(../img/plume-beige-24.png) 0 24,pointer;
+    cursor:
+        url(../img/plume-beige-24.png) 0 24,
+        pointer;
 }
 
 /* Form-redac */
 
-.form-redac{
-  width: 80%;
-  margin: auto;
-  background-color: #F3D7B3;
-  color: #9A202C;
-  border: #9A202C 1px solid;
-  border-radius: 15px;
+.form-redac {
+    width: 70%;
+    margin: 0 auto;
+    background-color: #f3d7b3;
+    color: #9a202c;
+    border: #9a202c 1px solid;
+    border-radius: 15px;
 }
 
-.form-redac>form>div {
-  border: #9A202C 1px solid;
-
+.form-redac > form > div {
+    border: #9a202c 1px solid;
 }
 
-.ql-snow.ql-toolbar{
-  border: #9A202C 1px solid;
-  border-radius: 15px;
+.ql-snow.ql-toolbar {
+    border: #9a202c 1px solid;
+    border-radius: 15px;
 }
 
-.cacher{
-  display: none;
+.cacher {
+    display: none;
 }
 
 .form-redac button {
-  border-radius: 15px;
-  border: #9A202C 2px solid;
-  padding: 15px 25px;
-  margin: 15px;
-  cursor: url(../img/plume-beige-24.png) 0 24,pointer;
+    border-radius: 15px;
+    border: #9a202c 2px solid;
+    padding: 15px 25px;
+    margin: 15px;
+    cursor:
+        url(../img/plume-beige-24.png) 0 24,
+        pointer;
 }
 
-.div-suivant{
-  position: relative;
+.div-suivant {
+    position: relative;
 }
 
-.div-suivant button{
-  position: absolute;
-  right: 15px;
-  top: -85px;
+.div-suivant button {
+    position: absolute;
+    right: 15px;
+    top: -85px;
 }
 
 .div-precedent {
-  position:relative;
+    position: relative;
 }
 
-.div-precedent button{
-  position: absolute;
-  top: -85px;
-  right: 220px;
+.div-precedent button {
+    position: absolute;
+    top: -85px;
+    right: 220px;
+}
+
+.conteneur-redac {
+    display: flex;
+    align-items: start;
+}
+
+.regle-redac {
+    width: 10%;
+    margin-left: auto;
+    font-size: 0.9em;
+    border-radius: 15px;
+    box-shadow: 1px 1px 25px #9a202c;
+    padding:15px;
+}
+.regle-redac ul {
+  list-style: none;
+}
+.regle-redac li {
+  padding: 5px;
 }
 
 /* Bibliothèque */
 
 .carte-biblio {
-  display: block;
-  width: 70%;
-  margin: 35px auto;
-  text-align: center;
-  border-radius: 15px;
-  box-shadow: 1px 1px 25px #9A202C ;
-  padding: 25px;
+    display: block;
+    width: 70%;
+    margin: 35px auto;
+    text-align: center;
+    border-radius: 15px;
+    box-shadow: 1px 1px 25px #9a202c;
+    padding: 25px;
 }
 
 .carte-biblio h4 {
-  font-size: 2.7em;
-  margin-bottom: 10px;
+    font-size: 2.7em;
+    margin-bottom: 10px;
 }
 
-.date-biblio{
-  text-align: end;
-  margin-top: 25px;
-  font-size: 0.9em;
+.date-biblio {
+    text-align: end;
+    margin-top: 25px;
+    font-size: 0.9em;
 }
-
 
 /* Page Histoire */
 
 .div-histoire {
-  margin: auto;
-  width: 80%;
+    margin: auto;
+    width: 80%;
 }
 
-
-.div-histoire>h4 {
-  font-size: 2.5em;
+.div-histoire > h4 {
+    font-size: 2.5em;
 }
 
-.div-histoire>div {
-  padding: 25px
+.div-histoire > div {
+    padding: 25px;
 }
 
 /* Choix Corrections */
 
 .carte-correction {
-  display: block;
-  width: 40%;
-  margin: 35px auto;
-  text-align: center;
-  border-radius: 15px;
-  box-shadow: 1px 1px 25px #9A202C ;
-  padding: 15px;
+    display: block;
+    width: 40%;
+    margin: 35px auto;
+    text-align: center;
+    border-radius: 15px;
+    box-shadow: 1px 1px 25px #9a202c;
+    padding: 15px;
 }
 
-.carte-correction h4{
-   font-size: 2em;
-  margin-bottom: 10px;
+.carte-correction h4 {
+    font-size: 2em;
+    margin-bottom: 10px;
 }
 
 /* Décision de correction */
 
 #btn-correction {
-  border-radius: 15px;
-  border: #9A202C 2px solid;
-  padding: 15px 20px;
-  margin: 15px;
-  cursor: url(../img/plume-beige-24.png) 0 24,pointer;
-  font-size: 1.5em;
-  position: fixed;
-  top:37%;
-  right: 25%;
+    border-radius: 15px;
+    border: #9a202c 2px solid;
+    padding: 15px 20px;
+    margin: 15px;
+    cursor:
+        url(../img/plume-beige-24.png) 0 24,
+        pointer;
+    font-size: 1.5em;
+    position: fixed;
+    top: 37%;
+    right: 25%;
 }
 
-#btn-correction:hover{
-  text-decoration: underline #F3D7B3;
+#btn-correction a {
+    cursor:
+        url(../img/plume-beige-24.png) 0 24,
+        pointer;
 }
 
+#btn-correction:hover {
+    text-decoration: underline #f3d7b3;
+}
 
 .div-decision {
-  margin: auto;
-  width: 80%;
-  position: relative;
+    margin: auto;
+    width: 80%;
+    position: relative;
 }
 
-.div-decision>h4{
+.div-decision > h4 {
     font-size: 2.5em;
 }
 
-
 /* Page correction */
 
-.div-correct>form{
-  border: 1px solid #9A202C;
-  border-radius: 15px;
-  width:80%;
-  margin: auto;
+.div-correct > form {
+    border: 1px solid #9a202c;
+    border-radius: 15px;
+    width: 80%;
+    margin: auto;
+}
+
+.div-correct button {
+    border-radius: 15px;
+    border: #9a202c 2px solid;
+    padding: 15px;
+    margin: 15px;
+    cursor:
+        url(../img/plume-beige-24.png) 0 24,
+        pointer;
 }

@@ -1,39 +1,58 @@
 {% extends 'base.html.twig' %}
 
 {% block title %}
-Paralipomènes - redaction
+	Paralipomènes - redaction
 {% endblock %}
 
 {% set hasQuill = true %}
 
 {% block body %}
-	<div class="form-redac">
-		{{ form_start(form) }}
 
-		{{ form_widget(form.contenu, {
+	<div class="conteneur-redac">
+		<div class="regle-redac texte-rouge eagle">
+			<ul>
+				<li>Pas de propos raciste</li>
+				<li>Pas de propos sexiste</li>
+				<li>Pas de propos homophobe</li>
+				<li>Tout propos tombant sous le coup de la loi est interdit.</li>
+				<li>Merci de rester anonyme.</li>
+				<li>Ne pas mettre de nom/prénom réel.</li>
+				<li>Ne pas donner le nom de vos entreprises.</li>
+				<li>Pas de propos à caractère sexuel.</li>
+				<li>Pas d’histoire inventée.</li>
+				<li>Essayer de rendre les lieux/personnes/entreprises le moins reconnaissables possibles.</li>
+			</ul>
+		</div>
+
+
+		<div class="form-redac">
+			{{ form_start(form) }}
+
+			{{ form_widget(form.contenu, {
         attr: { class: 'cacher' }}) }}
 
-		<div id="editor">
+			<div id="editor"></div>
+
+			<button type="submit" class="btn btn-primary eagle fond-rouge texte-beige">Enregistrer</button>
+
+			{{ form_end(form) }}
+			<div class="div-suivant">
+				<a href="{{ path('app_chapitre_suivant', { id: chapitre.id }) }}">
+					<button class="eagle fond-rouge texte-beige btn-suivant">
+						Chapitre Suivant
+					</button>
+				</a>
+			</div>
+
+			<div class="div-precedent">
+				<a href="{{ path('app_chapitre_precedent', { id: chapitre.id }) }}">
+					<button class="eagle fond-rouge texte-beige btn-precedent">
+						Chapitre Précédent
+					</button>
+				</a>
+			</div>
 		</div>
 
-		<button type="submit" class="btn btn-primary eagle fond-rouge texte-beige">Enregistrer</button>
-
-		{{ form_end(form) }}
-		<div class="div-suivant">
-			<a href="{{ path('app_chapitre_suivant', { id: chapitre.id }) }}">
-				<button class="eagle fond-rouge texte-beige btn-suivant">
-					Chapitre Suivant
-				</button>
-			</a>
-		</div>
-
-		<div class="div-precedent">
-			<a href="{{ path('app_chapitre_precedent', { id: chapitre.id }) }}">
-				<button class="eagle fond-rouge texte-beige btn-precedent">
-					Chapitre Précédent
-				</button>
-			</a>
-		</div>
 	</div>
 
 {% endblock %}

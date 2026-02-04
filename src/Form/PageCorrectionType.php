@@ -14,6 +14,7 @@ class PageCorrectionType extends AbstractType
     {
         $builder
                ->add('contenu', TextareaType::class, [
+                'required' => false,
                  'mapped' => false,
            'attr' => [
                'class' => 'cacher', // Même principe que le form pour la redaction des chapitres

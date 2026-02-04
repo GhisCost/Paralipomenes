@@ -9,7 +9,7 @@
 			<a class="carte-biblio texte-rouge fond-beige" href= "{{path('app_page_histoire',{id: hist.id})}}">	
 				<h4 class="lavish">{{hist.titre}}</h4>
 				<div class="eagle">
-				{% for ch in hist.chapitres|reverse %}
+				{% for ch in hist.chapitres %}
 						<br>
 						{{ch.contenu|raw}}
 				{% endfor %}

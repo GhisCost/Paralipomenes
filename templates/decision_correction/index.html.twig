@@ -6,20 +6,28 @@
 
 <div class="div-decision texte-rouge fond-beige">
 
-
+	{% if correction == [] %}
     <button id="btn-correction" class="fond-rouge">
-    <a class="texte-beige lavish eagle" href= "{{path('app_page_correction', {id:histoire.id})}}">Commencer à corriger</a>
+    	<a class="texte-beige lavish eagle" href= "{{path('app_debut_correction', {id:histoire.id})}}">Commencer à corriger</a>
     </button>
 
-		<h4 class="titre-histoire lavish">{{histoire.titre}}</h4>
+	{% else %}
 
-		<div class="eagle">
-			{% for ch in chapitres %}
-				<br>
-				{{ch.contenu|raw}}
-			{% endfor %}
-		</div>
+	 <button id="btn-correction" class="fond-rouge">
+    	<a class="texte-beige lavish eagle" href= "{{path('app_page_correction', {id:histoire.id})}}">Continuer à corriger</a>
+    </button>
+	
+	{% endif %}
 
+	<h4 class="titre-histoire lavish">{{histoire.titre}}</h4>
+
+	<div class="eagle">
+		{% for ch in chapitres %}
+			<br>
+			{{ch.contenu|raw}}
+		{% endfor %}
 	</div>
+
+</div>
 
 {% endblock %}

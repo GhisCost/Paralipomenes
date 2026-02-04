@@ -29,7 +29,6 @@ final class CompteController extends AbstractController
         $form->handleRequest($request);
         
         return $this->render('compte/index.html.twig', [
-            'controller_name' => 'CompteController',
             'form' =>$form->createView(),
             'user'=> $user
         ]);

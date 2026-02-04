@@ -28,11 +28,7 @@ final class PageCorrectionController extends AbstractController
 
         $chapitres=$chapitresRepository->findBy(['histoires'=>$id]);
 
-        // foreach($chapitres as $ch){
-           
-        //     $correctionsRepository->creerCorrection($this->getUser(), $ch, $ch->getHistoires());
-        // }
-
+   
         $corrections=$correctionsRepository->findCorrectionByHistoire($id);
     
     
@@ -56,6 +52,53 @@ final class PageCorrectionController extends AbstractController
     $this->addFlash('success', 'Corrections enregistrées'); 
      }
 
+        return $this->render('page_correction/index.html.twig', [
+        'corrections'=>$corrections,
+        'form' => $form->createView()
+        ]);
+    }
+
+      #[Route('/debutcorrection/{id}', name: 'app_debut_correction')]
+    public function premiereHistoire(
+        Request $request, 
+        CorrectionsRepository $correctionsRepository, 
+        HistoiresRepository $histoiresRepository, 
+        ChapitresRepository $chapitresRepository, 
+        int $id,
+        EntityManagerInterface $em
+        ): Response {
+        
+        $this->denyAccessUnlessGranted('ROLE_CORRECTEUR');
+
+        $chapitres=$chapitresRepository->findBy(['histoires'=>$id]);
+
+        foreach($chapitres as $ch){
+           
+            $correctionsRepository->creerCorrection($this->getUser(), $ch, $ch->getHistoires());
+        }
+
+        $corrections=$correctionsRepository->findCorrectionByHistoire($id);
+    
+    
+        $form = $this->createForm(PageCorrectionType::class);
+        $form->handleRequest($request);
+        
+       if ($form->isSubmitted() && $form->isValid()) {
+
+        $html = $form->get('contenu')->getData();
+
+        $blocs = explode('<!-- CORRECTION -->', $html);
+
+        foreach ($corrections as $index => $correction) {
+        if (isset($blocs[$index])) {
+            $correction->setContenu(trim($blocs[$index]));
+         }
+    }
+     
+    $em->flush();
+
+    $this->addFlash('success', 'Corrections enregistrées'); 
+     }
 
         return $this->render('page_correction/index.html.twig', [
         'corrections'=>$corrections,
