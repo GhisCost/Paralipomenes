@@ -8,7 +8,7 @@ use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: CorrectionsRepository::class)]
-class Corrections
+class Corrections implements \ArrayAccess
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]
@@ -100,5 +100,18 @@ class Corrections
         return $this;
     }
 
-
+    function offsetExists(mixed $offset): bool
+    {
+        return $offset ? true : false;
+    }
+    function offsetGet(mixed $offset): mixed
+    {
+        return $offset;
+    }
+    function offsetSet(mixed $offset, mixed $value): void
+    {
+    }
+    function offsetUnset(mixed $offset): void
+    {
+    }
 }

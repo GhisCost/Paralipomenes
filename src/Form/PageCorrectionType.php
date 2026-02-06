@@ -15,17 +15,16 @@ class PageCorrectionType extends AbstractType
         $builder
                ->add('contenu', TextareaType::class, [
                 'required' => false,
-                 'mapped' => false,
-           'attr' => [
-               'class' => 'cacher', // Même principe que le form pour la redaction des chapitres
-           ]
-       ]);
+                'attr' => [
+                'class' => 'cacher', // Même principe que le form pour la redaction des chapitres
+                ]
+                ]);
     }
 
     public function configureOptions(OptionsResolver $resolver): void
     {
         $resolver->setDefaults([
-            'data_class' => Null,
+            'data_class' => null,
         ]);
     }
 }

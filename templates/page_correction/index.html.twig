@@ -1,41 +1,44 @@
 {% extends 'base.html.twig' %}
 
 {% block title %}
-Paralipomènes - Correction
+	Paralipomènes - Correction
 {% endblock %}
 
+{% set hasQuill = true %}
 
 {% block body %}
+
+  
+ 
+
 	<div class="div-correct">
+
+        <h4 class=" texte-rouge lavish">{{histoire.titre}}</h4>
+
 		{{ form_start(form) }}
-		{{ form_widget(form.contenu) }}
 
-		<div id="editor"></div>
+			{{ form_widget(form.contenu, {
+        attr: { class: 'cacher' }}) }}
 
-		<button class="fond-rouge texte-beige" type="submit">Enregistrer</button>
+			<div id="editor"></div>
 
-		{{ form_end(form) }}
+			<button type="submit" class="btn btn-primary eagle fond-rouge texte-beige">Enregistrer</button>
+
+			{{ form_end(form) }}
+
+		{# <div class="div-suivant">
+			<a href="{{ path('app_page_correction', { id: next.id }) }}">
+				<button class="eagle fond-rouge texte-beige btn-suivant">Corriger chapitre Suivant</button>
+			</a>
+		</div>
+
+		<div class="div-precedent">
+			<a href="{{ path('app_page_correction', { id: previous.id }) }}">
+				<button class="eagle fond-rouge texte-beige btn-precedent">Corriger chapitre Précédent</button>
+			</a>
+		</div> #}
 
 	</div>
 
-	<script>
-
-		document.addEventListener('DOMContentLoaded', function () {
-		const quill = new Quill('#editor', {theme: 'snow'});
-		let contenu = `{% for correction in corrections %}
-		{{ correction.contenu|raw }}
-   		<!-- CORRECTION -->
-		{% endfor %}`;
-
-		quill.root.innerHTML = contenu;
-
-		const textarea = document.querySelector('#page_correction_contenu');
-
-		document.querySelector('form').addEventListener('submit', function () {
-		textarea.value = quill.root.innerHTML;
-		});
-		});
-
-	</script>
 
 {% endblock %}

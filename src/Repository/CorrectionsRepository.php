@@ -45,12 +45,40 @@ class CorrectionsRepository extends ServiceEntityRepository
            ->andWhere('c.Histoire= :id_histoire')
            ->setParameter('id_histoire', $id_histoire)
            ->orderBy('c.id', 'ASC')
+           ->setMaxResults(1)
            ->getQuery()
            ->getResult()
        ;
    }
 
 
+   public function findCorrectionSuivante(int $id, Histoires $histoire): ?Corrections
+{
+    return $this->createQueryBuilder('c')
+        ->andWhere('c.histoire = :histoire')
+        ->andWhere('c.id > :id')
+        ->setParameter('histoire', $histoire)
+        ->setParameter('id', $id)
+        ->orderBy('c.id', 'ASC')
+        ->setMaxResults(1)
+        ->getQuery()
+        ->getOneOrNullResult();
+}
+
+public function findCorrectionPrecedente(int $id, Histoires $histoire): ?Corrections
+{
+    return $this->createQueryBuilder('c')
+        ->andWhere('c.histoire = :histoire')
+        ->andWhere('c.id < :id')
+        ->setParameter('histoire', $histoire)
+        ->setParameter('id', $id)
+        ->orderBy('c.id', 'DESC')
+        ->setMaxResults(1)
+        ->getQuery()
+        ->getOneOrNullResult();
+}
+
+}
 
 
 
@@ -79,4 +107,4 @@ class CorrectionsRepository extends ServiceEntityRepository
 //            ->getOneOrNullResult()
 //        ;
 //    }
-}
+

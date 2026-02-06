@@ -22,6 +22,7 @@
     "node-releases": "^2.0.27",
     "picocolors": "^1.1.1",
     "postcss-value-parser": "^4.2.0",
+    "quill": "^2.0.3",
     "source-map-js": "^1.2.1",
     "update-browserslist-db": "^1.2.3"
   },

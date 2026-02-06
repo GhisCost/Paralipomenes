@@ -2,6 +2,8 @@
 
 namespace App\Controller;
 
+use App\Entity\Corrections;
+use App\Entity\Histoires;
 use App\Form\PageCorrectionType;
 use App\Repository\ChapitresRepository;
 use App\Repository\CorrectionsRepository;
@@ -16,93 +18,75 @@ final class PageCorrectionController extends AbstractController
 {
     #[Route('/correction/{id}', name: 'app_page_correction')]
     public function index(
-        Request $request, 
-        CorrectionsRepository $correctionsRepository, 
-        HistoiresRepository $histoiresRepository, 
-        ChapitresRepository $chapitresRepository, 
-        int $id,
-        EntityManagerInterface $em
-        ): Response {
-        
+        Request $request,
+        CorrectionsRepository $correctionsRepository,
+        EntityManagerInterface $em,
+        int $id
+    ): Response {
+
         $this->denyAccessUnlessGranted('ROLE_CORRECTEUR');
 
-        $chapitres=$chapitresRepository->findBy(['histoires'=>$id]);
 
+
+        /**
+         * @var Corrections $correction
+         */
+
+        $corrections = $correctionsRepository->findCorrectionByHistoire($id);
+
+        $correction = $corrections[0];
+
+        $form = $this->createForm(PageCorrectionType::class, $correction);
    
-        $corrections=$correctionsRepository->findCorrectionByHistoire($id);
-    
-    
-        $form = $this->createForm(PageCorrectionType::class);
         $form->handleRequest($request);
-        
-       if ($form->isSubmitted() && $form->isValid()) {
+        if ($form->isSubmitted() && $form->isValid()) {
 
-        $html = $form->get('contenu')->getData();
+            $em->flush();
+        }
 
-        $blocs = explode('<!-- CORRECTION -->', $html);
+        $histoire = $correction->getHistoire();
 
-        foreach ($corrections as $index => $correction) {
-        if (isset($blocs[$index])) {
-            $correction->setContenu(trim($blocs[$index]));
-         }
-    }
-     
-    $em->flush();
-
-    $this->addFlash('success', 'Corrections enregistrées'); 
-     }
+        // dd($form);
 
         return $this->render('page_correction/index.html.twig', [
-        'corrections'=>$corrections,
-        'form' => $form->createView()
+            'correction' => $correction,
+            'form' => $form->createView(),
+            'histoire' => $histoire
         ]);
     }
 
-      #[Route('/debutcorrection/{id}', name: 'app_debut_correction')]
-    public function premiereHistoire(
-        Request $request, 
-        CorrectionsRepository $correctionsRepository, 
-        HistoiresRepository $histoiresRepository, 
-        ChapitresRepository $chapitresRepository, 
+    #[Route('/debutcorrection/{id}', name: 'app_debut_correction')]
+    public function premiereCorrection(
         int $id,
+        CorrectionsRepository $correctionsRepository,
+        HistoiresRepository $histoiresRepository,
+        ChapitresRepository $chapitresRepository,
         EntityManagerInterface $em
-        ): Response {
-        
+    ): Response {
+
         $this->denyAccessUnlessGranted('ROLE_CORRECTEUR');
 
-        $chapitres=$chapitresRepository->findBy(['histoires'=>$id]);
+        $histoire = $histoiresRepository->find($id);
 
-        foreach($chapitres as $ch){
-           
-            $correctionsRepository->creerCorrection($this->getUser(), $ch, $ch->getHistoires());
+        if (!$histoire) {
+            throw $this->createNotFoundException('Histoire introuvable');
         }
 
-        $corrections=$correctionsRepository->findCorrectionByHistoire($id);
-    
-    
-        $form = $this->createForm(PageCorrectionType::class);
-        $form->handleRequest($request);
-        
-       if ($form->isSubmitted() && $form->isValid()) {
+        $corrections = $correctionsRepository->findCorrectionByHistoire($id);
 
-        $html = $form->get('contenu')->getData();
+        $chapitres = $chapitresRepository->findBy(['histoires' => $histoire], ['id' => 'ASC']);
 
-        $blocs = explode('<!-- CORRECTION -->', $html);
+        foreach ($chapitres as $chapitre) {
+            $correctionsRepository->creerCorrection(
+                $this->getUser(),
+                $chapitre,
+                $histoire
+            );
+        }
+        $corrections = $correctionsRepository->findCorrectionByHistoire($id);
 
-        foreach ($corrections as $index => $correction) {
-        if (isset($blocs[$index])) {
-            $correction->setContenu(trim($blocs[$index]));
-         }
-    }
-     
-    $em->flush();
-
-    $this->addFlash('success', 'Corrections enregistrées'); 
-     }
-
-        return $this->render('page_correction/index.html.twig', [
-        'corrections'=>$corrections,
-        'form' => $form->createView()
+        return $this->redirectToRoute('app_page_correction', [
+            'id' => $id,
         ]);
     }
 }

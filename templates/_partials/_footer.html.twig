@@ -34,22 +34,7 @@ textarea.value = quill.root.innerHTML;
 });
 });
 
-{# // Pour la page correction
-let contenu = `
-{% for correction in corrections %}
-<h3>Chapitre {{ correction.chapitres.id }}</h3>
-{{ correction.contenu|raw }}
-<!-- CORRECTION -->
-{% endfor %}
-`;
 
-quill.root.innerHTML = contenu;
-
-const textarea = document.querySelector('#page_correction_contenu');
-
-document.querySelector('form').addEventListener('submit', () => {
-    textarea.value = quill.root.innerHTML;
-}); #}
 
 {% endif %}
 
