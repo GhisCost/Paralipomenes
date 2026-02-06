@@ -8,16 +8,14 @@
 
 {% block body %}
 
-  
- 
-
 	<div class="div-correct">
 
         <h4 class=" texte-rouge lavish">{{histoire.titre}}</h4>
 
+
 		{{ form_start(form) }}
 
-			{{ form_widget(form.contenu, {
+		{{ form_widget(form.contenu, {
         attr: { class: 'cacher' }}) }}
 
 			<div id="editor"></div>

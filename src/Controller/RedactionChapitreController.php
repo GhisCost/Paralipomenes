@@ -57,6 +57,8 @@ final class RedactionChapitreController extends AbstractController
             ]);
         }
 
+        // dd($form);
+
         return $this->render('redaction_chapitre/index.html.twig', [
             'form' => $form->createView(),
             'chapitre' => $chapitre

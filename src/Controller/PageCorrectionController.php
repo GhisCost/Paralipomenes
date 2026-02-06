@@ -26,8 +26,6 @@ final class PageCorrectionController extends AbstractController
 
         $this->denyAccessUnlessGranted('ROLE_CORRECTEUR');
 
-
-
         /**
          * @var Corrections $correction
          */
@@ -39,6 +37,7 @@ final class PageCorrectionController extends AbstractController
         $form = $this->createForm(PageCorrectionType::class, $correction);
    
         $form->handleRequest($request);
+
         if ($form->isSubmitted() && $form->isValid()) {
 
             $em->flush();

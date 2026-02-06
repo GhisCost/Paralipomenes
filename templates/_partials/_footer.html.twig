@@ -25,6 +25,8 @@ const quill = new Quill('#editor', {theme: 'snow'});
 
 const textarea = document.querySelector('#{{form.contenu.vars.id}}');
 
+console.log(textarea);
+
 quill.root.innerHTML = textarea.value;
 
 const form = document.querySelector('form[name="{{form.vars.name}}"]');
