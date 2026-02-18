@@ -35,22 +35,35 @@ final class PageCorrectionController extends AbstractController
         $correction = $corrections[0];
 
         $form = $this->createForm(PageCorrectionType::class, $correction);
-   
-        $form->handleRequest($request);
 
+        $form->handleRequest($request);
+        
         if ($form->isSubmitted() && $form->isValid()) {
 
             $em->flush();
         }
 
         $histoire = $correction->getHistoire();
+        
+        if(!$correctionsRepository->findCorrectionPrecedente($correction)){
+            $precedent=0;
+        }else{
+            $precedent=1;
+        }
 
-        // dd($form);
+        if(!$correctionsRepository->findCorrectionSuivante($correction)){
+            $suivant=0;
+        }else{
+            $suivant=1;
+        }
 
         return $this->render('page_correction/index.html.twig', [
             'correction' => $correction,
             'form' => $form->createView(),
-            'histoire' => $histoire
+            'histoire' => $histoire,
+            'idCorrection' => $correction->getId(),
+            'precedent'=> $precedent,
+            'suivant'=>$suivant
         ]);
     }
 
@@ -88,4 +101,121 @@ final class PageCorrectionController extends AbstractController
             'id' => $id,
         ]);
     }
+
+    #[Route('/correctionsuivante/{id}', name: 'app_correction_suivante')]
+
+    public function correctionsuivante(
+        Request $request,
+        CorrectionsRepository $correctionsRepository,
+        EntityManagerInterface $em,
+        int $id,
+
+    ) {
+        // dd($id);
+        $this->denyAccessUnlessGranted('ROLE_CORRECTEUR');
+
+        /**
+         * @var Corrections $correction
+         */
+        $correctionPrecedente = $correctionsRepository->find($id);
+
+        if (!$correctionPrecedente) {
+            throw $this->createNotFoundException('Correction introuvable');
+        }
+
+        $correction = $correctionsRepository->findCorrectionSuivante($correctionPrecedente);
+
+        $form = $this->createForm(PageCorrectionType::class, $correction);
+
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+
+            $em->flush();
+        }
+
+        if(!$correctionsRepository->findCorrectionPrecedente($correction)){
+            $precedent=0;
+        }else{
+            $precedent=1;
+        }
+
+        if(!$correctionsRepository->findCorrectionSuivante($correction)){
+            $suivant=0;
+        }else{
+            $suivant=1;
+        }
+
+
+        $histoire = $correction->getHistoire();
+
+        return $this->render('page_correction/index.html.twig', [
+            'correction' => $correction,
+            'form' => $form->createView(),
+            'histoire' => $histoire,
+            'idCorrection' => $correction->getId(),
+            'precedent'=> $precedent,
+            'suivant'=>$suivant
+        ]);
+
+    }
+
+    #[Route('/correctionprecedente/{id}', name: 'app_correction_precedente')]
+
+    public function correctionprecedente(
+        Request $request,
+        CorrectionsRepository $correctionsRepository,
+        EntityManagerInterface $em,
+        int $id,
+
+    ) {
+        // dd($id);
+        $this->denyAccessUnlessGranted('ROLE_CORRECTEUR');
+
+        /**
+         * @var Corrections $correction
+         */
+        $correctionSuivante = $correctionsRepository->find($id);
+
+        if (!$correctionSuivante) {
+            throw $this->createNotFoundException('Correction introuvable');
+        }
+
+
+        $correction = $correctionsRepository->findCorrectionPrecedente($correctionSuivante);
+
+        $form = $this->createForm(PageCorrectionType::class, $correction);
+
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $em->flush();
+        }
+
+        if(!$correctionsRepository->findCorrectionPrecedente($correction)){
+            $precedent=0;
+        }else{
+            $precedent=1;
+        }
+
+        if(!$correctionsRepository->findCorrectionSuivante($correction)){
+            $suivant=0;
+        }else{
+            $suivant=1;
+        }
+
+
+        $histoire = $correction->getHistoire();
+
+        return $this->render('page_correction/index.html.twig', [
+            'correction' => $correction,
+            'form' => $form->createView(),
+            'histoire' => $histoire,
+            'idCorrection' => $correction->getId(),
+            'precedent'=> $precedent,
+            'suivant'=>$suivant
+        ]);
+
+    }
+
 }

@@ -504,3 +504,27 @@ a {
         url(../img/plume-beige-24.png) 0 24,
         pointer;
 }
+
+.div-correct h4 {
+    font-size: 2.5em;
+    text-align: center;
+    padding-bottom: 25px;
+}
+
+.div-correc-precedent, .div-correc-suivant{
+    position: relative;
+}
+
+.div-correc-precedent button {
+
+    position: absolute;
+    top: -85px;
+    right: 480px;
+
+}
+
+.div-correc-suivant button {
+    position: absolute;
+    top:-85px;  
+    right: 220px;
+}

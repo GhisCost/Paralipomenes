@@ -24,17 +24,25 @@
 
 			{{ form_end(form) }}
 
-		{# <div class="div-suivant">
-			<a href="{{ path('app_page_correction', { id: next.id }) }}">
-				<button class="eagle fond-rouge texte-beige btn-suivant">Corriger chapitre Suivant</button>
+
+		{% if suivant == 1 %}
+		<div class="div-correc-suivant">
+			<a href="{{ path('app_correction_suivante', { id: idCorrection }) }}">
+				<button class="eagle fond-rouge texte-beige btn-suivant">
+				Corriger chapitre Suivant
+				</button>
 			</a>
 		</div>
-
-		<div class="div-precedent">
-			<a href="{{ path('app_page_correction', { id: previous.id }) }}">
-				<button class="eagle fond-rouge texte-beige btn-precedent">Corriger chapitre Précédent</button>
+		{% endif %} 
+		{% if precedent == 1 %}
+		<div class="div-correc-precedent">
+			<a href="{{ path('app_correction_precedente', { id: idCorrection }) }}">
+				<button class="eagle fond-rouge texte-beige btn-precedent">
+				Corriger chapitre Précédent
+				</button>
 			</a>
-		</div> #}
+		</div>
+		{% endif %}
 
 	</div>
 
