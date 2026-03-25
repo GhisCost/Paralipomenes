@@ -78,7 +78,7 @@ final class RedactionChapitreController extends AbstractController
 
         $histoire = $histoiresRepository->creerHistoire('Mon histoire (titre à modifier)', $user);
 
-        $chapitre = $chapitresRepository->creerChapitre($histoire);
+        $chapitre = $chapitresRepository->creerChapitre($histoire, 0);
 
         $form = $this->createForm(RedactionChapitreType::class, $chapitre);
         $form->handleRequest($request);
@@ -109,9 +109,10 @@ final class RedactionChapitreController extends AbstractController
             /**
              * @var User $user
              */
+
             $user = $this->getUser();
             $histoire = $user->getHistoires();
-            $chapitreActuel = $chapitresRepository->creerChapitre($histoire);
+            $chapitreActuel = $chapitresRepository->creerChapitre($histoire,$chapitre->getNumeroChapitre());
 
             $form = $this->createForm(RedactionChapitreType::class, $chapitreActuel);
             $form->handleRequest($request);

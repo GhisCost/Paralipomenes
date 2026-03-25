@@ -20,7 +20,7 @@ class Corrections implements \ArrayAccess
 
     #[ORM\ManyToOne(inversedBy: 'corrections')]
     #[ORM\JoinColumn(nullable: false)]
-    private ?User $User = null;
+    private ?User $user = null;
 
     #[ORM\OneToOne(inversedBy: 'corrections', cascade: ['persist', 'remove'])]
     #[ORM\JoinColumn(nullable: false)]
@@ -54,12 +54,12 @@ class Corrections implements \ArrayAccess
 
     public function getUser(): ?User
     {
-        return $this->User;
+        return $this->user;
     }
 
-    public function setUser(?User $User): static
+    public function setUser(?User $user): static
     {
-        $this->User = $User;
+        $this->user = $user;
 
         return $this;
     }

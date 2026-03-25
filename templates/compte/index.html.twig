@@ -30,7 +30,7 @@
 
 	<div class="accesAdmin">
 	
-	{% if user.roles[0] == "ROLE_ADMIN" %}
+	{% if 'ROLE_ADMIN' in user.roles %}
 	
 	<button class="eagle texte-beige fond-rouge" name="admin" > 
 	<a class="texte-beige" href="{{path('admin')}}">Page d'administration</a>
@@ -38,7 +38,7 @@
 
 	{% endif %}
 
-	{% if user.roles[0] == "ROLE_CORRECTEUR" %}
+	{% if 'ROLE_CORRECTEUR' in user.roles %}
 	
 	<button class="eagle texte-beige fond-rouge" name="correcteur" > 
 	<a class="texte-beige" href="{{path('app_choix_correction')}}">Page de corrections</a>

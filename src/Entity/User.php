@@ -41,19 +41,19 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column]
     private bool $isVerified = false;
 
-    #[ORM\OneToOne(mappedBy: 'User', cascade: ['persist', 'remove'])]
+    #[ORM\OneToOne(mappedBy: 'user', cascade: ['persist', 'remove'])]
     private ?Histoires $histoires = null;
 
     /**
      * @var Collection<int, Corrections>
      */
-    #[ORM\OneToMany(targetEntity: Corrections::class, mappedBy: 'User')]
+    #[ORM\OneToMany(targetEntity: Corrections::class, mappedBy: 'user')]
     private Collection $corrections;
 
     /**
      * @var Collection<int, Likes>
      */
-    #[ORM\OneToMany(targetEntity: Likes::class, mappedBy: 'User')]
+    #[ORM\OneToMany(targetEntity: Likes::class, mappedBy: 'user')]
     private Collection $likes;
 
     public function __construct()
@@ -242,5 +242,9 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         }
 
         return $this;
+    }
+
+     public function __tostring(): string {
+        return $this->email;
     }
 }

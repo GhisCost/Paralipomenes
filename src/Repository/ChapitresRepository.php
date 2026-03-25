@@ -24,18 +24,19 @@ class ChapitresRepository extends ServiceEntityRepository
        return $this->createQueryBuilder('c')
            ->andWhere('c.histoires = :histoires')
            ->setParameter('histoires', $histoire)
-           ->orderBy('c.id','DESC')
+           ->orderBy('c.numeroChapitre','DESC')
            ->setMaxResults(1)
            ->getQuery()
            ->getOneOrNullResult()
        ;
    }
 
-   public function creerChapitre(Histoires $histoire)
+   public function creerChapitre(Histoires $histoire, int $chapPrec)
    {
     $chapitre= new Chapitres();
     $chapitre->setContenu('');
     $chapitre->setHistoires($histoire);
+    $chapitre->setNumeroChapitre($chapPrec + 1);
     $em=$this->getEntityManager();
     $em->persist($chapitre);
     $em->flush();
@@ -47,10 +48,10 @@ class ChapitresRepository extends ServiceEntityRepository
 {
     return $this->createQueryBuilder('c')
         ->andWhere('c.histoires = :histoire')
-        ->andWhere('c.id < :id')
+        ->andWhere('c.numeroChapitre < :numeroChapitre')
         ->setParameter('histoire', $chapitre->getHistoires())
-        ->setParameter('id', $chapitre->getId())
-        ->orderBy('c.id', 'DESC')
+        ->setParameter('numeroChapitre', $chapitre->getNumeroChapitre())
+        ->orderBy('c.numeroChapitre', 'DESC')
         ->setMaxResults(1)
         ->getQuery()
         ->getOneOrNullResult();
@@ -61,10 +62,10 @@ public function findChapitreSuivant(Chapitres $chapitre): ?Chapitres
 {
     return $this->createQueryBuilder('c')
         ->andWhere('c.histoires = :histoire')
-        ->andWhere('c.id > :id')
+        ->andWhere('c.numeroChapitre > :numeroChapitre')
         ->setParameter('histoire', $chapitre->getHistoires())
-        ->setParameter('id', $chapitre->getId())
-        ->orderBy('c.id', 'ASC')
+        ->setParameter('numeroChapitre', $chapitre->getNumeroChapitre())
+        ->orderBy('c.numeroChapitre', 'ASC')
         ->setMaxResults(1)
         ->getQuery()
         ->getOneOrNullResult();

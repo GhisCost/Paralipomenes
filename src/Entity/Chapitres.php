@@ -24,6 +24,9 @@ class Chapitres
     #[ORM\OneToOne(mappedBy: 'Chapitres', cascade: ['persist', 'remove'])]
     private ?Corrections $corrections = null;
 
+    #[ORM\Column]
+    private ?int $numeroChapitre = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -66,6 +69,18 @@ class Chapitres
         }
 
         $this->corrections = $corrections;
+
+        return $this;
+    }
+
+    public function getNumeroChapitre(): ?int
+    {
+        return $this->numeroChapitre;
+    }
+
+    public function setNumeroChapitre(int $numeroChapitre): static
+    {
+        $this->numeroChapitre = $numeroChapitre;
 
         return $this;
     }

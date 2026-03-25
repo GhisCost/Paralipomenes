@@ -29,13 +29,14 @@ class UserCrudController extends AbstractCrudController
                 ->setChoices([
                     'Utilisateur' => 'ROLE_USER',
                     'Administrateur' => 'ROLE_ADMIN',
+                    'Correcteur' => 'ROLE_CORRECTEUR'
                 ])
                 ->allowMultipleChoices()
                 ->renderExpanded(false) 
                 ->renderAsBadges(), 
 
             TextField::new('username'),
-
+                
             BooleanField::new('isVerified'),
 
             AssociationField::new('histoires')
