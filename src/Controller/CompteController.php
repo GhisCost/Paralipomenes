@@ -20,7 +20,6 @@ final class CompteController extends AbstractController
          /**
          * @var User $user
          */
-
         
         $user= $this->getUser();
 

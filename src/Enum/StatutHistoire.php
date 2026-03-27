@@ -2,6 +2,7 @@
 namespace App\Enum;
 enum StatutHistoire: string {
     case ENCOURS ="En cours de redaction";
+    case DEMANDE ="Demande de correction";
     case CORRECTION = "En correction";
-    case PUBLIER = "Publié";
+    case PUBLIER = "Publiée";
 }

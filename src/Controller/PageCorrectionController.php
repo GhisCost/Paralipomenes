@@ -169,7 +169,6 @@ final class PageCorrectionController extends AbstractController
         int $id,
 
     ) {
-        // dd($id);
         $this->denyAccessUnlessGranted('ROLE_CORRECTEUR');
 
         /**
@@ -180,7 +179,6 @@ final class PageCorrectionController extends AbstractController
         if (!$correctionSuivante) {
             throw $this->createNotFoundException('Correction introuvable');
         }
-
 
         $correction = $correctionsRepository->findCorrectionPrecedente($correctionSuivante);
 
@@ -203,7 +201,6 @@ final class PageCorrectionController extends AbstractController
         }else{
             $suivant=1;
         }
-
 
         $histoire = $correction->getHistoire();
 

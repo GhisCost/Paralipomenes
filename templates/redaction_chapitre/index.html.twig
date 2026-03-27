@@ -7,8 +7,23 @@
 {% set hasQuill = true %}
 
 {% block body %}
+	<div id="divSubmitCorrection">
+		<button id="submitCorrection" class="eagle texte-rouge fond-beige">Soumettre à la correction</button>
+	</div>
 
 	<div class="conteneur-redac">
+
+		<div class="eagle fond-beige texte-rouge modalSubmitCorrec pasLa">
+			<h3>Confirmation</h3>
+			<p>Etes-vous certain de vouloir soumettre votre histoire à la correction ? 
+					(Vous ne pourrez plus ajouter de nouveau chapitre avant la publication de votre histoire)</p>
+
+			<button class="eagle fond-beige texte-rouge nonSubCorrect">Non</button>
+			<a>
+				<button class="eagle fond-rouge texte-beige ouiSubCorrec">Oui</button>
+			</a>
+		</div>
+		
 		<div class="regle-redac texte-rouge eagle">
 			<ul>
 				<li>Pas de propos raciste</li>
@@ -28,15 +43,16 @@
 		<div class="form-redac">
 			{{ form_start(form) }}
 
-			{{ form_widget(form.contenu, {
-        attr: { class: 'cacher' }}) }}
+			{{ form_widget
+			(form.contenu, {attr: { class: 'cacher' }}) 
+												}}
 
 			<div id="editor"></div>
 
 			<button type="submit" class="btn btn-primary eagle fond-rouge texte-beige">Enregistrer</button>
 
 			{{ form_end(form) }}
-			
+
 			<div class="div-suivant">
 				<a href="{{ path('app_chapitre_suivant', { id: chapitre.id }) }}">
 					<button class="eagle fond-rouge texte-beige btn-suivant">
@@ -45,13 +61,15 @@
 				</a>
 			</div>
 
-			<div class="div-precedent">
-				<a href="{{ path('app_chapitre_precedent', { id: chapitre.id }) }}">
-					<button class="eagle fond-rouge texte-beige btn-precedent">
-						Chapitre Précédent
-					</button>
-				</a>
-			</div>
+			{% if chapitre.numeroChapitre > 1 %}
+				<div class="div-precedent">
+					<a href="{{ path('app_chapitre_precedent', { id: chapitre.id }) }}">
+						<button class="eagle fond-rouge texte-beige btn-precedent">
+							Chapitre Précédent
+						</button>
+					</a>
+				</div>
+			{% endif %}
 		</div>
 
 	</div>

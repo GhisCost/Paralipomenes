@@ -35,7 +35,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column]
     private ?string $password = null;
 
-    #[ORM\Column(length: 40)]
+    #[ORM\Column(length: 40, nullable: true)]
     private ?string $username = null;
 
     #[ORM\Column]
@@ -56,10 +56,24 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\OneToMany(targetEntity: Likes::class, mappedBy: 'user')]
     private Collection $likes;
 
+    /**
+     * @var Collection<int, Messages>
+     */
+    #[ORM\OneToMany(targetEntity: Messages::class, mappedBy: 'destinataire')]
+    private Collection $messagesReçus;
+
+    /**
+     * @var Collection<int, Messages>
+     */
+    #[ORM\OneToMany(targetEntity: Messages::class, mappedBy: 'expediteur')]
+    private Collection $messageEnvoyer;
+
     public function __construct()
     {
         $this->corrections = new ArrayCollection();
         $this->likes = new ArrayCollection();
+        $this->messagesReçus = new ArrayCollection();
+        $this->messageEnvoyer = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -247,4 +261,64 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
      public function __tostring(): string {
         return $this->email;
     }
+
+     /**
+      * @return Collection<int, Messages>
+      */
+     public function getMessagesReçus(): Collection
+     {
+         return $this->messagesReçus;
+     }
+
+     public function addMessagesReUs(Messages $messagesReUs): static
+     {
+         if (!$this->messagesReçus->contains($messagesReUs)) {
+             $this->messagesReçus->add($messagesReUs);
+             $messagesReUs->setDestinataire($this);
+         }
+
+         return $this;
+     }
+
+     public function removeMessagesReUs(Messages $messagesReUs): static
+     {
+         if ($this->messagesReçus->removeElement($messagesReUs)) {
+             // set the owning side to null (unless already changed)
+             if ($messagesReUs->getDestinataire() === $this) {
+                 $messagesReUs->setDestinataire(null);
+             }
+         }
+
+         return $this;
+     }
+
+     /**
+      * @return Collection<int, Messages>
+      */
+     public function getMessageEnvoyer(): Collection
+     {
+         return $this->messageEnvoyer;
+     }
+
+     public function addMessageEnvoyer(Messages $messageEnvoyer): static
+     {
+         if (!$this->messageEnvoyer->contains($messageEnvoyer)) {
+             $this->messageEnvoyer->add($messageEnvoyer);
+             $messageEnvoyer->setExpediteur($this);
+         }
+
+         return $this;
+     }
+
+     public function removeMessageEnvoyer(Messages $messageEnvoyer): static
+     {
+         if ($this->messageEnvoyer->removeElement($messageEnvoyer)) {
+             // set the owning side to null (unless already changed)
+             if ($messageEnvoyer->getExpediteur() === $this) {
+                 $messageEnvoyer->setExpediteur(null);
+             }
+         }
+
+         return $this;
+     }
 }

@@ -395,6 +395,40 @@ a {
   padding: 5px;
 }
 
+#divSubmitCorrection{
+margin: auto; 
+width:80%;
+display: flex;
+justify-content: center;
+}
+
+#submitCorrection{  
+    width: 15%;
+    margin: auto;
+    height: 3rem;
+    margin-top:20px;
+    margin-bottom: 40px;
+    border: #9a202c 4px solid;
+    border-radius: 15px;
+    cursor:   url(../img/plume-rouge-24.png) 0 24,
+        auto;
+}
+
+.modalSubmitCorrec{
+    position: absolute;
+    top:30%;
+    right:30%;
+    width: 40%;
+}
+
+.pasLa{
+    display:none;
+}
+
+.la{
+    display:block
+}
+
 /* Bibliothèque */
 
 .carte-biblio {
@@ -528,3 +562,4 @@ a {
     top:-85px;  
     right: 220px;
 }
+

@@ -24,7 +24,6 @@ final class PageHistoireController extends AbstractController
         Histoires $histoire, 
         HistoiresRepository $histoiresRepository): Response
     {
-
         $chapitres= $histoire->getChapitres();
 
         return $this->render('page_histoire/index.html.twig', [

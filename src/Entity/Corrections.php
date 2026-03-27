@@ -4,6 +4,8 @@ namespace App\Entity;
 
 use App\Enum\StatutCorrection;
 use App\Repository\CorrectionsRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 
@@ -32,6 +34,20 @@ class Corrections implements \ArrayAccess
     #[ORM\ManyToOne]
     #[ORM\JoinColumn(nullable: false)]
     private ?Histoires $Histoire = null;
+
+    /**
+     * @var Collection<int, PieceJointe>
+     */
+    #[ORM\OneToMany(targetEntity: PieceJointe::class, mappedBy: 'Correction')]
+    private Collection $pieceJointes;
+
+    #[ORM\Column]
+    private ?int $numeroChapitre = 0;
+
+    public function __construct()
+    {
+        $this->pieceJointes = new ArrayCollection();
+    }
 
 
 
@@ -113,5 +129,47 @@ class Corrections implements \ArrayAccess
     }
     function offsetUnset(mixed $offset): void
     {
+    }
+
+    /**
+     * @return Collection<int, PieceJointe>
+     */
+    public function getPieceJointes(): Collection
+    {
+        return $this->pieceJointes;
+    }
+
+    public function addPieceJointe(PieceJointe $pieceJointe): static
+    {
+        if (!$this->pieceJointes->contains($pieceJointe)) {
+            $this->pieceJointes->add($pieceJointe);
+            $pieceJointe->setCorrection($this);
+        }
+
+        return $this;
+    }
+
+    public function removePieceJointe(PieceJointe $pieceJointe): static
+    {
+        if ($this->pieceJointes->removeElement($pieceJointe)) {
+            // set the owning side to null (unless already changed)
+            if ($pieceJointe->getCorrection() === $this) {
+                $pieceJointe->setCorrection(null);
+            }
+        }
+
+        return $this;
+    }
+
+    public function getNumeroChapitre(): ?int
+    {
+        return $this->numeroChapitre;
+    }
+
+    public function setNumeroChapitre(int $numeroChapitre): static
+    {
+        $this->numeroChapitre = $numeroChapitre;
+
+        return $this;
     }
 }

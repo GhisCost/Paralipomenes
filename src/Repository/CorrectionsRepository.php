@@ -31,6 +31,7 @@ class CorrectionsRepository extends ServiceEntityRepository
        $correction->setChapitres($chapitre);
        $correction->setContenu($chapitre->getContenu());
        $correction->setHistoire($histoire);
+       $correction->setNumeroChapitre($chapitre->getNumeroChapitre());
        
        $em=$this->getEntityManager();
        $em->persist($correction);
