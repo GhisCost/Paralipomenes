@@ -23,14 +23,14 @@ document.addEventListener('DOMContentLoaded', function () {
 	
 const quill = new Quill('#editor', {theme: 'snow'});
 
-const textarea = document.querySelector('#{{form.contenu.vars.id}}');
+const textarea = document.querySelector('#{{formChapitre.contenu.vars.id}}');
 
 
     if (textarea.value) {
         quill.clipboard.dangerouslyPasteHTML(textarea.value);
     }
 
-const form = document.querySelector('form[name="{{form.vars.name}}"]');
+const form = document.querySelector('form[name="{{formChapitre.vars.name}}"]');
 
 form.addEventListener('submit', function () {
 textarea.value = quill.root.innerHTML;

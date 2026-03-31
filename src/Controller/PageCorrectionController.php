@@ -59,7 +59,7 @@ final class PageCorrectionController extends AbstractController
 
         return $this->render('page_correction/index.html.twig', [
             'correction' => $correction,
-            'form' => $form->createView(),
+            'formChapitre' => $form->createView(),
             'histoire' => $histoire,
             'idCorrection' => $correction->getId(),
             'precedent'=> $precedent,
@@ -153,7 +153,7 @@ final class PageCorrectionController extends AbstractController
 
         return $this->render('page_correction/index.html.twig', [
             'correction' => $correction,
-            'form' => $form->createView(),
+            'formChapitre' => $form->createView(),
             'histoire' => $histoire,
             'idCorrection' => $correction->getId(),
             'precedent'=> $precedent,
@@ -208,7 +208,7 @@ final class PageCorrectionController extends AbstractController
 
         return $this->render('page_correction/index.html.twig', [
             'correction' => $correction,
-            'form' => $form->createView(),
+            'formChapitre' => $form->createView(),
             'histoire' => $histoire,
             'idCorrection' => $correction->getId(),
             'precedent'=> $precedent,

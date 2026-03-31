@@ -9,26 +9,34 @@
 {% block body %}
 
 	<div id="divSubmitCorrection">
-		<button id="submitCorrection" class="eagle texte-rouge fond-beige">Soumettre à la correction</button>
+		<button id="submitCorrection" class="eagle fond-rouge texte-beige">Soumettre votre histoire à la correction</button>
 	</div>
 
 	<div class="eagle fond-beige texte-rouge modalSubmitCorrec pasLa">
 		<h3>Confirmation</h3>
 		<p>Etes-vous certain de vouloir soumettre votre histoire à la correction ? 
-								(Vous ne pourrez plus ajouter de nouveau chapitre avant la publication de votre histoire)</p>
+		(Vous ne pourrez plus ajouter de nouveau chapitre avant la publication de votre histoire)</p>
 
 		<div class="divBouttonModal">
 
-		<button class="eagle fond-beige texte-rouge nonSubCorrect">Non</button>
+			<button class="eagle fond-beige texte-rouge nonSubCorrect">Non</button>
 
-		<a class="aSubCorrec" href="{{path('app_demande_correction',{ id: chapitre.histoires.id })}} ">
-			<button class="eagle ouiSubCorrec fond-rouge texte-beige ">Oui</button>
-		</a>
+			<a class="aSubCorrec" href="{{path('app_demande_correction',{ id: chapitre.histoires.id })}} ">
+				<button class="eagle ouiSubCorrec fond-rouge texte-beige ">Oui</button>
+			</a>
 
 		</div>
 	</div>
 
+	<div class="form-titre eagle texte-rouge">
+		{{ form_start(formTitre) }}
+		{{ form_row(formTitre.titre) }}
+		{{ form_row(formTitre.enregistrer) }}
+		{{ form_end(formTitre) }}
+	</div>
+
 	<div class="conteneur-redac">
+
 
 		<div class="regle-redac texte-rouge eagle">
 			<ul>
@@ -45,18 +53,13 @@
 			</ul>
 		</div>
 
+
 		<div class="form-redac">
-			{{ form_start(form) }}
-
-			{{ form_widget
-			(form.contenu, {attr: { class: 'cacher' }}) 
-															}}
-
+			{{ form_start(formChapitre) }}
+			{{ form_widget(formChapitre.contenu, {attr: { class: 'cacher' }}) }}
 			<div id="editor"></div>
-
 			<button type="submit" class="btn btn-primary eagle fond-rouge texte-beige">Enregistrer</button>
-
-			{{ form_end(form) }}
+			{{ form_end(formChapitre) }}
 
 			<div class="div-suivant">
 				<a href="{{ path('app_chapitre_suivant', { id: chapitre.id }) }}">

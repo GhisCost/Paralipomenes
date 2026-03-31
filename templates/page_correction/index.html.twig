@@ -12,16 +12,16 @@
 
         <h4 class=" texte-rouge lavish">{{histoire.titre}}</h4>
 
-		{{ form_start(form) }}
+		{{ form_start(formChapitre) }}
 
-		{{ form_widget(form.contenu, {
+		{{ form_widget(formChapitre.contenu, {
         attr: { class: 'cacher' }}) }}
 
 			<div id="editor"></div>
 
 			<button type="submit" class="btn btn-primary eagle fond-rouge texte-beige">Enregistrer</button>
 
-			{{ form_end(form) }}
+			{{ form_end(formChapitre) }}
 
 
 		{% if suivant == 1 %}

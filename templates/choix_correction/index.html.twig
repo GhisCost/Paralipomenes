@@ -5,6 +5,11 @@
 
 {% block body %}
 
+	
+	{% if histoires == [] %}
+		<p class="msgPasCor texte-rouge eagle">Il n'y as pas de nouvelle correction ou de correction en cours</p>	
+	{% endif %}
+ 
 	{% for hist in histoires %}
 
 		<a class="carte-correction texte-rouge fond-beige" href="{{path('app_decision_correction',{id: hist.id})}}">
