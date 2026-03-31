@@ -7,23 +7,29 @@
 {% set hasQuill = true %}
 
 {% block body %}
+
 	<div id="divSubmitCorrection">
 		<button id="submitCorrection" class="eagle texte-rouge fond-beige">Soumettre à la correction</button>
 	</div>
 
+	<div class="eagle fond-beige texte-rouge modalSubmitCorrec pasLa">
+		<h3>Confirmation</h3>
+		<p>Etes-vous certain de vouloir soumettre votre histoire à la correction ? 
+								(Vous ne pourrez plus ajouter de nouveau chapitre avant la publication de votre histoire)</p>
+
+		<div class="divBouttonModal">
+
+		<button class="eagle fond-beige texte-rouge nonSubCorrect">Non</button>
+
+		<a class="aSubCorrec" href="{{path('app_demande_correction',{ id: chapitre.histoires.id })}} ">
+			<button class="eagle ouiSubCorrec fond-rouge texte-beige ">Oui</button>
+		</a>
+
+		</div>
+	</div>
+
 	<div class="conteneur-redac">
 
-		<div class="eagle fond-beige texte-rouge modalSubmitCorrec pasLa">
-			<h3>Confirmation</h3>
-			<p>Etes-vous certain de vouloir soumettre votre histoire à la correction ? 
-					(Vous ne pourrez plus ajouter de nouveau chapitre avant la publication de votre histoire)</p>
-
-			<button class="eagle fond-beige texte-rouge nonSubCorrect">Non</button>
-			<a>
-				<button class="eagle fond-rouge texte-beige ouiSubCorrec">Oui</button>
-			</a>
-		</div>
-		
 		<div class="regle-redac texte-rouge eagle">
 			<ul>
 				<li>Pas de propos raciste</li>
@@ -39,13 +45,12 @@
 			</ul>
 		</div>
 
-
 		<div class="form-redac">
 			{{ form_start(form) }}
 
 			{{ form_widget
 			(form.contenu, {attr: { class: 'cacher' }}) 
-												}}
+															}}
 
 			<div id="editor"></div>
 

@@ -96,6 +96,8 @@ final class PageCorrectionController extends AbstractController
             );
         }
         $corrections = $correctionsRepository->findCorrectionByHistoire($id);
+        
+        $histoire=$histoiresRepository->changerStatutHistoireDvC($histoire);
 
         return $this->redirectToRoute('app_page_correction', [
             'id' => $id,

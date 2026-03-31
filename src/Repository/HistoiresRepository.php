@@ -20,45 +20,57 @@ class HistoiresRepository extends ServiceEntityRepository
     }
 
 
-    
-        public function troisDernièresHistoires(int $limit = 3): array
-    {   
+
+    public function troisDernièresHistoires(int $limit = 3): array
+    {
         return $this->createQueryBuilder('h')
             ->leftJoin('h.chapitres', "c")
             ->addSelect('c')
             ->andWhere('h.statut= :statut')
-            ->setParameter('statut',"En cours de redaction") // à changer "en cours de redaction doit être changer pour "Publié"
+            ->setParameter('statut', "En cours de redaction") // à changer "en cours de redaction doit être changer pour "Publié"
             ->orderBy('h.datePublication', 'DESC')
             ->setMaxResults($limit)
             ->getQuery()
             ->getResult();
     }
 
-     public function trouverHistoires(): array
-    {   
+    public function trouverHistoires(): array
+    {
         return $this->createQueryBuilder('h')
             ->leftJoin('h.chapitres', "c")
             ->addSelect('c')
             ->andWhere('h.statut= :statut')
-            ->setParameter('statut',"En cours de redaction") // à changer "en cours de redaction doit être changer pour "Publié"
+            ->setParameter('statut', "En cours de redaction") // à changer "en cours de redaction doit être changer pour "Publié"
             ->orderBy('h.datePublication', 'DESC')
             ->getQuery()
             ->getResult();
     }
 
 
+    public function trouverHistoiresDeC(): array
+    {
+        return $this->createQueryBuilder('h')
+            ->leftJoin('h.chapitres', "c")
+            ->addSelect('c')
+            ->andWhere('h.statut IN (:statuts)')
+            ->setParameter('statuts', [StatutHistoire::DEMANDE, StatutHistoire::CORRECTION])
+            ->orderBy('h.datePublication', 'DESC')
+            ->getQuery()
+            ->getResult();
+    }
+
     public function creerHistoire(string $titre, User $user)
     {
-       $histoire = new Histoires();
-      
-       $histoire->setTitre($titre);
-       $histoire->setStatut(StatutHistoire::ENCOURS);
-       $histoire->setUser($user);
-       $em=$this->getEntityManager();
-       $em->persist($histoire);
-       $em->flush();
+        $histoire = new Histoires();
 
-    return $histoire;
+        $histoire->setTitre($titre);
+        $histoire->setStatut(StatutHistoire::ENCOURS);
+        $histoire->setUser($user);
+        $em = $this->getEntityManager();
+        $em->persist($histoire);
+        $em->flush();
+
+        return $histoire;
     }
 
     public function findHistoireById($id)
@@ -66,13 +78,42 @@ class HistoiresRepository extends ServiceEntityRepository
 
         return $this->createQueryBuilder('h')
             ->andWhere('h.id = :id')
-            ->setParameter('id',$id)
+            ->setParameter('id', $id)
             ->getQuery()
             ->getResult()
-            ;
+        ;
     }
 
-    
+    public function changerStatutHistoireRvD(Histoires $histoire)
+    {
+        if ($histoire->getStatut() === StatutHistoire::ENCOURS) {
+            $histoire->setStatut(StatutHistoire::DEMANDE);
+            $this->getEntityManager()->flush();
+        }
+        return $histoire;
+    }
+
+    public function changerStatutHistoireDvC(Histoires $histoire)
+    {
+        if ($histoire->getStatut() === StatutHistoire::DEMANDE) {
+            $histoire->setStatut(StatutHistoire::CORRECTION);
+            $this->getEntityManager()->flush();
+        }
+        return $histoire;
+    }
+
+    public function changerStatutHistoireCvP(Histoires $histoire)
+    {
+        if ($histoire->getStatut() === StatutHistoire::CORRECTION) {
+            $histoire->setStatut(StatutHistoire::PUBLIER);
+            $this->getEntityManager()->flush();
+        }
+        return $histoire;
+    }
+
+}
+
+
 //    /**
 //     * @return Histoires[] Returns an array of Histoires objects
 //     */
@@ -97,4 +138,3 @@ class HistoiresRepository extends ServiceEntityRepository
 //            ->getOneOrNullResult()
 //        ;
 //    }
-}

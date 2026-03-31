@@ -16,7 +16,7 @@ final class ChoixCorrectionController extends AbstractController
     {
         $this->denyAccessUnlessGranted('ROLE_CORRECTEUR');
 
-        $histoires = $histoiresRepository->trouverHistoires();
+        $histoires = $histoiresRepository->trouverHistoiresDeC();
 
         foreach ($histoires as $hist) {
             $derniers = $hist->getChapitres();

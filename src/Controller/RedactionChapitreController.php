@@ -13,7 +13,7 @@ use App\Form\RedactionChapitreType;
 use App\Entity\User;
 use App\Entity\Chapitres;
 use App\Repository\ChapitresRepository;
-use Symfony\Component\HtmlSanitizer\HtmlSanitizerInterface;
+
 
 final class RedactionChapitreController extends AbstractController
 {
@@ -174,6 +174,17 @@ final class RedactionChapitreController extends AbstractController
             'form' => $form->createView(),
             'chapitre' => $chapitreActuel
         ]);
+    }
+
+    
+    #[Route ('demande/correction/{id}', name:'app_demande_correction')]
+    public function valideDemandeCorrection(HistoiresRepository $histoiresRepo, int $id):Response
+    {
+        $histoire=$histoiresRepo->find($id);
+        
+        $histoireModif=$histoiresRepo->changerStatutHistoireRvD($histoire);
+
+         return $this->redirectToRoute('app_compte', ["id"=>$histoire->getUser()->getId()]);
     }
 
 }

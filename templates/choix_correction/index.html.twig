@@ -8,6 +8,12 @@
 	{% for hist in histoires %}
 
 		<a class="carte-correction texte-rouge fond-beige" href="{{path('app_decision_correction',{id: hist.id})}}">
+			
+			{% if hist.statut.name === "DEMANDE" %}
+			<p class="bandeauCorrec texte-beige fond-rouge eagle">Nouvelle correction</p>
+			{% else %}
+			<p class="bandeauCorrec fond-beige texte-rouge enCorrec eagle">En cours de correction</p>
+			{% endif %}
 			<h4 class="lavish">{{hist.titre}}</h4>
 			<div class="eagle">
 				{% for ch in hist.chapitres %}

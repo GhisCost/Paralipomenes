@@ -7,7 +7,7 @@
 {% block body %}
 	<div class="form-compte eagle texte-rouge">
 
-		<h4 class ="titreCompte">Informations de compte</h4>
+		<h4 class="titreCompte">Informations de compte</h4>
 
 		{{ form_start(form) }}
 		<div>
@@ -29,41 +29,53 @@
 	</div>
 
 	<div class="accesAdmin">
-	
-	{% if 'ROLE_ADMIN' in user.roles %}
-	
-	<button class="eagle texte-beige fond-rouge" name="admin" > 
-	<a class="texte-beige" href="{{path('admin')}}">Page d'administration</a>
-	</button>
 
-	{% endif %}
+		{% if 'ROLE_ADMIN' in user.roles %}
 
-	{% if 'ROLE_CORRECTEUR' in user.roles %}
-	
-	<button class="eagle texte-beige fond-rouge" name="correcteur" > 
-	<a class="texte-beige" href="{{path('app_choix_correction')}}">Page de corrections</a>
-	</button>
+			<button class="eagle texte-beige fond-rouge" name="admin">
+				<a class="texte-beige" href="{{path('admin')}}">Page d'administration</a>
+			</button>
 
-	{% endif %}
-	
+		{% endif %}
+
+		{% if 'ROLE_CORRECTEUR' in user.roles %}
+
+			<button class="eagle texte-beige fond-rouge" name="correcteur">
+				<a class="texte-beige" href="{{path('app_choix_correction')}}">Page de corrections</a>
+			</button>
+
+		{% endif %}
+
 	</div>
 
 	<div class="lancementHistoire eagle texte-rouge">
 
-	{% if user.histoires is null  %}
-	
-	<p>Commencer à raconter votre histoire:</p>
+		{% if user.histoires is null  %}
+
+			<p>Commencer à raconter votre histoire:</p>
+
+			<button class="eagle texte-beige fond-rouge" name="creation">
+				<a href="{{path('app_debut_histoire',{id: app.user.id})}}" class="texte-beige">Se lancer</a>
+			</button>
+		{% elseif user.histoires.statut.name == "ENCOURS" %}
+
+			<p>Continuer à raconter mon histoire:</p>
+
+			<button class="eagle texte-beige fond-rouge">
+				<a href="{{path('app_redaction_chapitre',{id: app.user.id})}}" class="texte-beige">Recommencer</a>
+			</button>
+
+		{% elseif user.histoires.statut.name == "DEMANDE" %}
+
+			<p class="eagle texte-rouge">La demande de correction de votre histoire a été envoyé</p>
+
+		{% elseif user.histoires.statut.name == "CORRECTION" %}
+
+			<p class="eagle texte-rouge"> La correction de votre histoire est en cours.</p>
+
+		{% endif %}
+
 		
-		<button class="eagle texte-beige fond-rouge" name="creation">
-		<a href="{{path('app_debut_histoire',{id: app.user.id})}}" class="texte-beige">Se lancer</a>
-		</button>
-	{% else %}
-		<p>Continuer à raconter mon histoire:</p>
-
-		<button class="eagle texte-beige fond-rouge" >
-		<a href="{{path('app_redaction_chapitre',{id: app.user.id})}}" class="texte-beige" >Recommencer</a>
-		</button>
-
+		
 	</div>
-	{% endif %}
 {% endblock %}
