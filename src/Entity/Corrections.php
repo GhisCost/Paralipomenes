@@ -122,7 +122,10 @@ class Corrections implements \ArrayAccess
     }
     function offsetGet(mixed $offset): mixed
     {
-        return $offset;
+         if (property_exists($this, $offset)) {
+        return $this->$offset;
+    }
+    return null;
     }
     function offsetSet(mixed $offset, mixed $value): void
     {

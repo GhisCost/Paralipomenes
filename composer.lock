@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "f4c4a259b2c7d893e7d2702096c8a2b5",
+    "content-hash": "5a56c1533ea99f7ea766e201b5ef589e",
     "packages": [
         {
             "name": "composer/semver",
@@ -969,16 +969,16 @@
         },
         {
             "name": "doctrine/orm",
-            "version": "3.6.2",
+            "version": "3.6.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/doctrine/orm.git",
-                "reference": "4262eb495b4d2a53b45de1ac58881e0091f2970f"
+                "reference": "e88cd591f0786089dee22b972c28aa2076df51c0"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/doctrine/orm/zipball/4262eb495b4d2a53b45de1ac58881e0091f2970f",
-                "reference": "4262eb495b4d2a53b45de1ac58881e0091f2970f",
+                "url": "https://api.github.com/repos/doctrine/orm/zipball/e88cd591f0786089dee22b972c28aa2076df51c0",
+                "reference": "e88cd591f0786089dee22b972c28aa2076df51c0",
                 "shasum": ""
             },
             "require": {
@@ -1051,9 +1051,9 @@
             ],
             "support": {
                 "issues": "https://github.com/doctrine/orm/issues",
-                "source": "https://github.com/doctrine/orm/tree/3.6.2"
+                "source": "https://github.com/doctrine/orm/tree/3.6.3"
             },
-            "time": "2026-01-30T21:41:41+00:00"
+            "time": "2026-04-02T06:53:27+00:00"
         },
         {
             "name": "doctrine/persistence",
@@ -1205,16 +1205,16 @@
         },
         {
             "name": "easycorp/easyadmin-bundle",
-            "version": "v4.29.3",
+            "version": "v4.29.5",
             "source": {
                 "type": "git",
                 "url": "https://github.com/EasyCorp/EasyAdminBundle.git",
-                "reference": "d890be4491801c46919281ad78f445f19c37e492"
+                "reference": "fc13d898bcc1ac545c56bcebce938cfad0c1e59e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/EasyCorp/EasyAdminBundle/zipball/d890be4491801c46919281ad78f445f19c37e492",
-                "reference": "d890be4491801c46919281ad78f445f19c37e492",
+                "url": "https://api.github.com/repos/EasyCorp/EasyAdminBundle/zipball/fc13d898bcc1ac545c56bcebce938cfad0c1e59e",
+                "reference": "fc13d898bcc1ac545c56bcebce938cfad0c1e59e",
                 "shasum": ""
             },
             "require": {
@@ -1298,7 +1298,7 @@
             ],
             "support": {
                 "issues": "https://github.com/EasyCorp/EasyAdminBundle/issues",
-                "source": "https://github.com/EasyCorp/EasyAdminBundle/tree/v4.29.3"
+                "source": "https://github.com/EasyCorp/EasyAdminBundle/tree/v4.29.5"
             },
             "funding": [
                 {
@@ -1306,7 +1306,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2026-03-08T19:31:12+00:00"
+            "time": "2026-04-01T18:08:56+00:00"
         },
         {
             "name": "egulias/email-validator",
@@ -10863,5 +10863,5 @@
         "ext-iconv": "*"
     },
     "platform-dev": {},
-    "plugin-api-version": "2.9.0"
+    "plugin-api-version": "2.6.0"
 }

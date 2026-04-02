@@ -10,40 +10,41 @@
 
 	<div class="div-correct">
 
-        <h4 class=" texte-rouge lavish">{{histoire.titre}}</h4>
+		<a href="{{ path('app_envoi_message', {id: correction.id})}}" class="lienMess eagle texte-beige">
+			Faire valider la correction
+		</a>
+		<h4 class=" texte-rouge lavish">{{histoire.titre}}</h4>
 
 		{{ form_start(formChapitre) }}
 
 		{{ form_widget(formChapitre.contenu, {
         attr: { class: 'cacher' }}) }}
 
-			<div id="editor"></div>
+		<div id="editor"></div>
 
-			<button type="submit" class="btn btn-primary eagle fond-rouge texte-beige">Enregistrer</button>
+		<button type="submit" class="btn btn-primary eagle fond-rouge texte-beige">Enregistrer</button>
 
-			{{ form_end(formChapitre) }}
-
+		{{ form_end(formChapitre) }}
 
 		{% if suivant == 1 %}
-		<div class="div-correc-suivant">
-			<a href="{{ path('app_correction_suivante', { id: idCorrection }) }}">
-				<button class="eagle fond-rouge texte-beige btn-suivant">
-				Corriger chapitre Suivant
-				</button>
-			</a>
-		</div>
-		{% endif %} 
+			<div class="div-correc-suivant">
+				<a href="{{ path('app_correction_suivante', { id: idCorrection }) }}">
+					<button class="eagle fond-rouge texte-beige btn-suivant">
+						Corriger chapitre Suivant
+					</button>
+				</a>
+			</div>
+		{% endif %}
 		{% if precedent == 1 %}
-		<div class="div-correc-precedent">
-			<a href="{{ path('app_correction_precedente', { id: idCorrection }) }}">
-				<button class="eagle fond-rouge texte-beige btn-precedent">
-				Corriger chapitre Précédent
-				</button>
-			</a>
-		</div>
+			<div class="div-correc-precedent">
+				<a href="{{ path('app_correction_precedente', { id: idCorrection }) }}">
+					<button class="eagle fond-rouge texte-beige btn-precedent">
+						Corriger chapitre Précédent
+					</button>
+				</a>
+			</div>
 		{% endif %}
 
 	</div>
-
 
 {% endblock %}

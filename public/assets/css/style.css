@@ -425,7 +425,7 @@ a {
 }
 
 .form-titre button {
-     border-radius: 10px;
+    border-radius: 10px;
     border: #9a202c 2px solid;
     padding: 5px 15px;
     margin: 5px;
@@ -448,7 +448,7 @@ a {
     margin-bottom: 40px;
     border: #9a202c 4px solid;
     border-radius: 15px;
-     cursor:
+    cursor:
         url(../img/plume-beige-24.png) 0 24,
         pointer;
     font-size: 1.1em;
@@ -574,7 +574,7 @@ a {
     border: #9a202c 2px solid;
 }
 
-.msgPasCor{
+.msgPasCor {
     text-align: center;
     padding: 15px;
 }
@@ -655,4 +655,18 @@ a {
     position: absolute;
     top: -85px;
     right: 220px;
+}
+
+.lienMess {
+    display: block;
+    padding: 10px;
+    width: 15%;
+    margin: auto;
+    margin-bottom: 25px;
+    background-color: #9a202c;
+    border-radius: 15px;
+    text-align: center;
+    cursor:
+        url(../img/plume-beige-24.png) 0 24,
+        pointer;
 }

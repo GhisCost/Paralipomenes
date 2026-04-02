@@ -42,14 +42,15 @@ class CorrectionsRepository extends ServiceEntityRepository
 
     public function findCorrectionByHistoire($id_histoire): array
    {
-       return $this->createQueryBuilder('c')
-           ->andWhere('c.Histoire = :id_histoire')
-           ->setParameter('id_histoire', $id_histoire)
-           ->orderBy('c.id', 'ASC')
-           ->setMaxResults(1)
-           ->getQuery()
-           ->getResult()
-       ;
+        return $this->createQueryBuilder('c')
+        ->leftJoin('c.user', 'u')
+        ->addSelect('u')
+        ->andWhere('c.Histoire = :id_histoire')
+        ->setParameter('id_histoire', $id_histoire)
+        ->orderBy('c.id', 'ASC')
+        ->setMaxResults(1)
+        ->getQuery()
+        ->getResult();
    }
 
 
