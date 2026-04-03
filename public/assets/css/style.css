@@ -699,10 +699,59 @@ a {
     outline:#9a202c 2px solid;
 }
 
+.divEnvMessage input {
+    width:20%;
+    border-radius:5px;
+    border: #f3d7b3 solid 2px;
+    font-family:"Eagle Lake", serif;
+}
+
+.divEnvMessage input:focus{
+     outline:#9a202c 2px solid;
+}
+
 .divEnvMessage button {
     margin: 15px;
     padding: 10px;
     border-radius: 10px;
     border: #9a202c 2px solid;
+}
+
+/* page Messagerie */
+
+.divMessEnv{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    width: 80%;
+    margin: auto;
+}
+
+.divMessEnv a {
+    padding: 5px;
+}
+
+
+/* Detail message */
+
+.grandeDivMessage{
+    width: 80%;
+    margin: auto;
+}
+
+.objetMess{
+    margin-bottom: 20px;
+}
+
+.expeMess{
+    margin-bottom: 20px;
+    
+}
+
+
+.corpsMess{
+    border-radius: 5px;
+    border:#9a202c solid 0.5px;
+    padding: 5px;
 }
 

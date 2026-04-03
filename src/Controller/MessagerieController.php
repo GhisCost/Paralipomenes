@@ -22,23 +22,11 @@ final class MessagerieController extends AbstractController
 
         $pieceJointeRecu = [];
         $pieceJointeEnv = [];
-        foreach ($messagesRecus as $messRe) {
 
-            array_push($pieceJointeRecu, $pieceJointeRepo->findPieceJointeByMessage($messRe));
-
-        }
-
-        foreach ($messagesEnvoyer as $messEnv) {
-
-            array_push($pieceJointeEnv, $pieceJointeRepo->findPieceJointeByMessage($messEnv));
-
-        }
 
         return $this->render('messagerie/index.html.twig', [
             'messagesRecus' => $messagesRecus,
-            'messagesEnvoyer' => $messagesEnvoyer,
-            'pieceRecu'=>$pieceJointeRecu,
-            'pieceEnv'=>$pieceJointeEnv
+            'messagesEnvoyer' => $messagesEnvoyer
         ]);
     }
 }

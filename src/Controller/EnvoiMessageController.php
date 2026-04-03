@@ -53,6 +53,7 @@ final class EnvoiMessageController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
             $message->setContenu($form->get('contenu')->getData());
+            $message->setObjet($form->get('objet')->getData());
             $message->setEnvoyer(true);
             $message->setDateEnvoi(new DateTime());
             $em->persist($message);

@@ -5,6 +5,7 @@
 {% block body %}
 <div class="divEnvMessage" >
         {{ form_start(form) }}
+		{{ form_row(form.objet) }}
 		{{ form_row(form.contenu) }}
 		{{ form_row(form.enregistrer) }}
 		{{ form_end(form) }}

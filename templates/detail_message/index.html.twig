@@ -1,0 +1,38 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Paralipomènes - Message
+{% endblock %}
+
+{% block body %}
+
+	<div class="grandeDivMessage">
+
+		<h3 class="eagle texte-rouge objetMess">
+			{% if message.objet %}
+				{{message.objet}}
+			{% else %}
+				Sans objet
+			{% endif %}
+		</h3>
+		<p class="eagle texte-rouge expeMess">
+			Expediteur:
+			{{message.expediteur}}
+		</p>
+		<p class="eagle texte-rouge corpsMess">
+			{{message.contenu}}
+		</p>
+
+        <pre>
+            {{ dump(pieceJointes) }}
+        </pre>
+
+        {% for pj in pieceJointes %}
+            <h4>Chapitre numero: {{pj.correction.numeroChapitre}} </h4>
+            <div> 
+            {{pj.correction.contenu}}
+            </div>
+        {% endfor %}
+
+	</div>
+
+{% endblock %}

@@ -40,6 +40,9 @@ class Messages
     #[ORM\Column]
     private ?bool $envoyer = false;
 
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $objet = null;
+
     public function __construct()
     {
         $this->pieceJointes = new ArrayCollection();
@@ -137,6 +140,18 @@ class Messages
     public function setEnvoyer(bool $envoyer): static
     {
         $this->envoyer = $envoyer;
+
+        return $this;
+    }
+
+    public function getObjet(): ?string
+    {
+        return $this->objet;
+    }
+
+    public function setObjet(?string $objet): static
+    {
+        $this->objet = $objet;
 
         return $this;
     }

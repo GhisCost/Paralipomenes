@@ -6,12 +6,28 @@
 <div class="grandeDivMess" >
 
 <div class="divMessRecu">
-{% for messRe in messagesRecus %}
-    
-{% endfor %}
+
+{# <pre>
+    {{ dump(messagesEnvoyer) }}
+</pre> #}
+
 </div>
 
 <div class="divMessEnv">
+
+{% for messEnv in messagesEnvoyer %}
+    
+    <a class="eagle texte-rouge " href="{{path('app_detail_message', {id:messEnv.id})}}"> Objet: 
+    {% if messEnv.objet %} 
+    {{messEnv.objet}}
+    {% else %}
+    Sans objet
+    {% endif %} . 
+    Envoyer par: {{messEnv.expediteur.email}}  .
+    le: {{messEnv.dateEnvoi|date('d/m/Y')}} .
+     </a>
+
+{% endfor %}
 
 </div>
 
