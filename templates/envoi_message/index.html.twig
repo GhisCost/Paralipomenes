@@ -3,6 +3,10 @@
 {% block title %}Paralipomènes - Envoi de messages{% endblock %}
 
 {% block body %}
-
-
+<div class="divEnvMessage" >
+        {{ form_start(form) }}
+		{{ form_row(form.contenu) }}
+		{{ form_row(form.enregistrer) }}
+		{{ form_end(form) }}
+</div >
 {% endblock %}

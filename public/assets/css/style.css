@@ -670,3 +670,39 @@ a {
         url(../img/plume-beige-24.png) 0 24,
         pointer;
 }
+
+/* Page d'envoie de validation de correction */
+
+.divEnvMessage>form>div{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.divEnvMessage label {
+    color: #9a202c;
+    font-size:1.1em;
+    padding: 15px;
+    font-family:"Eagle Lake", serif;
+}
+
+.divEnvMessage textarea {
+    resize: none;
+    width: 50%;
+    height: 15em;
+    border-radius: 15px;
+    border: #f3d7b3 solid 2px;
+    font-family:"Eagle Lake", serif;
+}
+
+.divEnvMessage textarea:focus{
+    outline:#9a202c 2px solid;
+}
+
+.divEnvMessage button {
+    margin: 15px;
+    padding: 10px;
+    border-radius: 10px;
+    border: #9a202c 2px solid;
+}
+

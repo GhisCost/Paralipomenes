@@ -33,7 +33,7 @@ final class RedactionChapitreController extends AbstractController
          * @var User $user
          */
 
-        $user = $this->getUser();
+    $user = $this->getUser();
     $histoire = $user->getHistoires();
     $chapitre = $chapitresRepository->findLastChapitreByHistoire($histoire);
 
@@ -84,9 +84,6 @@ final class RedactionChapitreController extends AbstractController
 
         $chapitre = $chapitresRepository->creerChapitre($histoire, 0);
 
-        $form = $this->createForm(RedactionChapitreType::class, $chapitre);
-        $form->handleRequest($request);
-
         return $this->redirectToRoute("app_redaction_chapitre",["id"=>$user->getId()]);
 
     }
@@ -106,8 +103,8 @@ public function chapitreSuivant(
 
     $chapitreActuel = $chapitresRepository->findChapitreSuivant($chapitre);
     /**
-      * @var User $user
-     */
+    * @var User $user
+    */
 
     $user = $this->getUser();
     $histoire = $user->getHistoires();
@@ -116,7 +113,6 @@ public function chapitreSuivant(
         $chapitreActuel = $chapitresRepository->creerChapitre($histoire, $chapitre->getNumeroChapitre() + 1);
     }
 
-    
     $formChapitre = $this->createForm(RedactionChapitreType::class, $chapitreActuel);
     $formChapitre->handleRequest($request);
 
@@ -171,7 +167,6 @@ public function chapitrePrecedent(
         $chapitreActuel = $chapitre;
     }
 
-
     $formChapitre = $this->createForm(RedactionChapitreType::class, $chapitreActuel);
     $formChapitre->handleRequest($request);
 
@@ -182,7 +177,6 @@ public function chapitrePrecedent(
         return $this->redirectToRoute("app_chapitre_precedent", ["id" => $chapitreActuel->getId()]);
     }
 
-   
     $formTitre = $this->createForm(TitreHistoireType::class, $histoire);
     $formTitre->handleRequest($request);
 

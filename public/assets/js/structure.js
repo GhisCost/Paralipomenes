@@ -1,12 +1,14 @@
 
 // JS bouton de soumission à la correction
 
+
+
 let submitCorrection = document.getElementById('submitCorrection');
 let modal = document.querySelector('.modalSubmitCorrec');
 let nonSubCorrect = document.querySelector('.nonSubCorrect');
 
-
-submitCorrection.addEventListener('click', function(e) {
+if(submitCorrection){
+    submitCorrection.addEventListener('click', function(e) {
     e.stopPropagation();
     modal.classList.remove("pasLa");
     modal.classList.add("la");
@@ -24,3 +26,5 @@ document.addEventListener('click', function(e) {
         modal.classList.add("pasLa");
     }
 });
+}
+

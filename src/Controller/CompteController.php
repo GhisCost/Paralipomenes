@@ -16,9 +16,9 @@ final class CompteController extends AbstractController
     {   
         $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
 
-         /**
-         * @var User $user
-         */
+        /**
+        * @var User $user
+        */
         
         $user= $this->getUser();
 

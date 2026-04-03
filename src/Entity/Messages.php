@@ -19,11 +19,10 @@ class Messages
     #[ORM\Column(type: Types::TEXT)]
     private ?string $contenu = null;
 
-    #[ORM\Column(type: Types::DATE_MUTABLE)]
+    #[ORM\Column(type: Types::DATE_MUTABLE, nullable: true)]
     private ?\DateTime $dateEnvoi = null;
 
    
-
     #[ORM\ManyToOne(inversedBy: 'messagesReçus')]
     #[ORM\JoinColumn(nullable: false)]
     private ?User $destinataire = null;
@@ -37,6 +36,9 @@ class Messages
      */
     #[ORM\OneToMany(targetEntity: PieceJointe::class, mappedBy: 'message')]
     private Collection $pieceJointes;
+
+    #[ORM\Column]
+    private ?bool $envoyer = false;
 
     public function __construct()
     {
@@ -123,6 +125,18 @@ class Messages
                 $pieceJointe->setMessage(null);
             }
         }
+
+        return $this;
+    }
+
+    public function isEnvoyer(): ?bool
+    {
+        return $this->envoyer;
+    }
+
+    public function setEnvoyer(bool $envoyer): static
+    {
+        $this->envoyer = $envoyer;
 
         return $this;
     }

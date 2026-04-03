@@ -21,8 +21,6 @@ final class DecisionCorrectionController extends AbstractController
         
         $corrections=$correctionsRepository->findCorrectionByHistoire($id);
 
-        
-
         return $this->render('decision_correction/index.html.twig', [
         'histoire' => $histoire,
         'chapitres'=> $chapitres,

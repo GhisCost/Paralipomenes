@@ -2,6 +2,8 @@
 
 namespace App\Repository;
 
+use App\Entity\Corrections;
+use App\Entity\Messages;
 use App\Entity\PieceJointe;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
@@ -14,7 +16,22 @@ class PieceJointeRepository extends ServiceEntityRepository
     public function __construct(ManagerRegistry $registry)
     {
         parent::__construct($registry, PieceJointe::class);
+    } 
+
+    public function creerPieceJointe(Messages $message, Corrections $correction)
+    {
+        $pieceJointe= new PieceJointe();
+        $pieceJointe->setMessage($message);
+        $pieceJointe->setCorrection($correction);
+        $em=$this->getEntityManager();
+        $em->persist($pieceJointe);
+        $em->flush();
+
     }
+
+}
+
+
 
 //    /**
 //     * @return PieceJointe[] Returns an array of PieceJointe objects
@@ -40,4 +57,3 @@ class PieceJointeRepository extends ServiceEntityRepository
 //            ->getOneOrNullResult()
 //        ;
 //    }
-}
