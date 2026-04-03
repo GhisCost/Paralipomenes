@@ -29,6 +29,17 @@ class PieceJointeRepository extends ServiceEntityRepository
 
     }
 
+    public function findPieceJointeByMessage(Messages $message){
+
+        return $this->createQueryBuilder('p')
+            ->andWhere('p.message = :mess')
+            ->setParameter('mess', $message)
+            ->orderBy('p.id', 'ASC')
+            ->getQuery()
+            ->getResult()
+        ;
+    }
+
 }
 
 
