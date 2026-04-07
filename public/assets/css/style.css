@@ -579,6 +579,13 @@ a {
     padding: 15px;
 }
 
+.propreHist{
+    width: 30%;
+    margin: auto;
+    padding: 5px;
+    border-radius: 5px;
+}
+
 /* Décision de correction */
 
 #btn-correction {
@@ -719,16 +726,18 @@ a {
 
 /* page Messagerie */
 
-.divMessEnv{
+.divMessEnv, .divMessRecu{
     display: flex;
     flex-direction: column;
     gap: 10px;
     width: 80%;
     margin: auto;
+    margin-bottom: 25px;
 }
 
-.divMessEnv a {
+.divMessEnv a, .divMessRecu a{
     padding: 5px;
+    margin:5px;
 }
 
 

@@ -6,20 +6,49 @@
 {% block body %}
 
 	
-	{% if histoires == [] %}
+	{% if histoiresNouv == [] and histoireCom == [] %}
 		<p class="msgPasCor texte-rouge eagle">Il n'y as pas de nouvelle correction ou de correction en cours</p>	
 	{% endif %}
  
-	{% for hist in histoires %}
+	{% for hist in histoiresNouv %}
 
 		<a class="carte-correction texte-rouge fond-beige" href="{{path('app_decision_correction',{id: hist.id})}}">
 			
-			{% if hist.statut.name === "DEMANDE" %}
 			<p class="bandeauCorrec texte-beige fond-rouge eagle">Nouvelle correction</p>
-			{% else %}
-			<p class="bandeauCorrec fond-beige texte-rouge enCorrec eagle">En cours de correction</p>
-			{% endif %}
+	
 			<h4 class="lavish">{{hist.titre}}</h4>
+			
+			{% if hist.user == user %}
+			<p class="eagle texte-beige fond-rouge propreHist" >Ceci est ton histoire</p>
+			{% endif %}
+			
+
+			<div class="eagle">
+				{% for ch in hist.chapitres %}
+					<br>
+					{{ch.contenu|raw}}
+				{% endfor %}
+			</div>
+			<p class="eagle date-biblio">Publié le :
+				{{hist.datePublication|date('d-m-Y')}}</p>
+		</a>
+
+	{% endfor %}
+
+
+	{% for hist in histoireCom %}
+
+		<a class="carte-correction texte-rouge fond-beige" href="{{path('app_decision_correction',{id: hist.id})}}">
+			
+			<p class="bandeauCorrec fond-beige texte-rouge enCorrec eagle">En cours de correction</p>
+
+			<h4 class="lavish">{{hist.titre}}</h4>
+			
+			{% if hist.user == user %}
+			<p class="eagle texte-beige fond-rouge propreHist" >Ceci est ton histoire</p>
+			{% endif %}
+			
+
 			<div class="eagle">
 				{% for ch in hist.chapitres %}
 					<br>

@@ -27,7 +27,7 @@ class HistoiresRepository extends ServiceEntityRepository
             ->leftJoin('h.chapitres', "c")
             ->addSelect('c')
             ->andWhere('h.statut= :statut')
-            ->setParameter('statut', "En cours de redaction") // à changer "en cours de redaction doit être changer pour "Publié"
+            ->setParameter('statut', "Publiée") 
             ->orderBy('h.datePublication', 'DESC')
             ->setMaxResults($limit)
             ->getQuery()
@@ -40,24 +40,53 @@ class HistoiresRepository extends ServiceEntityRepository
             ->leftJoin('h.chapitres', "c")
             ->addSelect('c')
             ->andWhere('h.statut= :statut')
-            ->setParameter('statut', "En cours de redaction") // à changer "en cours de redaction doit être changer pour "Publié"
+            ->setParameter('statut', "Publiée") 
             ->orderBy('h.datePublication', 'DESC')
             ->getQuery()
             ->getResult();
     }
 
 
-    public function trouverHistoiresDeC(): array
+    public function trouverHistoiresDem(): array
     {
         return $this->createQueryBuilder('h')
             ->leftJoin('h.chapitres', "c")
             ->addSelect('c')
-            ->andWhere('h.statut IN (:statuts)')
-            ->setParameter('statuts', [StatutHistoire::DEMANDE, StatutHistoire::CORRECTION])
+            ->andWhere('h.statut = :statuts')
+            ->setParameter('statuts', StatutHistoire::DEMANDE)
             ->orderBy('h.datePublication', 'DESC')
             ->getQuery()
             ->getResult();
     }
+
+      public function trouverHistoiresCorri(): array
+    {
+        return $this->createQueryBuilder('h')
+            ->leftJoin('h.chapitres', "c")
+            ->addSelect('c')
+            ->andWhere('h.statut = :statuts')
+            ->setParameter('statuts', StatutHistoire::CORRECTION)
+            ->orderBy('h.datePublication', 'DESC')
+            ->getQuery()
+            ->getResult();
+    }
+
+    
+    public function trouverHistoiresCorriByCorrecteur($correcteur): array
+{
+    return $this->createQueryBuilder('h')
+        ->leftJoin('h.chapitres', 'c')
+        ->leftJoin('c.corrections', 'cor')
+        ->addSelect('c', 'cor')
+        ->andWhere('h.statut = :statut')
+        ->andWhere('cor.user = :correcteur')
+        ->setParameter('statut', StatutHistoire::CORRECTION)
+        ->setParameter('correcteur', $correcteur)
+        ->orderBy('h.datePublication', 'DESC')
+        ->getQuery()
+        ->getResult();
+}
+
 
     public function creerHistoire(string $titre, User $user)
     {

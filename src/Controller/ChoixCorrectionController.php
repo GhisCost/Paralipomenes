@@ -8,6 +8,7 @@ use Symfony\Component\HtmlSanitizer\HtmlSanitizer;
 use Symfony\Component\HtmlSanitizer\HtmlSanitizerInterface;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
+use App\Entity\User;
 
 final class ChoixCorrectionController extends AbstractController
 {
@@ -15,10 +16,24 @@ final class ChoixCorrectionController extends AbstractController
     public function index(HistoiresRepository $histoiresRepository, HtmlSanitizerInterface $htmlSanitizer): Response
     {
         $this->denyAccessUnlessGranted('ROLE_CORRECTEUR');
+        /**
+         * @var User $user
+         */
 
-        $histoires = $histoiresRepository->trouverHistoiresDeC();
+        $user = $this->getUser();
 
-        foreach ($histoires as $hist) {
+        $histoiresNouv = $histoiresRepository->trouverHistoiresDem();
+
+        foreach ($histoiresNouv as $hist) {
+            $derniers = $hist->getChapitres();
+            foreach ($derniers as $d) {
+                $d = $htmlSanitizer->sanitize($d->getContenu());
+            }
+        }
+
+        $histoiresCom=$histoiresRepository->trouverHistoiresCorriByCorrecteur($user);
+
+         foreach ($histoiresCom as $hist) {
             $derniers = $hist->getChapitres();
             foreach ($derniers as $d) {
                 $d = $htmlSanitizer->sanitize($d->getContenu());
@@ -26,7 +41,9 @@ final class ChoixCorrectionController extends AbstractController
         }
 
         return $this->render('choix_correction/index.html.twig', [
-            'histoires'=> $histoires,
+            'histoiresNouv' => $histoiresNouv,
+            'user' => $user,
+            'histoireCom'=> $histoiresCom
         ]);
     }
 }

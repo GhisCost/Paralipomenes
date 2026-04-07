@@ -7,7 +7,7 @@
 
 	<div class="grandeDivMessage">
 
-		<h3 class="eagle texte-rouge objetMess">
+		<h3 class="eagle texte-rouge objetMess"> Objet du message: 
 			{% if message.objet %}
 				{{message.objet}}
 			{% else %}
@@ -22,10 +22,12 @@
 			{{message.contenu}}
 		</p>
 
+		{% if message.expediteur != user %}
 			<a href="{{path('app_reponse_message', {id:message.id})}}" class="texte-beige fond-rouge eagle btnRep">
 				Repondre
 			</a>
-		
+		{% endif %}
+
 		{% for pj in pieceJointes %}
 
 			<div class="boitePj">

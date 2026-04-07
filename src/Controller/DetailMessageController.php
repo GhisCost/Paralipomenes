@@ -7,6 +7,8 @@ use App\Repository\PieceJointeRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
+use App\Entity\User;
+
 
 final class DetailMessageController extends AbstractController
 {
@@ -17,9 +19,16 @@ final class DetailMessageController extends AbstractController
 
         $pieceJointes=$pieceJointeRepo->findPieceJointeByMessage($message);
 
+        /**
+        * @var User $user
+        */
+        
+        $user= $this->getUser();
+
         return $this->render('detail_message/index.html.twig', [
             'message'=>$message,
-            'pieceJointes'=>$pieceJointes
+            'pieceJointes'=>$pieceJointes,
+            'user'=>$user
         ]);
     }
 }
