@@ -1,0 +1,30 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Paralipomènes - Reponse
+{% endblock %}
+
+{% block body %}
+<div class="grandeDivMess">
+	<div class="divEnvMessage">
+		{{ form_start(formRep) }}
+		{{ form_row(formRep.objet) }}
+		{{ form_row(formRep.contenu) }}
+		{{ form_row(formRep.enregistrer) }}
+		{{ form_end(formRep) }}
+	</div>
+
+	{% for pj in pieceJointes %}
+
+		<div class="boitePj">
+			<h4 class=" texte-rouge eagle titrePj">Chapitre numero:
+				{{pj.Correction.numeroChapitre}}
+			</h4>
+			<div class="texte-rouge eagle corpsPj">
+				{{pj.Correction.Contenu|raw}}
+			</div>
+		</div>
+
+	{% endfor %}
+
+</div>
+{% endblock %}

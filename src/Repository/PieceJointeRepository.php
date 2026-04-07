@@ -16,28 +16,32 @@ class PieceJointeRepository extends ServiceEntityRepository
     public function __construct(ManagerRegistry $registry)
     {
         parent::__construct($registry, PieceJointe::class);
-    } 
+    }
 
     public function creerPieceJointe(Messages $message, Corrections $correction)
     {
-        $pieceJointe= new PieceJointe();
+        $pieceJointe = new PieceJointe();
         $pieceJointe->setMessage($message);
         $pieceJointe->setCorrection($correction);
-        $em=$this->getEntityManager();
+        $em = $this->getEntityManager();
         $em->persist($pieceJointe);
         $em->flush();
 
+        return $pieceJointe;
+
     }
 
-    public function findPieceJointeByMessage(Messages $message){
+    public function findPieceJointeByMessage(Messages $message)
+    {
 
         return $this->createQueryBuilder('p')
+            ->join('p.Correction', 'c')
+            ->addSelect('c')
             ->andWhere('p.message = :mess')
             ->setParameter('mess', $message)
             ->orderBy('p.id', 'ASC')
             ->getQuery()
-            ->getResult()
-        ;
+            ->getResult();
     }
 
 }

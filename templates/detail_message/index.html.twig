@@ -22,17 +22,24 @@
 			{{message.contenu}}
 		</p>
 
-        <pre>
-            {{ dump(pieceJointes) }}
-        </pre>
+			<a href="{{path('app_reponse_message', {id:message.id})}}" class="texte-beige fond-rouge eagle btnRep">
+				Repondre
+			</a>
+		
+		{% for pj in pieceJointes %}
 
-        {% for pj in pieceJointes %}
-            <h4>Chapitre numero: {{pj.correction.numeroChapitre}} </h4>
-            <div> 
-            {{pj.correction.contenu}}
-            </div>
-        {% endfor %}
+			<div class="boitePj">
+				<h4 class=" texte-rouge eagle titrePj">Chapitre numero:
+					{{pj.Correction.numeroChapitre}}
+				</h4>
+				<div class="texte-rouge eagle corpsPj">
+					{{pj.Correction.Contenu|raw}}
+				</div>
+			</div>
 
+		{% endfor %}
+		
 	</div>
+
 
 {% endblock %}

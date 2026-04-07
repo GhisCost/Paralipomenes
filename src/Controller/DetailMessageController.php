@@ -17,15 +17,6 @@ final class DetailMessageController extends AbstractController
 
         $pieceJointes=$pieceJointeRepo->findPieceJointeByMessage($message);
 
-        foreach($pieceJointes as $pj){
-
-        $correction=$pj->getCorrection();
-        $chapitre = $correction->getChapitres();
-        $numeroChap=$chapitre->getNumeroChapitre();
-        $contenu= $correction->getContenu();
-        }
-
-
         return $this->render('detail_message/index.html.twig', [
             'message'=>$message,
             'pieceJointes'=>$pieceJointes

@@ -737,6 +737,7 @@ a {
 .grandeDivMessage{
     width: 80%;
     margin: auto;
+    position: relative;
 }
 
 .objetMess{
@@ -748,10 +749,32 @@ a {
     
 }
 
-
 .corpsMess{
     border-radius: 5px;
     border:#9a202c solid 0.5px;
     padding: 5px;
+    margin-bottom: 25px;
 }
 
+.boitePj{
+    margin: auto;
+    margin-bottom: 15px;
+    width: 80%;
+    
+}
+
+.corpsPj{
+    padding: 15px;
+}
+
+.btnRep{
+    padding:5px 15px;
+    border-radius: 15px;
+    position: absolute;
+    top:5%;
+    right: 5%;
+}
+
+.btnRep:hover{
+    text-decoration: underline;
+}
