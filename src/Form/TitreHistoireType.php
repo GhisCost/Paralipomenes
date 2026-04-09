@@ -16,7 +16,7 @@ class TitreHistoireType extends AbstractType
         $builder
             ->add('titre', TextType::class, [
                 'label' => 'Titre de l\'histoire:',
-                'attr' => ['class' => 'form-control eagle texte-rouge fond-beige'],
+                'attr' => ['class' => 'lavish texte-rouge fond-beige'],
             ])
             ->add('enregistrer', SubmitType::class, [
                 'label' => 'Modifier le titre',

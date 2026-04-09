@@ -110,7 +110,7 @@ public function chapitreSuivant(
     $histoire = $user->getHistoires();
 
     if ($chapitreActuel === null) {
-        $chapitreActuel = $chapitresRepository->creerChapitre($histoire, $chapitre->getNumeroChapitre() + 1);
+        $chapitreActuel = $chapitresRepository->creerChapitre($histoire, $chapitre->getNumeroChapitre());
     }
 
     $formChapitre = $this->createForm(RedactionChapitreType::class, $chapitreActuel);
@@ -120,7 +120,7 @@ public function chapitreSuivant(
         $chapitreActuel->setContenu($formChapitre->get('contenu')->getData());
         $entityManager->persist($chapitreActuel);
         $entityManager->flush();
-        return $this->redirectToRoute("app_chapitre_suivant", ["id" => $chapitreActuel->getId()]);
+        return $this->redirectToRoute("app_redaction_chapitre", ["id" => $chapitreActuel->getId()]);
     }
 
    
@@ -131,7 +131,7 @@ public function chapitreSuivant(
         $entityManager->persist($histoire);
         $entityManager->flush();
         $this->addFlash('success', 'Le titre a été mis à jour.');
-        return $this->redirectToRoute('app_chapitre_suivant', ['id' => $chapitreActuel->getId()]);
+        return $this->redirectToRoute('app_redaction_chapitre', ['id' => $chapitreActuel->getId()]);
     }
 
     return $this->render('redaction_chapitre/index.html.twig', [
@@ -174,7 +174,7 @@ public function chapitrePrecedent(
         $chapitreActuel->setContenu($formChapitre->get('contenu')->getData());
         $entityManager->persist($chapitreActuel);
         $entityManager->flush();
-        return $this->redirectToRoute("app_chapitre_precedent", ["id" => $chapitreActuel->getId()]);
+        return $this->redirectToRoute("app_redaction_chapitre", ["id" => $chapitreActuel->getId()]);
     }
 
     $formTitre = $this->createForm(TitreHistoireType::class, $histoire);
@@ -184,7 +184,7 @@ public function chapitrePrecedent(
         $entityManager->persist($histoire);
         $entityManager->flush();
         $this->addFlash('success', 'Le titre a été mis à jour.');
-        return $this->redirectToRoute('app_chapitre_precedent', ['id' => $chapitreActuel->getId()]);
+        return $this->redirectToRoute('app_redaction_chapitre', ['id' => $chapitreActuel->getId()]);
     }
 
     return $this->render('redaction_chapitre/index.html.twig', [

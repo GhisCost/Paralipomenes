@@ -9,11 +9,25 @@
 {% block body %}
 
 	<div class="div-correct">
+		<div class="divHautCorrec">
 
-		<a href="{{ path('app_creation_message', {id: correction.id})}}" class="lienMess eagle texte-beige">
-			Faire valider la correction
-		</a>
-		<h4 class=" texte-rouge lavish">{{histoire.titre}}</h4>
+			<div id="divBtnPublier">
+				<a id="btnPublier" class="eagle texte-beige fond-rouge" href="{{path('app_recap_pre_publication', {id:histoire.id})}}">
+					Publier l'histoire
+				</a>
+			</div>
+
+			<div class="form-titre eagle texte-rouge">
+				{{ form_start(formTitre) }}
+				{{ form_row(formTitre.titre) }}
+				{{ form_row(formTitre.enregistrer) }}
+				{{ form_end(formTitre) }}
+			</div>
+
+			<a href="{{ path('app_creation_message', {id: correction.id})}}" class="lienMess eagle texte-beige">
+				Faire valider la correction par l'auteur
+			</a>
+		</div>
 
 		{{ form_start(formChapitre) }}
 

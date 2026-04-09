@@ -1,0 +1,34 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Paralipomènes - Prépublication
+{% endblock %}
+
+{% block body %}
+
+	<div class="grandDivPrepa">
+
+		<h3 class="lavish texte-rouge titrePrepa">
+			{{histoire.titre}}
+		</h3>
+
+        <button class="eagle texte-beige fond-rouge"> Publier l'histoire </button>
+
+		{% for cor in correction %}
+
+			<div class="divPrepa">
+
+				<p class="eagle texte-rouge chapPrepa">
+					Chapitre numero:
+					{{cor.numeroChapitre}}
+				</p>
+
+				<div class="eagle texte-rouge corpsPrepa">
+					{{cor.Contenu|raw}}
+				</div>
+
+			</div>
+		{% endfor %}
+
+	</div>
+
+{% endblock %}

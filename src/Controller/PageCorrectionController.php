@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Entity\Corrections;
 use App\Entity\Histoires;
 use App\Form\PageCorrectionType;
+use App\Form\TitreHistoireType;
 use App\Repository\ChapitresRepository;
 use App\Repository\CorrectionsRepository;
 use App\Repository\HistoiresRepository;
@@ -30,40 +31,52 @@ final class PageCorrectionController extends AbstractController
          * @var Corrections $correction
          */
 
-        $corrections = $correctionsRepository->findCorrectionByHistoire($id);
+        $corrections = $correctionsRepository->findUneCorrecByHistoire($id);
 
         $correction = $corrections[0];
 
         $form = $this->createForm(PageCorrectionType::class, $correction);
 
         $form->handleRequest($request);
-        
+
         if ($form->isSubmitted() && $form->isValid()) {
 
             $em->flush();
         }
 
         $histoire = $correction->getHistoire();
-        
-        if(!$correctionsRepository->findCorrectionPrecedente($correction)){
-            $precedent=0;
-        }else{
-            $precedent=1;
+
+        if (!$correctionsRepository->findCorrectionPrecedente($correction)) {
+            $precedent = 0;
+        } else {
+            $precedent = 1;
         }
 
-        if(!$correctionsRepository->findCorrectionSuivante($correction)){
-            $suivant=0;
-        }else{
-            $suivant=1;
+        if (!$correctionsRepository->findCorrectionSuivante($correction)) {
+            $suivant = 0;
+        } else {
+            $suivant = 1;
         }
+
+        $formTitre = $this->createForm(TitreHistoireType::class, $histoire);
+        $formTitre->handleRequest($request);
+
+        if ($formTitre->isSubmitted() && $formTitre->isValid()) {
+            $em->persist($histoire);
+            $em->flush();
+            $this->addFlash('success', 'Le titre a été mis à jour.');
+            return $this->redirectToRoute('app_page_correction', ['id' => $histoire->getId()]);
+        }
+
 
         return $this->render('page_correction/index.html.twig', [
             'correction' => $correction,
             'formChapitre' => $form->createView(),
             'histoire' => $histoire,
             'idCorrection' => $correction->getId(),
-            'precedent'=> $precedent,
-            'suivant'=>$suivant
+            'precedent' => $precedent,
+            'suivant' => $suivant,
+            'formTitre' => $formTitre
         ]);
     }
 
@@ -84,7 +97,7 @@ final class PageCorrectionController extends AbstractController
             throw $this->createNotFoundException('Histoire introuvable');
         }
 
-        $corrections = $correctionsRepository->findCorrectionByHistoire($id);
+        $corrections = $correctionsRepository->findUneCorrecByHistoire($id);
 
         $chapitres = $chapitresRepository->findBy(['histoires' => $histoire], ['id' => 'ASC']);
 
@@ -95,9 +108,9 @@ final class PageCorrectionController extends AbstractController
                 $histoire
             );
         }
-        $corrections = $correctionsRepository->findCorrectionByHistoire($id);
-        
-        $histoire=$histoiresRepository->changerStatutHistoireDvC($histoire);
+        $corrections = $correctionsRepository->findUneCorrecByHistoire($id);
+
+        $histoire = $histoiresRepository->changerStatutHistoireDvC($histoire);
 
         return $this->redirectToRoute('app_page_correction', [
             'id' => $id,
@@ -136,28 +149,40 @@ final class PageCorrectionController extends AbstractController
             $em->flush();
         }
 
-        if(!$correctionsRepository->findCorrectionPrecedente($correction)){
-            $precedent=0;
-        }else{
-            $precedent=1;
+        if (!$correctionsRepository->findCorrectionPrecedente($correction)) {
+            $precedent = 0;
+        } else {
+            $precedent = 1;
         }
 
-        if(!$correctionsRepository->findCorrectionSuivante($correction)){
-            $suivant=0;
-        }else{
-            $suivant=1;
+        if (!$correctionsRepository->findCorrectionSuivante($correction)) {
+            $suivant = 0;
+        } else {
+            $suivant = 1;
         }
-
 
         $histoire = $correction->getHistoire();
+
+
+        $formTitre = $this->createForm(TitreHistoireType::class, $histoire);
+        $formTitre->handleRequest($request);
+
+        if ($formTitre->isSubmitted() && $formTitre->isValid()) {
+            $em->persist($histoire);
+            $em->flush();
+            $this->addFlash('success', 'Le titre a été mis à jour.');
+            return $this->redirectToRoute('app_page_correction', ['id' => $histoire->getId()]);
+        }
+
 
         return $this->render('page_correction/index.html.twig', [
             'correction' => $correction,
             'formChapitre' => $form->createView(),
             'histoire' => $histoire,
             'idCorrection' => $correction->getId(),
-            'precedent'=> $precedent,
-            'suivant'=>$suivant
+            'precedent' => $precedent,
+            'suivant' => $suivant,
+            'formTitre' => $formTitre
         ]);
 
     }
@@ -192,27 +217,40 @@ final class PageCorrectionController extends AbstractController
             $em->flush();
         }
 
-        if(!$correctionsRepository->findCorrectionPrecedente($correction)){
-            $precedent=0;
-        }else{
-            $precedent=1;
+        if (!$correctionsRepository->findCorrectionPrecedente($correction)) {
+            $precedent = 0;
+        } else {
+            $precedent = 1;
         }
 
-        if(!$correctionsRepository->findCorrectionSuivante($correction)){
-            $suivant=0;
-        }else{
-            $suivant=1;
+        if (!$correctionsRepository->findCorrectionSuivante($correction)) {
+            $suivant = 0;
+        } else {
+            $suivant = 1;
         }
 
         $histoire = $correction->getHistoire();
+
+
+        $formTitre = $this->createForm(TitreHistoireType::class, $histoire);
+        $formTitre->handleRequest($request);
+
+        if ($formTitre->isSubmitted() && $formTitre->isValid()) {
+            $em->persist($histoire);
+            $em->flush();
+            $this->addFlash('success', 'Le titre a été mis à jour.');
+            return $this->redirectToRoute('app_page_correction', ['id' => $histoire->getId()]);
+        }
 
         return $this->render('page_correction/index.html.twig', [
             'correction' => $correction,
             'formChapitre' => $form->createView(),
             'histoire' => $histoire,
             'idCorrection' => $correction->getId(),
-            'precedent'=> $precedent,
-            'suivant'=>$suivant
+            'precedent' => $precedent,
+            'suivant' => $suivant,
+            'formTitre' => $formTitre
+
         ]);
 
     }

@@ -397,9 +397,8 @@ a {
 }
 
 .form-titre {
-    width: 30%;
+    width: 40%;
     margin: auto;
-    margin-bottom: 25px;
 }
 
 .form-titre > form {
@@ -418,6 +417,8 @@ a {
     border-radius: 10px;
     border: #9a202c 2px solid;
     padding: 5px;
+    font-size: 1.7em;
+    text-align: center;
 }
 
 .form-titre input:focus {
@@ -629,6 +630,7 @@ a {
     border-radius: 15px;
     width: 80%;
     margin: auto;
+    margin-top: 25px;
 }
 
 .div-correct button {
@@ -667,9 +669,8 @@ a {
 .lienMess {
     display: block;
     padding: 10px;
-    width: 15%;
+    width: 30%;
     margin: auto;
-    margin-bottom: 25px;
     background-color: #9a202c;
     border-radius: 15px;
     text-align: center;
@@ -677,6 +678,31 @@ a {
         url(../img/plume-beige-24.png) 0 24,
         pointer;
 }
+
+.divHautCorrec{
+    display:flex;
+    width: 80%;
+    margin: auto;
+    justify-content: space-between;
+    align-items: center;
+}
+
+#divBtnPublier{
+    width: 30%;
+    margin: auto;
+    display: flex;
+    justify-content: center;
+}
+
+#btnPublier{
+    font-size: 1.1em;
+    padding: 15px;
+    border-radius: 15px;
+    cursor:
+        url(../img/plume-beige-24.png) 0 24,
+        pointer;
+}
+
 
 /* Page d'envoie de validation de correction */
 
@@ -785,5 +811,30 @@ a {
 }
 
 .btnRep:hover{
+    text-decoration: underline;
+}
+
+/* Page de pre-publication */
+
+.grandDivPrepa{
+    width: 80%;
+    margin: auto;
+}
+
+.titrePrepa{
+    text-align: center;
+    font-size: 3em;
+    text-decoration: underline;
+}
+
+.divPrepa{
+    margin-bottom: 30px;
+}
+
+.corpsPrepa {
+    padding: 20px;
+}
+
+.chapPrepa{
     text-decoration: underline;
 }

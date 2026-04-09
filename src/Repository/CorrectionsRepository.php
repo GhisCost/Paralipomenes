@@ -21,76 +21,85 @@ class CorrectionsRepository extends ServiceEntityRepository
         parent::__construct($registry, Corrections::class);
     }
 
-    
+
     public function creerCorrection(User $user, Chapitres $chapitre, Histoires $histoire)
     {
-       $correction = new Corrections();
-      
-       $correction->setStatut(StatutCorrection::ENCOURS);
-       $correction->setUser($user);
-       $correction->setChapitres($chapitre);
-       $correction->setContenu($chapitre->getContenu());
-       $correction->setHistoire($histoire);
-       $correction->setNumeroChapitre($chapitre->getNumeroChapitre());
-       
-       $em=$this->getEntityManager();
-       $em->persist($correction);
-       $em->flush();
+        $correction = new Corrections();
+        $correction->setStatut(StatutCorrection::ENCOURS);
+        $correction->setUser($user);
+        $correction->setChapitres($chapitre);
+        $correction->setContenu($chapitre->getContenu());
+        $correction->setHistoire($histoire);
+        $correction->setNumeroChapitre($chapitre->getNumeroChapitre());
+        $em = $this->getEntityManager();
+        $em->persist($correction);
+        $em->flush();
 
-    return $correction;
+        return $correction;
     }
 
-    public function findCorrectionByHistoire($id_histoire): array
-   {
+    public function findUneCorrecByHistoire($id_histoire): array
+    {
         return $this->createQueryBuilder('c')
-        ->leftJoin('c.user', 'u')
-        ->addSelect('u')
-        ->andWhere('c.Histoire = :id_histoire')
-        ->setParameter('id_histoire', $id_histoire)
-        ->orderBy('c.id', 'ASC')
-        ->setMaxResults(1)
-        ->getQuery()
-        ->getResult();
-   }
+            ->leftJoin('c.user', 'u')
+            ->addSelect('u')
+            ->andWhere('c.Histoire = :id_histoire')
+            ->setParameter('id_histoire', $id_histoire)
+            ->orderBy('c.id', 'ASC')
+            ->setMaxResults(1)
+            ->getQuery()
+            ->getResult();
+    }
 
-     public function findCorrectionsByHistoire($id_histoire): array
-   {
+
+    public function findCorrectionsByHistoire($id_histoire): array
+    {
         return $this->createQueryBuilder('c')
-        ->leftJoin('c.user', 'u')
-        ->addSelect('u')
-        ->andWhere('c.Histoire = :id_histoire')
-        ->setParameter('id_histoire', $id_histoire)
-        ->orderBy('c.id', 'ASC')
-        ->getQuery()
-        ->getResult();
-   }
+            ->leftJoin('c.user', 'u')
+            ->addSelect('u')
+            ->andWhere('c.Histoire = :id_histoire')
+            ->setParameter('id_histoire', $id_histoire)
+            ->orderBy('c.id', 'ASC')
+            ->getQuery()
+            ->getResult();
+    }
 
+    public function findCorrectionByChapitre(Chapitres $chapitre): ?Corrections
+    {
+        return $this->createQueryBuilder('c')
+            ->andWhere('c.Chapitres = :chapitre')
+            ->andWhere('c.Histoire = :histoire')
+            ->setParameter('chapitre', $chapitre)
+            ->setParameter('histoire', $chapitre->getHistoires())
+            ->getQuery()
+            ->getOneOrNullResult();
+    }
 
-   public function findCorrectionSuivante(Corrections $correction): ?Corrections
-{
-    return $this->createQueryBuilder('c')
-        ->andWhere('c.Histoire = :histoire')
-        ->andWhere('c.id > :id')
-        ->setParameter('histoire', $correction->getHistoire())
-        ->setParameter('id', $correction->getId())
-        ->orderBy('c.id', 'ASC')
-        ->setMaxResults(1)
-        ->getQuery()
-        ->getOneOrNullResult();
-}
+    public function findCorrectionSuivante(Corrections $correction): ?Corrections
+    {
+        return $this->createQueryBuilder('c')
+            ->andWhere('c.Histoire = :histoire')
+            ->andWhere('c.id > :id')
+            ->setParameter('histoire', $correction->getHistoire())
+            ->setParameter('id', $correction->getId())
+            ->orderBy('c.id', 'ASC')
+            ->setMaxResults(1)
+            ->getQuery()
+            ->getOneOrNullResult();
+    }
 
-public function findCorrectionPrecedente(Corrections $correction): ?Corrections
-{
-    return $this->createQueryBuilder('c')
-        ->andWhere('c.Histoire = :histoire')
-        ->andWhere('c.id < :id')
-        ->setParameter('histoire', $correction->getHistoire())
-        ->setParameter('id', $correction->getId())
-        ->orderBy('c.id', 'DESC')
-        ->setMaxResults(1)
-        ->getQuery()
-        ->getOneOrNullResult();
-}
+    public function findCorrectionPrecedente(Corrections $correction): ?Corrections
+    {
+        return $this->createQueryBuilder('c')
+            ->andWhere('c.Histoire = :histoire')
+            ->andWhere('c.id < :id')
+            ->setParameter('histoire', $correction->getHistoire())
+            ->setParameter('id', $correction->getId())
+            ->orderBy('c.id', 'DESC')
+            ->setMaxResults(1)
+            ->getQuery()
+            ->getOneOrNullResult();
+    }
 
 }
 

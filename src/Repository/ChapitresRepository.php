@@ -17,8 +17,6 @@ class ChapitresRepository extends ServiceEntityRepository
         parent::__construct($registry, Chapitres::class);
     }
 
-
-
    public function findLastChapitreByHistoire(Histoires $histoire): ?Chapitres
    {
        return $this->createQueryBuilder('c')
@@ -31,6 +29,15 @@ class ChapitresRepository extends ServiceEntityRepository
        ;
    }
 
+   public function findChapitresByHistoire(Histoires $histoire): array
+{
+    return $this->createQueryBuilder('c')
+        ->andWhere('c.histoires = :histoires')
+        ->setParameter('histoires', $histoire)
+        ->orderBy('c.numeroChapitre', 'ASC')
+        ->getQuery()
+        ->getResult();
+}
    public function creerChapitre(Histoires $histoire, int $chapPrec)
    {
     $chapitre= new Chapitres();
@@ -45,7 +52,7 @@ class ChapitresRepository extends ServiceEntityRepository
    }
 
    public function findChapitrePrecedent(Chapitres $chapitre): ?Chapitres
-{
+    {
     return $this->createQueryBuilder('c')
         ->andWhere('c.histoires = :histoire')
         ->andWhere('c.numeroChapitre < :numeroChapitre')
@@ -56,7 +63,6 @@ class ChapitresRepository extends ServiceEntityRepository
         ->getQuery()
         ->getOneOrNullResult();
 }
-
 
 public function findChapitreSuivant(Chapitres $chapitre): ?Chapitres
 {
@@ -71,6 +77,7 @@ public function findChapitreSuivant(Chapitres $chapitre): ?Chapitres
         ->getOneOrNullResult();
 }
 
+}
    //    /**
 //     * @return Chapitres[] Returns an array of Chapitres objects
 //     */
@@ -85,4 +92,3 @@ public function findChapitreSuivant(Chapitres $chapitre): ?Chapitres
 //            ->getResult()
 //        ;
 //    }
-}

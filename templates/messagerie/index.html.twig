@@ -6,7 +6,7 @@
 {% block body %}
 	<div class="grandeDivMess">
 		<div class="divMessRecu">
-			<h4 class="eagle texte-rouge">Ressage reçus</h4>
+			<h4 class="eagle texte-rouge">Messages reçus</h4>
 			{% for messRe in messagesRecus %}
 				<a class="eagle texte-rouge " href="{{path('app_detail_message', {id:messRe.id})}}">
 					Objet:
@@ -16,7 +16,7 @@
 						Sans objet
 					{% endif %}
 					. 
-					    Envoyer par:
+					    Envoyé par:
 					{{messRe.expediteur.email}}
 					.
 					    le:
@@ -27,7 +27,7 @@
 		</div>
 
 		<div class="divMessEnv">
-			<h4 class="eagle texte-rouge">Message Envoyer</h4>
+			<h4 class="eagle texte-rouge">Messages Envoyés</h4>
 			{% for messEnv in messagesEnvoyer %}
 				<a class="eagle texte-rouge " href="{{path('app_detail_message', {id:messEnv.id})}}">
 					Objet:
@@ -37,7 +37,7 @@
 						Sans objet
 					{% endif %}
 					. 
-					    Envoyer à:
+					    Envoyé à:
 					{{messEnv.destinataire.email}}
 					.
 					    le:
