@@ -28,3 +28,30 @@ document.addEventListener('click', function(e) {
 });
 }
 
+// Js bouton de publication
+
+let submitPubli = document.getElementById('submitPubli');
+let modalPubli = document.querySelector('.modalPubli');
+let nonPubli = document.querySelector('.nonPubli');
+
+if(submitPubli){
+    submitPubli.addEventListener('click', function(e) {
+    e.stopPropagation();
+    modalPubli.classList.remove("pasLa");
+    modalPubli.classList.add("la");
+});
+
+
+nonPubli.addEventListener('click', function() {
+    modalPubli.classList.remove("la");
+    modalPubli.classList.add("pasLa");
+});
+
+document.addEventListener('click', function(e) {
+    if (!modalPubli.contains(e.target) && e.target !== submitPubli) {
+        modalPubli.classList.remove("la");
+        modalPubli.classList.add("pasLa");
+    }
+});
+}
+

@@ -82,17 +82,15 @@ final class EnvoiMessageController extends AbstractController
         /**
          * @var User $user
          */
-
+        
         $correction = $correctionsRepo->find($id);
         $histoire = $correction->getHistoire();
         $expediteur = $this->getUser();
         $destinataire = $histoire->getUser();
-
         $message = $messagesRepo->creerMessage($expediteur, $destinataire);
 
         //creation des pieces jointes avec les corrections lié à l'histoire
         $tabCorrec=$correctionsRepo->findCorrectionsByHistoire($histoire->getId());
-
         foreach($tabCorrec as $correc){
             $pieceJointeRepo->creerPieceJointe($message,$correc);
         }

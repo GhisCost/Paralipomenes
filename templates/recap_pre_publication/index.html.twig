@@ -11,7 +11,25 @@
 			{{histoire.titre}}
 		</h3>
 
-        <button class="eagle texte-beige fond-rouge"> Publier l'histoire </button>
+		<button class="eagle texte-beige fond-rouge" id="submitPubli">
+			Publier l'histoire
+		</button>
+
+		<div class="eagle fond-beige texte-rouge modalPubli pasLa">
+			<h3>Confirmation</h3>
+			<p>Etes-vous certain de vouloir publier cette histoire ? (Assurez-vous que tous les chapitres ont été corrigé et validé par l'auteur)</p>
+
+			<div class="divBouttonModalPubli">
+
+				<button class="eagle fond-beige texte-rouge nonPubli">Non</button>
+
+				<a class="aPubli" href="{{path('app_publication',{ id: histoire.id })}} ">
+					<button class="eagle ouiPubli fond-rouge texte-beige ">Oui</button>
+				</a>
+
+			</div>
+		</div>
+
 
 		{% for cor in correction %}
 

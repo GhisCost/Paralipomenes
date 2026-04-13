@@ -24,7 +24,7 @@ class Corrections implements \ArrayAccess
     #[ORM\JoinColumn(nullable: false)]
     private ?User $user = null;
 
-    #[ORM\OneToOne(inversedBy: 'corrections', cascade: ['persist', 'remove'])]
+    #[ORM\OneToOne(inversedBy: 'corrections', cascade: ['persist'])]
     #[ORM\JoinColumn(nullable: false)]
     private ?Chapitres $Chapitres = null;
 
@@ -38,7 +38,7 @@ class Corrections implements \ArrayAccess
     /**
      * @var Collection<int, PieceJointe>
      */
-    #[ORM\OneToMany(targetEntity: PieceJointe::class, mappedBy: 'Correction')]
+    #[ORM\OneToMany(targetEntity: PieceJointe::class, mappedBy: 'Correction',cascade: ['remove'], orphanRemoval: true)]
     private Collection $pieceJointes;
 
     #[ORM\Column]
@@ -148,19 +148,16 @@ class Corrections implements \ArrayAccess
             $this->pieceJointes->add($pieceJointe);
             $pieceJointe->setCorrection($this);
         }
-
         return $this;
     }
 
     public function removePieceJointe(PieceJointe $pieceJointe): static
     {
-        if ($this->pieceJointes->removeElement($pieceJointe)) {
-            // set the owning side to null (unless already changed)
-            if ($pieceJointe->getCorrection() === $this) {
-                $pieceJointe->setCorrection(null);
-            }
+       if ($this->pieceJointes->removeElement($pieceJointe)) {
+        if ($pieceJointe->getCorrection() === $this) {
+            $pieceJointe->setCorrection(null);
         }
-
+    }
         return $this;
     }
 
@@ -172,7 +169,8 @@ class Corrections implements \ArrayAccess
     public function setNumeroChapitre(int $numeroChapitre): static
     {
         $this->numeroChapitre = $numeroChapitre;
-
         return $this;
     }
+
+
 }

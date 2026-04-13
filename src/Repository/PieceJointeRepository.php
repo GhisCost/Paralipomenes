@@ -28,12 +28,23 @@ class PieceJointeRepository extends ServiceEntityRepository
         $em->flush();
 
         return $pieceJointe;
+    }
 
+      public function findPieceJointeByCorrection(Corrections $correction)
+    {
+
+        return $this->createQueryBuilder('p')
+            ->join('p.Correction', 'c')
+            ->addSelect('c')
+            ->andWhere('p.Correction = :correc')
+            ->setParameter('correc', $correction)
+            ->orderBy('p.id', 'ASC')
+            ->getQuery()
+            ->getResult();
     }
 
     public function findPieceJointeByMessage(Messages $message)
     {
-
         return $this->createQueryBuilder('p')
             ->join('p.Correction', 'c')
             ->addSelect('c')

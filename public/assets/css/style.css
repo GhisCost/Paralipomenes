@@ -819,6 +819,7 @@ a {
 .grandDivPrepa{
     width: 80%;
     margin: auto;
+    position: relative;
 }
 
 .titrePrepa{
@@ -837,4 +838,60 @@ a {
 
 .chapPrepa{
     text-decoration: underline;
+}
+
+#submitPubli{
+    padding: 15px;
+    border:#9a202c solid 2px;
+    border-radius: 15px;
+    position: absolute;
+    top:5%;
+    right: 10%;
+    font-size: 1.5em;
+    cursor:
+        url(../img/plume-beige-24.png) 0 24,
+        pointer;
+}
+
+.modalPubli {
+    position: absolute;
+    top: 0;
+    right: 30%;
+    padding: 35px;
+    width: 40%;
+    border-radius: 15px;
+    border: #9a202c 2px solid;
+    box-shadow: 1px 1px 25px #9a202c;
+    z-index: 30;
+}
+
+.modalPubli p {
+    padding: 10px;
+}
+
+.nonPubli {
+    border-radius: 10px;
+    width: 10%;
+    border: #9a202c 2px solid;
+    cursor:
+        url(../img/plume-rouge-24.png) 0 24,
+        auto;
+}
+
+.ouiPubli {
+    border-radius: 10px;
+    width: 100%;
+    border: #9a202c 2px solid;
+    cursor:
+        url(../img/plume-rouge-24.png) 0 24,
+        auto;
+}
+.aPubli {
+    width: 10%;
+}
+
+.divBouttonModalPubli {
+    display: flex;
+    gap: 15px;
+    justify-content: end;
 }
