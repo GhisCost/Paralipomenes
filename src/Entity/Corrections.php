@@ -38,7 +38,7 @@ class Corrections implements \ArrayAccess
     /**
      * @var Collection<int, PieceJointe>
      */
-    #[ORM\OneToMany(targetEntity: PieceJointe::class, mappedBy: 'Correction',cascade: ['remove'], orphanRemoval: true)]
+    #[ORM\OneToMany(targetEntity: PieceJointe::class, mappedBy: 'Correction',cascade: ['persist','remove'], orphanRemoval: true)]
     private Collection $pieceJointes;
 
     #[ORM\Column]

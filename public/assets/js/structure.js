@@ -55,3 +55,32 @@ document.addEventListener('click', function(e) {
 });
 }
 
+// Js suppression message
+
+
+document.querySelectorAll('.imgSup').forEach(imgSup => {
+    imgSup.addEventListener('click', function(e) {
+        e.stopPropagation();
+        const messageId = this.getAttribute('data-id');
+        const modalMess = document.querySelector(`.modalMess[data-id="${messageId}"]`);
+        modalMess.classList.remove("pasLa");
+        modalMess.classList.add("la");
+    });
+});
+
+document.querySelectorAll('.nonMess').forEach(nonMess => {
+    nonMess.addEventListener('click', function() {
+        const modalMess = this.closest('.modalMess');
+        modalMess.classList.remove("la");
+        modalMess.classList.add("pasLa");
+    });
+});
+
+document.addEventListener('click', function(e) {
+    if (!e.target.closest('.modalMess') && !e.target.closest('.imgSup')) {
+        document.querySelectorAll('.modalMess').forEach(modal => {
+            modal.classList.remove("la");
+            modal.classList.add("pasLa");
+        });
+    }
+});

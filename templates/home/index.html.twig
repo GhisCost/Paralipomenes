@@ -28,8 +28,9 @@
 	<div class="div-histoires-accueil">
 
 		{% for hist in derniereHistoire %}
-
-			<div class="carte-accueil texte-rouge fond-beige">
+			<a href= "{{path('app_page_histoire',{id: hist.id})}}" class="carte-accueil">
+			<div class=" texte-rouge fond-beige">
+			
 				<h4 class="lavish">{{hist.titre}}</h4>
 				<div class="eagle" >
 				{% for ch in hist.chapitres %}
@@ -38,7 +39,7 @@
 				{% endfor %}
 				</div>
 			</div>
-
+			</a>
 		{% endfor %}
 
 	</div>

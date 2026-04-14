@@ -1,33 +1,37 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Paralipomènes - Décision correction{% endblock %}
+{% block title %}Paralipomènes - Décision correction
+{% endblock %}
 
 {% block body %}
 
-<div class="div-decision texte-rouge fond-beige">
+	<div class="div-decision texte-rouge fond-beige">
 
-	{% if correction == [] %}
-    <button id="btn-correction" class="fond-rouge">
-    	<a class="texte-beige lavish eagle" href= "{{path('app_debut_correction', {id:histoire.id})}}">Commencer à corriger</a>
-    </button>
+		{% if correction == [] %}
+			<a class="" href="{{path('app_debut_correction', {id:histoire.id})}}">
+				<button id="btn-correction" class="fond-rouge texte-beige eagle ">
+					Commencer à corriger
+				</button>
+			</a>
 
-	{% else %}
+		{% else %}
 
-	 <button id="btn-correction" class="fond-rouge">
-    	<a class="texte-beige lavish eagle" href= "{{path('app_page_correction', {id:histoire.id})}}">Continuer à corriger</a>
-    </button>
-	
-	{% endif %}
+			<a class="" href="{{path('app_page_correction', {id:histoire.id})}}">
+				<button id="btn-correction" class="fond-rouge texte-beige eagle">
+					Continuer à corriger
+				</button>
+			</a>
 
-	<h4 class="titre-histoire lavish">{{histoire.titre}}</h4>
+		{% endif %}
 
-	<div class="eagle">
-		{% for ch in chapitres %}
-			<br>
-			{{ch.contenu|raw}}
-		{% endfor %}
+		<h4 class="titre-histoire lavish">{{histoire.titre}}</h4>
+		<div class="eagle">
+			{% for ch in chapitres %}
+				<br>
+				{{ch.contenu|raw}}
+			{% endfor %}
+		</div>
+
 	</div>
-
-</div>
 
 {% endblock %}

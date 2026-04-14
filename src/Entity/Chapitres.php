@@ -61,17 +61,17 @@ class Chapitres
         return $this->corrections;
     }
 
-    public function setCorrections(Corrections $corrections): static
-    {
-        // set the owning side of the relation if necessary
-        if ($corrections->getChapitres() !== $this) {
-            $corrections->setChapitres($this);
-        }
-
-        $this->corrections = $corrections;
-
-        return $this;
+  public function setCorrections(?Corrections $corrections): static
+{
+    // set the owning side of the relation if necessary
+    if ($corrections !== null && $corrections->getChapitres() !== $this) {
+        $corrections->setChapitres($this);
     }
+
+    $this->corrections = $corrections;
+
+    return $this;
+}
 
     public function getNumeroChapitre(): ?int
     {

@@ -4,47 +4,78 @@
 {% endblock %}
 
 {% block body %}
-	<div class="grandeDivMess">
-		<div class="divMessRecu">
-			<h4 class="eagle texte-rouge">Messages reçus</h4>
-			{% for messRe in messagesRecus %}
-				<a class="eagle texte-rouge " href="{{path('app_detail_message', {id:messRe.id})}}">
-					Objet:
-					{% if messRe.objet %}
-						{{messRe.objet}}
-					{% else %}
-						Sans objet
-					{% endif %}
-					. 
-					    Envoyé par:
-					{{messRe.expediteur.email}}
-					.
-					    le:
-					{{messRe.dateEnvoi|date('d/m/Y')}}
-					.
-				</a>
-			{% endfor %}
-		</div>
+    <div class="grandeDivMess">
+        <div class="divMessRecu">
+            <h4 class="eagle texte-rouge">Messages reçus</h4>
+            {% for messRe in messagesRecus %}
+                {% if messRe.affichagedesti %}
+                    <div class="eagle fond-beige texte-rouge modalMess pasLa" data-id="{{ messRe.id }}">
+                        <h3>Confirmation</h3>
+                        <p>Etes-vous certain de vouloir supprimer ce message ?</p>
+                        <div class="divBouttonModalMess">
+							<button class="eagle fond-beige texte-rouge nonMess">Non</button>
+                            <a class="aMess" href="{{path('app_suppression',{id:messRe.id})}}">
+                                <button class="eagle ouiMess fond-rouge texte-beige ">Oui</button>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="petiteDivMess">
+                        <a class="eagle texte-rouge " href="{{path('app_detail_message', {id:messRe.id})}}">
+                            Objet:
+                            {% if messRe.objet %}
+                                {{messRe.objet}}
+                            {% else %}
+                                Sans objet
+                            {% endif %}
+                            .
+                            Envoyé par:
+                            {{messRe.expediteur.email}}
+                            .
+                            le:
+                            {{messRe.dateEnvoi|date('d/m/Y à H:i')}}
+                            .
+                        </a>
+                        <div class="imgSup" data-id="{{ messRe.id }}">
+                            <img src="{{asset('assets/img/poubelleRouge.png')}}">
+                        </div>
+                    </div>
+                {% endif %}
+            {% endfor %}
+        </div>
 
-		<div class="divMessEnv">
-			<h4 class="eagle texte-rouge">Messages Envoyés</h4>
-			{% for messEnv in messagesEnvoyer %}
-				<a class="eagle texte-rouge " href="{{path('app_detail_message', {id:messEnv.id})}}">
-					Objet:
-					{% if messEnv.objet %}
-						{{messEnv.objet}}
-					{% else %}
-						Sans objet
-					{% endif %}
-					. 
-					    Envoyé à:
-					{{messEnv.destinataire.email}}
-					.
-					    le:
-					{{messEnv.dateEnvoi|date('d/m/Y')}}
-					.
-				</a>
-			{% endfor %}
-		</div>
+        <div class="divMessEnv">
+            <h4 class="eagle texte-rouge">Messages Envoyés</h4>
+            {% for messEnv in messagesEnvoyer %}
+                {% if messEnv.affichageexpe %}
+                    <div class="eagle fond-beige texte-rouge modalMess pasLa" data-id="{{ messEnv.id }}">
+                        <h3>Confirmation</h3>
+                        <p>Etes-vous certain de vouloir supprimer ce message ?</p>
+                        <div class="divBouttonModalMess">
+                            <button class="eagle fond-beige texte-rouge nonMess">Non</button>
+                            <a class="aMess" href="{{path('app_suppression',{id:messEnv.id})}}">
+                                <button class="eagle ouiMess fond-rouge texte-beige ">Oui</button>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="petiteDivMess">
+                        <a class="eagle texte-rouge " href="{{path('app_detail_message', {id:messEnv.id})}}">
+                            Objet:
+                            {% if messEnv.objet %}
+                                {{messEnv.objet}}
+                            {% else %}
+                            Sans objet
+                            {% endif %}
+                            .Envoyé à:
+                            {{messEnv.destinataire.email}}
+                            .le:
+                            {{messEnv.dateEnvoi|date('d/m/Y à H:i')}}.
+                        </a>
+                        <div class="imgSup" data-id="{{ messEnv.id }}">
+                            <img src="{{asset('assets/img/poubelleRouge.png')}}">
+                        </div>
+                    </div>
+                {% endif %}
+            {% endfor %}
+        </div>
     </div>
-	{% endblock %}
+{% endblock %}

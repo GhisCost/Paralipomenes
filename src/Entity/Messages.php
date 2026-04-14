@@ -19,7 +19,7 @@ class Messages
     #[ORM\Column(type: Types::TEXT)]
     private ?string $contenu = null;
 
-    #[ORM\Column(type: Types::DATE_MUTABLE, nullable: true)]
+    #[ORM\Column( nullable: true)]
     private ?\DateTime $dateEnvoi = null;
 
    
@@ -42,6 +42,12 @@ class Messages
 
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $objet = null;
+
+    #[ORM\Column]
+    private ?bool $AffichageExpe = true;
+
+    #[ORM\Column]
+    private ?bool $AffichageDesti = true;
 
     public function __construct()
     {
@@ -155,4 +161,29 @@ class Messages
 
         return $this;
     }
+
+    public function isAffichageExpe(): ?bool
+    {
+        return $this->AffichageExpe;
+    }
+
+    public function setAffichageExpe(bool $AffichageExpe): static
+    {
+        $this->AffichageExpe = $AffichageExpe;
+
+        return $this;
+    }
+
+    public function isAffichageDesti(): ?bool
+    {
+        return $this->AffichageDesti;
+    }
+
+    public function setAffichageDesti(bool $AffichageDesti): static
+    {
+        $this->AffichageDesti = $AffichageDesti;
+
+        return $this;
+    }
+
 }

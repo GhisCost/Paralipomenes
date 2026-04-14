@@ -32,17 +32,21 @@
 
 		{% if 'ROLE_ADMIN' in user.roles %}
 
-			<button class="eagle texte-beige fond-rouge" name="admin">
-				<a class="texte-beige" href="{{path('admin')}}">Page d'administration</a>
-			</button>
+			<a class="texte-beige" href="{{path('admin')}}">
+				<button class="eagle texte-beige fond-rouge" name="admin">
+					Page d'administration
+				</button>
+			</a>
 
 		{% endif %}
 
 		{% if 'ROLE_CORRECTEUR' in user.roles %}
 
-			<button class="eagle texte-beige fond-rouge" name="correcteur">
-				<a class="texte-beige" href="{{path('app_choix_correction')}}">Page de corrections</a>
-			</button>
+			<a class="texte-beige" href="{{path('app_choix_correction')}}">
+				<button class="eagle texte-beige fond-rouge" name="correcteur">
+					Page de corrections
+				</button>
+			</a>
 
 		{% endif %}
 
@@ -54,28 +58,37 @@
 
 			<p>Commencer à raconter votre histoire:</p>
 
-			<button class="eagle texte-beige fond-rouge" name="creation">
-				<a href="{{path('app_debut_histoire',{id: app.user.id})}}" class="texte-beige">Se lancer</a>
-			</button>
+			<a href="{{path('app_debut_histoire',{id: app.user.id})}}" class="texte-beige">
+				<button class="eagle texte-beige fond-rouge" name="creation">
+					Se lancer
+				</button>
+			</a>
 		{% elseif user.histoires.statut.name == "ENCOURS" %}
 
 			<p>Continuer à raconter mon histoire:</p>
 
-			<button class="eagle texte-beige fond-rouge">
-				<a href="{{path('app_redaction_chapitre',{id: app.user.id})}}" class="texte-beige">Recommencer</a>
-			</button>
+			<a href="{{path('app_redaction_chapitre',{id: app.user.id})}}" class="texte-beige">
+				<button class="eagle texte-beige fond-rouge">
+					Recommencer
+				</button>
+			</a>
 
 		{% elseif user.histoires.statut.name == "DEMANDE" %}
 
-			<p class="eagle texte-rouge">La demande de correction de votre histoire a été envoyé</p>
+			<p class="eagle texte-rouge">La demande de correction de votre histoire a été envoyée.</p>
 
 		{% elseif user.histoires.statut.name == "CORRECTION" %}
 
-			<p class="eagle texte-rouge"> La correction de votre histoire est en cours.</p>
-
+			<p class="eagle texte-rouge">
+				La correction de votre histoire est en cours.
+			</p>
+		
+		{% elseif user.histoires.statut.name == "PUBLIER" %}
+			<p class="eagle texte-rouge">
+			Votre histoire à été publiée, contactez un moderateur si vous souhaitez ajouter des chapitres.
+			</p>
 		{% endif %}
 
-		
-		
+
 	</div>
 {% endblock %}
