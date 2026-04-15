@@ -49,7 +49,6 @@ body {
 .titres {
     text-align: center;
     width: 80%;
-    margin: auto;
 }
 
 .titres > h1 {
@@ -72,6 +71,7 @@ a {
     list-style: none;
     margin: 35px;
     flex-wrap: wrap;
+    margin-top: 50px;
 }
 
 .nav-header ul a {
@@ -88,6 +88,22 @@ a {
 
 .nav-header ul a:hover {
     text-decoration: underline #f3d7b3;
+    
+}
+
+.logo{
+    width: 12%;
+    margin-top: 10px;
+    margin-left: 25px;
+}
+
+.logo img{
+    width: 100%;
+}
+
+.titreLogo{
+    display: flex;
+   
 }
 
 /* Footer */
@@ -529,6 +545,27 @@ a {
     text-align: end;
     margin-top: 25px;
     font-size: 0.9em;
+}
+
+.divRecherche{
+    width: 80%;
+    margin: auto;
+    display: flex;
+    justify-content: center;
+}
+
+#recherche{
+    padding: 5px;
+    border-radius: 10px;
+    border: #9a202c 1px solid;
+    width: 30%;
+    text-align: center;
+    
+}
+
+#recherche:focus{
+    outline: #9a202c 1px solid;
+    box-shadow: #9a202c 1px 1px 2px;
 }
 
 /* Page Histoire */
