@@ -95,6 +95,7 @@ a {
     width: 12%;
     margin-top: 10px;
     margin-left: 25px;
+     cursor: url(../img/doigtRouge24.png), pointer;
 }
 
 .logo img{

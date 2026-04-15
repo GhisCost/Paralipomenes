@@ -24,8 +24,6 @@ class HistoiresRepository extends ServiceEntityRepository
     public function troisDernièresHistoires(int $limit = 3): array
     {
         return $this->createQueryBuilder('h')
-            ->leftJoin('h.chapitres', "c")
-            ->addSelect('c')
             ->andWhere('h.statut= :statut')
             ->setParameter('statut', "Publiée") 
             ->orderBy('h.datePublication', 'DESC')
@@ -139,6 +137,17 @@ class HistoiresRepository extends ServiceEntityRepository
         }
         return $histoire;
     }
+
+    public function RechercheHistoireMot($mot): ?array
+{
+    return $this->createQueryBuilder('h')
+            ->leftJoin('h.chapitres', 'c')
+            ->where('h.titre LIKE :mot OR c.contenu LIKE :mot')
+            ->setParameter('mot', '%' . $mot . '%')
+            ->groupBy('h.id')
+            ->getQuery()
+            ->getResult();
+}
 
 }
 

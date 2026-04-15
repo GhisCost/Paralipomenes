@@ -15,14 +15,14 @@ final class HomeController extends AbstractController
     public function index(HistoiresRepository $histoiresRepository,HtmlSanitizerInterface $htmlSanitizer): Response
     {
         $dernieresHistoires=$histoiresRepository->troisDernièresHistoires();
-        
+
         foreach($dernieresHistoires as $der){
             $derniers = $der->getChapitres();
             foreach($derniers as $d){
                $d=$htmlSanitizer->sanitize($d->getContenu());
             }
         }
-
+        
         return $this->render('home/index.html.twig', [
             
             'derniereHistoire' => $dernieresHistoires

@@ -83,42 +83,95 @@ document.addEventListener("click", function (e) {
 
 // Ajax recherche
 
-let inputRecherche = document.getElementById("recherche");
+// let inputRecherche = document.getElementById("recherche");
 
-if (inputRecherche) {
+// if (inputRecherche) {
+//     document.addEventListener("DOMContentLoaded", function () {
+//         inputRecherche.addEventListener("input", async function (e) {
+//             let mot = e.target.value.trim();
 
-   document.addEventListener('DOMContentLoaded', function() {
-   
-    const container = document.querySelector('.divRecherche').parentNode; // ou un conteneur plus précis
+//             if (mot.length < 3) {
+//                 document.querySelectorAll(".carte-biblio").forEach((carte) => {
+//                     console.log('tchao');
+//                     carte.style.display = "block";
+//                 });
+//                 return;
+//             }
 
-    inputRecherche.addEventListener('input', async function(e) {
-        const mot = e.target.value.trim();
+//             try {
+//                 let response = await fetch(
+//                     `/recherche-histoires?mot=${encodeURIComponent(mot)}`,
+//                 );
+//                 let ids = await response.json();
 
-        if (mot.length < 3) {
-            // Si moins de 3 caractères, on affiche tout
-            document.querySelectorAll('.carte-biblio').forEach(carte => {
-                carte.style.display = 'block';
-            });
-            return;
-        }
+//                 document.querySelectorAll(".carte-biblio").forEach((carte) => {
+//                     carte.style.display = "none";
+//                 });
 
-        try {
-            const response = await fetch(`/recherche-histoires?mot=${encodeURIComponent(mot)}`);
-            const ids = await response.json();
+//                 ids.forEach((id) => {
+//                     let carte = document.querySelector(
+//                         `.carte-biblio[data-id="${id}"]`,
+//                     );
+//                     if (carte) carte.style.display = "block";
+//                 });
+//             } catch (error) {
+//                 console.error("Erreur lors de la recherche:", error);
+//                 document.querySelectorAll(".carte-biblio").forEach((carte) => {
+//                     carte.style.display = "block";
+//                 });
+//             }
+//         });
+//     });
+// }
 
-            // Masquer toutes les cartes
-            document.querySelectorAll('.carte-biblio').forEach(carte => {
-                carte.style.display = 'none';
-            });
+document.addEventListener("DOMContentLoaded", function () {
+    let inputRecherche = document.getElementById("recherche");
+    if (!inputRecherche) return;
 
-            // Afficher uniquement celles dont l'ID est dans la réponse
-            ids.forEach(id => {
-                const carte = document.querySelector(`.carte-biblio[href*="/histoire/${id}"]`);
-                if (carte) carte.style.display = 'block';
-            });
-        } catch (error) {
-            console.error('Erreur lors de la recherche:', error);
-        }
+    let lastSearch = "";
+    let timeout = null;
+
+    inputRecherche.addEventListener("input", function (e) {
+        clearTimeout(timeout);
+
+        timeout = setTimeout(async () => {
+            let mot = e.target.value.trim();
+            let cartes = document.querySelectorAll(".carte-biblio");
+
+            lastSearch = mot;
+
+            if (mot.length === 0) {
+                cartes.forEach((carte) => {
+                    carte.style.display = "block";
+                });
+                return;
+            }
+
+            try {
+                let response = await fetch(
+                    `/recherche-histoires?mot=${encodeURIComponent(mot)}`,
+                );
+
+                let ids = await response.json();
+
+                if (mot !== lastSearch) return;
+
+                cartes.forEach((carte) => {
+                    carte.style.display = "none";
+                });
+
+                ids.forEach((id) => {
+                    let carte = document.querySelector(
+                        `.carte-biblio[data-id="${id}"]`,
+                    );
+                    if (carte) carte.style.display = "block";
+                });
+            } catch (error) {
+                console.error(error);
+                cartes.forEach((carte) => {
+                    carte.style.display = "block";
+                });
+            }
+        }, 300);
     });
 });
-}

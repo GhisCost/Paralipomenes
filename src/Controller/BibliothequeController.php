@@ -9,7 +9,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
 use Symfony\Component\HtmlSanitizer\HtmlSanitizerInterface;
-use Doctrine\Common\Collections\Criteria;
+
 
 final class BibliothequeController extends AbstractController
 {
@@ -39,21 +39,13 @@ final class BibliothequeController extends AbstractController
     ): JsonResponse {
         $mot = $request->query->get('mot', '');
 
-        if (strlen($mot) < 2) {
+        if (strlen($mot) < 3) {
             return new JsonResponse([]);
         }
 
-        $histoires = $histoiresRepository->createQueryBuilder('h')
-            ->leftJoin('h.chapitres', 'c')
-            ->where('h.titre LIKE :mot OR c.contenu LIKE :mot')
-            ->setParameter('mot', '%' . $mot . '%')
-            ->groupBy('h.id')
-            ->getQuery()
-            ->getResult();
+        $histoires = $histoiresRepository->RechercheHistoireMot($mot);
 
         $ids = array_map(fn($h) => $h->getId(), $histoires);
-
-        dump($ids); 
 
         return new JsonResponse($ids);
     }
