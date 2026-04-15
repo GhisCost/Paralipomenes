@@ -242,7 +242,7 @@ a {
 .form-reg div {
     display: flex;
     flex-direction: column;
-    width: 15%;
+    width: 20%;
     margin: 15px auto;
     gap: 15px;
     color: #9a202c;
@@ -296,7 +296,7 @@ a {
 .lancementHistoire button {
     border-radius: 15px;
     border: #9a202c 2px solid;
-    padding: 15px 0px;
+    padding: 10px 15px;
     margin: 15px;
     cursor:
         url(../img/plume-beige-24.png) 0 24,
@@ -305,6 +305,7 @@ a {
 
 .lancementHistoire a {
     padding: 15px 25px;
+    
     cursor:
         url(../img/plume-beige-24.png) 0 24,
         pointer;
@@ -396,6 +397,7 @@ a {
 .conteneur-redac {
     display: flex;
     align-items: start;
+    margin-top: 15px;
 }
 
 .regle-redac {
@@ -991,4 +993,52 @@ a {
     display: flex;
     gap: 15px;
     justify-content: end;
+}
+
+@media(max-width:1400px){
+    .form-reg div{
+        width: 30%;
+    }
+}
+
+@media( max-width:1200px){
+
+    .nav-header {
+        width: 80%;
+        margin: auto;
+    }
+
+    .nav-header ul{
+        gap:45px;
+    }
+
+    .carte-accueil{
+        width: 30%;
+    }
+
+    .carte-biblio {
+        width: 90%;
+    }
+
+    .div-histoires-accueil{
+        width: 90%;
+    }
+
+    .text-presentation{
+        width: 90%;
+    }
+
+}
+
+@media(max-width:980px){
+
+.titres > h1{
+    font-size: 4em;
+}
+
+.titres > h2{
+    font-size: 1.5em;
+}
+
+
 }
