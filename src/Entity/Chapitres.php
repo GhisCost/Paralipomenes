@@ -84,4 +84,9 @@ class Chapitres
 
         return $this;
     }
+
+     public function __tostring(): string {
+        $idStr=strval($this->id);
+        return $idStr;
+    }
 }

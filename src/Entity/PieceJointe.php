@@ -48,5 +48,11 @@ class PieceJointe
         $this->Correction = $Correction;
 
         return $this;
+    
+    }
+
+     public function __tostring(): string {
+        $idStr=strval($this->id);
+        return $idStr;
     }
 }

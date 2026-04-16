@@ -33,11 +33,7 @@ class Histoires
     #[ORM\JoinColumn(nullable: false)]
     private ?User $user = null;
 
-    /**
-     * @var Collection<int, Likes>
-     */
-    #[ORM\OneToMany(targetEntity: Likes::class, mappedBy: 'Histoires')]
-    private Collection $likes;
+   
 
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $titre = null;
@@ -45,7 +41,6 @@ class Histoires
     public function __construct()
     {
         $this->chapitres = new ArrayCollection();
-        $this->likes = new ArrayCollection();
         $this->datePublication =new \DateTime('now', new \DateTimeZone('Europe/Paris'));
     }
 
@@ -119,34 +114,6 @@ class Histoires
         return $this;
     }
 
-    /**
-     * @return Collection<int, Likes>
-     */
-    public function getLikes(): Collection
-    {
-        return $this->likes;
-    }
-
-    public function addLike(Likes $like): static
-    {
-        if (!$this->likes->contains($like)) {
-            $this->likes->add($like);
-            $like->setHistoires($this);
-        }
-
-        return $this;
-    }
-
-    public function removeLike(Likes $like): static
-    {
-        if ($this->likes->removeElement($like)) {
-            if ($like->getHistoires() === $this) {
-                $like->setHistoires(null);
-            }
-        }
-
-        return $this;
-    }
 
     public function getTitre(): ?string
     {

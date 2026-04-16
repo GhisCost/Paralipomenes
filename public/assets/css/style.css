@@ -164,6 +164,7 @@ a {
 .carte-accueil h4 {
     font-size: 2.7em;
     margin-bottom: 10px;
+    font-weight: 500;
 }
 
 .carte-accueil p {
@@ -542,6 +543,7 @@ a {
 .carte-biblio h4 {
     font-size: 2.7em;
     margin-bottom: 10px;
+    font-weight: 500;
 }
 
 .date-biblio {
@@ -580,6 +582,7 @@ a {
 
 .div-histoire > h4 {
     font-size: 2.5em;
+    font-weight: 500;
 }
 
 .div-histoire > div {
@@ -602,6 +605,7 @@ a {
 .carte-correction h4 {
     font-size: 2em;
     margin-bottom: 10px;
+    font-weight: 500;
 }
 
 .bandeauCorrec {
@@ -663,6 +667,7 @@ a {
 
 .div-decision > h4 {
     font-size: 2.5em;
+    font-weight: 500;
 }
 
 /* Page correction */
@@ -689,6 +694,7 @@ a {
     font-size: 2.5em;
     text-align: center;
     padding-bottom: 25px;
+    font-weight: 500;
 }
 
 .div-correc-precedent,
@@ -995,9 +1001,19 @@ a {
     justify-content: end;
 }
 
+@media(max-width:1500px){
+    .carte-correction{
+        width: 60%;
+    }
+}
+
 @media(max-width:1400px){
     .form-reg div{
         width: 30%;
+    }
+
+    .form-titre {
+        width: 80%;
     }
 }
 
@@ -1028,6 +1044,35 @@ a {
         width: 90%;
     }
 
+    .form-co > div{
+        width: 30%;
+    }
+
+    .form-compte div{
+        width: 80%;
+    }
+
+    .conteneur-redac {
+        flex-direction: column;
+        gap: 35px;
+    }
+
+    .regle-redac {
+        margin: auto;
+        width: 80%;
+    }
+
+    .form-redac {
+        width: 80%;
+    }
+
+    .carte-correction{
+        width: 80%;
+    }
+
+    .divEnvMessage textarea{
+        width: 60%;
+    }
 }
 
 @media(max-width:980px){

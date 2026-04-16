@@ -51,12 +51,6 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     private Collection $corrections;
 
     /**
-     * @var Collection<int, Likes>
-     */
-    #[ORM\OneToMany(targetEntity: Likes::class, mappedBy: 'user')]
-    private Collection $likes;
-
-    /**
      * @var Collection<int, Messages>
      */
     #[ORM\OneToMany(targetEntity: Messages::class, mappedBy: 'destinataire')]
@@ -71,7 +65,6 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function __construct()
     {
         $this->corrections = new ArrayCollection();
-        $this->likes = new ArrayCollection();
         $this->messagesReçus = new ArrayCollection();
         $this->messageEnvoyer = new ArrayCollection();
     }
@@ -228,35 +221,6 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         return $this;
     }
 
-    /**
-     * @return Collection<int, Likes>
-     */
-    public function getLikes(): Collection
-    {
-        return $this->likes;
-    }
-
-    public function addLike(Likes $like): static
-    {
-        if (!$this->likes->contains($like)) {
-            $this->likes->add($like);
-            $like->setUser($this);
-        }
-
-        return $this;
-    }
-
-    public function removeLike(Likes $like): static
-    {
-        if ($this->likes->removeElement($like)) {
-            // set the owning side to null (unless already changed)
-            if ($like->getUser() === $this) {
-                $like->setUser(null);
-            }
-        }
-
-        return $this;
-    }
 
      public function __tostring(): string {
         return $this->email;

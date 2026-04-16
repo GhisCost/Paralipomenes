@@ -172,5 +172,9 @@ class Corrections implements \ArrayAccess
         return $this;
     }
 
+     public function __tostring(): string {
+        $idStr=strval($this->id);
+        return $idStr;
+    }
 
 }
