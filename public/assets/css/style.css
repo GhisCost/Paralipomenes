@@ -1001,6 +1001,43 @@ a {
     justify-content: end;
 }
 
+
+/* nav mobile */
+
+.navMobile {
+    margin: 25px auto;
+    width: 50%;
+    text-align: center;
+    display: none;
+}
+
+.menuNavMobile {
+    border: #9a202c 2px solid;
+    border-radius: 5px;
+    margin-top: 10px;
+    
+}
+
+.cacher{
+    display: none;
+}
+
+.menuNavMobile li {
+    list-style: none;
+    padding: 7px;
+}
+
+.menuNavMobile a {
+    color: #9a202c;
+}
+
+
+/* Media Queries !!!!!!!!!!!!!!!!!!!!!!!!! */
+
+
+
+
+
 @media(max-width:1500px){
     .carte-correction{
         width: 60%;
@@ -1085,5 +1122,30 @@ a {
     font-size: 1.5em;
 }
 
+.nav-header{
+    display:none;
+}
+
+.navMobile{
+    display: block;
+}
+
+#recherche{
+
+    width: 50%;
+}
+
+.nav-footer ul{
+    width: 90%;
+}
+
+.div-histoires-accueil{
+    flex-direction: column;
+   gap:60px;
+}
+
+.carte-accueil{
+    width: 60%;
+}
 
 }

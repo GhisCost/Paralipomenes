@@ -83,46 +83,7 @@ document.addEventListener("click", function (e) {
 
 // Ajax recherche
 
-// let inputRecherche = document.getElementById("recherche");
 
-// if (inputRecherche) {
-//     document.addEventListener("DOMContentLoaded", function () {
-//         inputRecherche.addEventListener("input", async function (e) {
-//             let mot = e.target.value.trim();
-
-//             if (mot.length < 3) {
-//                 document.querySelectorAll(".carte-biblio").forEach((carte) => {
-//                     console.log('tchao');
-//                     carte.style.display = "block";
-//                 });
-//                 return;
-//             }
-
-//             try {
-//                 let response = await fetch(
-//                     `/recherche-histoires?mot=${encodeURIComponent(mot)}`,
-//                 );
-//                 let ids = await response.json();
-
-//                 document.querySelectorAll(".carte-biblio").forEach((carte) => {
-//                     carte.style.display = "none";
-//                 });
-
-//                 ids.forEach((id) => {
-//                     let carte = document.querySelector(
-//                         `.carte-biblio[data-id="${id}"]`,
-//                     );
-//                     if (carte) carte.style.display = "block";
-//                 });
-//             } catch (error) {
-//                 console.error("Erreur lors de la recherche:", error);
-//                 document.querySelectorAll(".carte-biblio").forEach((carte) => {
-//                     carte.style.display = "block";
-//                 });
-//             }
-//         });
-//     });
-// }
 
 document.addEventListener("DOMContentLoaded", function () {
     let inputRecherche = document.getElementById("recherche");
@@ -173,5 +134,32 @@ document.addEventListener("DOMContentLoaded", function () {
                 });
             }
         }, 300);
+    });
+});
+
+
+// Js navigation Mobile
+
+
+
+
+
+   document.addEventListener('DOMContentLoaded', function() {
+    ;
+    let menuNavMobile = document.querySelector('.menuNavMobile');
+    let divImgNav = document.querySelector('.divImgNav')
+    
+    divImgNav.addEventListener('click', function(e) {
+        e.stopPropagation(); 
+        menuNavMobile.classList.remove('cacher')
+        menuNavMobile.classList.add('la');
+    });
+
+   
+    document.addEventListener('click', function(e) {
+        if (!menuNavMobile.contains(e.target) && e.target !== divImgNav) {
+            menuNavMobile.classList.remove('la');
+            menuNavMobile.classList.add('cacher');
+        }
     });
 });
