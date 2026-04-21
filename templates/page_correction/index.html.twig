@@ -39,7 +39,7 @@
 		<button type="submit" class="btn btn-primary eagle fond-rouge texte-beige">Enregistrer</button>
 
 		{{ form_end(formChapitre) }}
-
+		<div class="divBtnCorrec">
 		{% if suivant == 1 %}
 			<div class="div-correc-suivant">
 				<a href="{{ path('app_correction_suivante', { id: correction.id }) }}">
@@ -58,7 +58,7 @@
 				</a>
 			</div>
 		{% endif %}
-
+		</div>
 	</div>
 
 {% endblock %}

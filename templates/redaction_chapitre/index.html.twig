@@ -56,9 +56,12 @@
 			{{ form_start(formChapitre) }}
 			{{ form_widget(formChapitre.contenu, {attr: { class: 'cacher' }}) }}
 			<div id="editor"></div>
-			<button type="submit" class="btn btn-primary eagle fond-rouge texte-beige">Enregistrer</button>
+			<div class="divSubRedac">
+			<button type="submit" id="btnSubRedac" class="btn btn-primary eagle fond-rouge texte-beige">Enregistrer</button>
+			</div>
 			{{ form_end(formChapitre) }}
 
+			<div class="divBtnRedac">
 			<div class="div-suivant">
 				<a href="{{ path('app_chapitre_suivant', { id: chapitre.id }) }}">
 					<button class="eagle fond-rouge texte-beige btn-suivant">
@@ -76,6 +79,7 @@
 					</a>
 				</div>
 			{% endif %}
+			</div>
 		</div>
 
 	</div>
