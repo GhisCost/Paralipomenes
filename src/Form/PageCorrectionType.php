@@ -16,7 +16,7 @@ class PageCorrectionType extends AbstractType
                ->add('contenu', TextareaType::class, [
                 'required' => false,
                 'attr' => [
-                'class' => 'cacher', // Même principe que le form pour la redaction des chapitres
+                'class' => 'cacher', // on cache le textarea "normal", Quill va faire le boulot à la place
                 ]
                 ]);
     }

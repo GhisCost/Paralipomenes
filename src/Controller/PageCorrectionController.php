@@ -27,10 +27,6 @@ final class PageCorrectionController extends AbstractController
 
         $this->denyAccessUnlessGranted('ROLE_CORRECTEUR');
 
-        /**
-         * @var Corrections $correction
-         */
-
         $corrections = $correctionsRepository->findUneCorrecByHistoire($id);
 
         $correction = $corrections[0];
@@ -68,15 +64,13 @@ final class PageCorrectionController extends AbstractController
             return $this->redirectToRoute('app_page_correction', ['id' => $histoire->getId()]);
         }
 
-
         return $this->render('page_correction/index.html.twig', [
             'correction' => $correction,
             'formChapitre' => $form->createView(),
             'histoire' => $histoire,
-            'idCorrection' => $correction->getId(),
             'precedent' => $precedent,
             'suivant' => $suivant,
-            'formTitre' => $formTitre
+            'formTitre' => $formTitre->createView()
         ]);
     }
 
@@ -179,10 +173,9 @@ final class PageCorrectionController extends AbstractController
             'correction' => $correction,
             'formChapitre' => $form->createView(),
             'histoire' => $histoire,
-            'idCorrection' => $correction->getId(),
             'precedent' => $precedent,
             'suivant' => $suivant,
-            'formTitre' => $formTitre
+            'formTitre' => $formTitre->createView()
         ]);
 
     }
@@ -231,7 +224,6 @@ final class PageCorrectionController extends AbstractController
 
         $histoire = $correction->getHistoire();
 
-
         $formTitre = $this->createForm(TitreHistoireType::class, $histoire);
         $formTitre->handleRequest($request);
 
@@ -246,10 +238,9 @@ final class PageCorrectionController extends AbstractController
             'correction' => $correction,
             'formChapitre' => $form->createView(),
             'histoire' => $histoire,
-            'idCorrection' => $correction->getId(),
             'precedent' => $precedent,
             'suivant' => $suivant,
-            'formTitre' => $formTitre
+            'formTitre' => $formTitre->createView()
 
         ]);
 

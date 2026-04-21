@@ -42,7 +42,7 @@
 
 		{% if suivant == 1 %}
 			<div class="div-correc-suivant">
-				<a href="{{ path('app_correction_suivante', { id: idCorrection }) }}">
+				<a href="{{ path('app_correction_suivante', { id: correction.id }) }}">
 					<button class="eagle fond-rouge texte-beige btn-suivant">
 						Corriger chapitre Suivant
 					</button>
@@ -51,7 +51,7 @@
 		{% endif %}
 		{% if precedent == 1 %}
 			<div class="div-correc-precedent">
-				<a href="{{ path('app_correction_precedente', { id: idCorrection }) }}">
+				<a href="{{ path('app_correction_precedente', { id: correction.id }) }}">
 					<button class="eagle fond-rouge texte-beige btn-precedent">
 						Corriger chapitre Précédent
 					</button>
