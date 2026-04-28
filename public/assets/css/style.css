@@ -1020,6 +1020,17 @@ a {
     color: #9a202c;
 }
 
+
+/* page login */
+
+.divErr{
+    width: 60%;
+    margin: auto;
+    text-align: center;
+}
+
+
+
 /* Media Queries !!!!!!!!!!!!!!!!!!!!!!!!! */
 
 @media (max-width: 1500px) {
