@@ -5,7 +5,6 @@
 
 {% block body %}
 
-	
 	{% if histoiresNouv == [] and histoireCom == [] %}
 		<p class="msgPasCor texte-rouge eagle">Il n'y as pas de nouvelle correction ou de correction en cours</p>	
 	{% endif %}
@@ -22,7 +21,6 @@
 			<p class="eagle texte-beige fond-rouge propreHist" >Ceci est ton histoire</p>
 			{% endif %}
 			
-
 			<div class="eagle">
 				{% for ch in hist.chapitres %}
 				<div class="limitMot">
@@ -36,7 +34,6 @@
 		</a>
 
 	{% endfor %}
-
 
 	{% for hist in histoireCom %}
 
