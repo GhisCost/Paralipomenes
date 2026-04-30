@@ -83,8 +83,6 @@ document.addEventListener("click", function (e) {
 
 // Ajax recherche
 
-
-
 document.addEventListener("DOMContentLoaded", function () {
     let inputRecherche = document.getElementById("recherche");
     if (!inputRecherche) return;
@@ -137,29 +135,30 @@ document.addEventListener("DOMContentLoaded", function () {
     });
 });
 
-
 // Js navigation Mobile
 
+document.addEventListener("DOMContentLoaded", function () {
+    let menuNavMobile = document.querySelector(".menuNavMobile");
+    let divImgNav = document.querySelector(".divImgNav");
 
-
-
-
-   document.addEventListener('DOMContentLoaded', function() {
-    ;
-    let menuNavMobile = document.querySelector('.menuNavMobile');
-    let divImgNav = document.querySelector('.divImgNav')
-    
-    divImgNav.addEventListener('click', function(e) {
-        e.stopPropagation(); 
-        menuNavMobile.classList.remove('cacher')
-        menuNavMobile.classList.add('la');
+    divImgNav.addEventListener("click", function (e) {
+        e.stopPropagation();
+        menuNavMobile.classList.remove("cacher");
+        menuNavMobile.classList.add("la");
     });
 
-   
-    document.addEventListener('click', function(e) {
+    document.addEventListener("click", function (e) {
         if (!menuNavMobile.contains(e.target) && e.target !== divImgNav) {
-            menuNavMobile.classList.remove('la');
-            menuNavMobile.classList.add('cacher');
+            menuNavMobile.classList.remove("la");
+            menuNavMobile.classList.add("cacher");
         }
     });
+});
+
+//Limitation du nombre de mots pour les histoires
+
+let divLimit = document.querySelectorAll(".limitMot");
+divLimit.forEach((el) => {
+    let mots = el.innerHTML.split(" ");
+    el.innerHTML = mots.slice(0, 50).join(" ") + "...";
 });
