@@ -25,7 +25,6 @@ const quill = new Quill('#editor', {theme: 'snow'});
 
 const textarea = document.querySelector('#{{formChapitre.contenu.vars.id}}');
 
-
     if (textarea.value) {
         quill.clipboard.dangerouslyPasteHTML(textarea.value);
     }
@@ -36,8 +35,6 @@ form.addEventListener('submit', function () {
 textarea.value = quill.root.innerHTML;
 });
 });
-
-
 
 {% endif %}
 

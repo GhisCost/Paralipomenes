@@ -40,9 +40,8 @@ final class MessagerieController extends AbstractController
          * @var User $user
          */
         $user = $this->getUser();
-
         $message = $messagesRepo->find($id);
-
+        
         if ($message->getExpediteur() == $user) {
             $message->setAffichageExpe(false);
             $em->persist($message);
@@ -54,11 +53,7 @@ final class MessagerieController extends AbstractController
             $em->persist($message);
             $em->flush();
         }
-
-        //  dd($message);
-
         return $this->redirectToRoute('app_messagerie', ["id" => $user->getId()]);
-
     }
 
 }

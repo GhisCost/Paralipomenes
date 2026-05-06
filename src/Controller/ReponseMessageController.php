@@ -36,7 +36,6 @@ final class ReponseMessageController extends AbstractController
 
         $pjRep = [];
 
-    
 
         foreach ($pjRecu as $pj) {
 
@@ -58,8 +57,6 @@ final class ReponseMessageController extends AbstractController
 
             return $this->redirectToRoute('app_messagerie', ["id" => $expe->getId()]);
         }
-
-
 
         return $this->render('reponse_message/index.html.twig', [
             "pieceJointes" => $pjRep,

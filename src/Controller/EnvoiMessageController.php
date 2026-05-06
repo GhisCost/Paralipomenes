@@ -42,12 +42,12 @@ final class EnvoiMessageController extends AbstractController
          * @var User $user
          */
 
-        $histoire = $histoiresRepo->find($IdHistoire);
+        $histoire = $histoiresRepo->find($IdHistoire);// à supprimer ?
 
         $form = $this->createForm(PrepaMessagesType::class);
         $form->handleRequest($request);
-        $expediteur = $this->getUser();
-        $destinataire = $histoire->getUser();
+        $expediteur = $this->getUser();// à supprimer ?
+        $destinataire = $histoire->getUser();// à supprimer ?
         $message = $messagesRepo->find($id);
         $user = $message->getExpediteur();
 
@@ -71,7 +71,6 @@ final class EnvoiMessageController extends AbstractController
     #[Route('/creation/message/{id}', name: 'app_creation_message')]
     public function creationMessage(int $id, MessagesRepository $messagesRepo, CorrectionsRepository $correctionsRepo, PieceJointeRepository $pieceJointeRepo)
     {
-
         $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
 
         /**
@@ -99,4 +98,5 @@ final class EnvoiMessageController extends AbstractController
         return $this->redirectToRoute("app_envoi_message", ["id" => $message->getId(), "IdHistoire" => $histoire->getId()]);
 
     }
+    
 }

@@ -1018,6 +1018,7 @@ a {
 
 .menuNavMobile a {
     color: #9a202c;
+    cursor: url(../img/doigtRouge24.png), pointer;
 }
 
 
