@@ -51,26 +51,27 @@ final class RecapPrePublicationController extends AbstractController
         foreach ($chapitres as $chap) {
             $correction = $correctionsRepo->findCorrectionByChapitre($chap);
             if ($correction) {
-                // Mise à jour du contenu du chapitre
+
+                // Met à jour le contenu du chapitre
                 $chap->setContenu($correction->getContenu());
                 $em->persist($chap);
 
-                // Suppression des pièces jointes
+                // Supprime les pièces jointes
                 foreach ($correction->getPieceJointes() as $pj) {
                     $correction->removePieceJointe($pj);
                     $em->remove($pj);
                 }
 
-                // Dissocier la correction du chapitre
+                // Dissocie la correction du chapitre
                 $chap->setCorrections(null);
                 $em->persist($chap);
 
-                // Supprimer la correction
+                // Supprime de la correction
                 $em->remove($correction);
             }
         }
 
-        // Mise à jour de l'histoire
+        // Met à jour de l'histoire
         $histoire->setDatePublication(new DateTime());
         $histoire = $histoiresRepo->changerStatutHistoireCvP($histoire);
         $em->persist($histoire);
