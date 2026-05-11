@@ -635,8 +635,8 @@ a {
         url(../img/plume-beige-24.png) 0 24,
         pointer;
     font-size: 1.5em;
-    position: fixed;
-    top: 37%;
+    position:fixed;
+    top:45%;
     right: 25%;
 }
 
@@ -1029,6 +1029,30 @@ a {
     margin: auto;
     text-align: center;
 }
+
+/* Page Mention Légales */
+
+.divMLeg{
+    width: 80%;
+    margin:auto;
+    box-shadow: 1px 1px 25px #9a202c;
+    text-align: center;
+    border-radius: 15px;
+    padding: 35px;
+}
+
+.pMLeg{
+    text-align: justify;
+}
+
+.divMLeg h1 {
+    margin: 15px;
+}
+
+.divMLeg h2 {
+    margin:10px;
+}
+
 
 
 
