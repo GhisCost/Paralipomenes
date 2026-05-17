@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "22089252c359644893672883497133b9",
+    "content-hash": "cd2d699f05b276bd20af55be02233558",
     "packages": [
         {
             "name": "composer/semver",
@@ -1206,16 +1206,16 @@
         },
         {
             "name": "easycorp/easyadmin-bundle",
-            "version": "v4.29.7",
+            "version": "v4.29.8",
             "source": {
                 "type": "git",
                 "url": "https://github.com/EasyCorp/EasyAdminBundle.git",
-                "reference": "e65c16fbdd436e1ad37ed46e8ddb8378e3d9f29a"
+                "reference": "590786d3f3f366ad65b7fb4b1584b4dca384c4c5"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/EasyCorp/EasyAdminBundle/zipball/e65c16fbdd436e1ad37ed46e8ddb8378e3d9f29a",
-                "reference": "e65c16fbdd436e1ad37ed46e8ddb8378e3d9f29a",
+                "url": "https://api.github.com/repos/EasyCorp/EasyAdminBundle/zipball/590786d3f3f366ad65b7fb4b1584b4dca384c4c5",
+                "reference": "590786d3f3f366ad65b7fb4b1584b4dca384c4c5",
                 "shasum": ""
             },
             "require": {
@@ -1299,7 +1299,7 @@
             ],
             "support": {
                 "issues": "https://github.com/EasyCorp/EasyAdminBundle/issues",
-                "source": "https://github.com/EasyCorp/EasyAdminBundle/tree/v4.29.7"
+                "source": "https://github.com/EasyCorp/EasyAdminBundle/tree/v4.29.8"
             },
             "funding": [
                 {
@@ -1307,7 +1307,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2026-05-03T18:06:56+00:00"
+            "time": "2026-05-13T17:02:11+00:00"
         },
         {
             "name": "egulias/email-validator",
@@ -9307,16 +9307,16 @@
         },
         {
             "name": "phpunit/phpunit",
-            "version": "12.5.24",
+            "version": "12.5.25",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sebastianbergmann/phpunit.git",
-                "reference": "d75dd30597caa80e72fad2ef7904601a30ef1046"
+                "reference": "792c2980442dfce319226b88fa845b8b6de3b333"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sebastianbergmann/phpunit/zipball/d75dd30597caa80e72fad2ef7904601a30ef1046",
-                "reference": "d75dd30597caa80e72fad2ef7904601a30ef1046",
+                "url": "https://api.github.com/repos/sebastianbergmann/phpunit/zipball/792c2980442dfce319226b88fa845b8b6de3b333",
+                "reference": "792c2980442dfce319226b88fa845b8b6de3b333",
                 "shasum": ""
             },
             "require": {
@@ -9385,7 +9385,7 @@
             "support": {
                 "issues": "https://github.com/sebastianbergmann/phpunit/issues",
                 "security": "https://github.com/sebastianbergmann/phpunit/security/policy",
-                "source": "https://github.com/sebastianbergmann/phpunit/tree/12.5.24"
+                "source": "https://github.com/sebastianbergmann/phpunit/tree/12.5.25"
             },
             "funding": [
                 {
@@ -9393,7 +9393,7 @@
                     "type": "other"
                 }
             ],
-            "time": "2026-05-01T04:21:04+00:00"
+            "time": "2026-05-13T03:56:57+00:00"
         },
         {
             "name": "sebastian/cli-parser",

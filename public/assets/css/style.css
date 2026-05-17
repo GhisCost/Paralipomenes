@@ -941,7 +941,7 @@ a {
     border: #9a202c solid 2px;
     border-radius: 15px;
     position: absolute;
-    top: 5%;
+    top: 0;
     right: 10%;
     font-size: 1.5em;
     cursor:

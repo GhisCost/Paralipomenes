@@ -23,6 +23,7 @@ final class RedactionChapitreController extends AbstractController
 
         $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
 
+        /** annotation phpDoc pour expliquer à VSCode de quel type sont les variables*/
         /**
          * @var Chapitres $chapitre
          */
