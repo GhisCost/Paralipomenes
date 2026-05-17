@@ -103,6 +103,7 @@ public function chapitreSuivant(
     }
 
     $chapitreActuel = $chapitresRepository->findChapitreSuivant($chapitre);
+    
     /**
     * @var User $user
     */
