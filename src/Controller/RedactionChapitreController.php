@@ -125,7 +125,7 @@ public function chapitreSuivant(
         return $this->redirectToRoute("app_redaction_chapitre", ["id" => $chapitreActuel->getId()]);
     }
 
-   
+
     $formTitre = $this->createForm(TitreHistoireType::class, $histoire);
     $formTitre->handleRequest($request);
 

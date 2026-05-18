@@ -23,7 +23,7 @@ class UserCrudController extends AbstractCrudController
         return [
             IdField::new('id')->onlyOnIndex(),
 
-            EmailField::new('email'),
+            EmailField::new('email')->onlyOnIndex(),
 
             ChoiceField::new('roles')
                 ->setChoices([
